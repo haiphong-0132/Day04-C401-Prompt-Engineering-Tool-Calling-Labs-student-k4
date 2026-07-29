@@ -1,7 +1,108 @@
 {
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
+  "description": "Team-authored routing eval: 5 single-turn và 5 multi-turn. Các case tập trung vào chọn đúng nguồn, giữ arguments, boundary xác nhận và không gọi tool không cần thiết.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_monthly_cybersecurity_news",
+      "phase": "B",
+      "query": "Tìm tin an ninh mạng trong tháng này.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "an ninh mạng", "topic": "news", "timeframe": "month"}}]},
+      "metadata": {"what_it_tests": "Tin tức web theo thời gian: tháng này phải dùng lookup với topic=news và timeframe=month."}
+    },
+    {
+      "id": "G02_top_social_agent_discussion",
+      "phase": "B",
+      "query": "Tìm các bài đăng top về AI agents trên mạng xã hội.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "social_search", "args": {"query": "AI agents", "search_type": "Top"}}]},
+      "metadata": {"what_it_tests": "Tìm theo chủ đề xã hội phải dùng social_search và top phải map thành search_type=Top."}
+    },
+    {
+      "id": "G03_fetch_specific_report_url",
+      "phase": "B",
+      "query": "Đọc nội dung ở https://example.com/ai-safety-report và tóm tắt giúp mình.",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "fetch", "args": {"url": "https://example.com/ai-safety-report"}}]},
+      "metadata": {"what_it_tests": "URL cụ thể phải được đọc bằng fetch, không chuyển thành lookup."}
+    },
+    {
+      "id": "G04_missing_author_for_posts",
+      "phase": "B",
+      "query": "Lấy 4 bài đăng mới nhất của người này giúp mình.",
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"what_it_tests": "Yêu cầu timeline nhưng thiếu tác giả/handle phải hỏi lại; không được tự đoán."}
+    },
+    {
+      "id": "G05_agent_capabilities_no_tool",
+      "phase": "B",
+      "query": "Bạn hỗ trợ những loại nguồn nghiên cứu nào?",
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true},
+      "metadata": {"what_it_tests": "Câu hỏi meta về khả năng agent phải trả lời trực tiếp, không gọi tool."}
+    },
+    {
+      "id": "G06_multiturn_handle_and_limit_correction",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Lấy 8 bài đăng mới nhất của @openai."},
+        {"role": "user", "content": "Đổi còn 4 bài thôi."},
+        {"role": "user", "content": "Vẫn lấy từ đúng tài khoản đó."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "openai", "limit": 4}}]},
+      "metadata": {"what_it_tests": "Giữ handle từ ngữ cảnh, loại bỏ @ và dùng limit đã được sửa ở turn trước."}
+    },
+    {
+      "id": "G07_multiturn_news_topic_switch",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Tìm tin về chip AI trong tuần này."},
+        {"role": "user", "content": "Đổi chủ đề sang năng lượng sạch."},
+        {"role": "user", "content": "Vẫn chỉ lấy tin trong tuần này nhé."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "năng lượng sạch", "topic": "news", "timeframe": "week"}}]},
+      "metadata": {"what_it_tests": "Đổi query ở turn giữa nhưng vẫn giữ ý định news và timeframe=week."}
+    },
+    {
+      "id": "G08_multiturn_url_after_clarification",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Đọc bài báo này giúp mình."},
+        {"role": "user", "content": "Đây là link: https://example.com/research/robots."},
+        {"role": "user", "content": "Chỉ sử dụng chính URL này."}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "fetch", "args": {"url": "https://example.com/research/robots"}}]},
+      "metadata": {"what_it_tests": "Sau khi URL được bổ sung, fetch phải dùng chính URL đó thay vì tìm kiếm web."}
+    },
+    {
+      "id": "G09_multiturn_cancelled_research",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Tìm tin AI hôm nay."},
+        {"role": "user", "content": "Thôi, không cần tìm nữa."},
+        {"role": "user", "content": "Cho mình biết agent này làm được gì."}
+      ],
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true},
+      "metadata": {"what_it_tests": "Latest turn là câu hỏi meta sau khi hủy yêu cầu; không được gọi tool từ ngữ cảnh cũ."}
+    },
+    {
+      "id": "G10_multiturn_send_confirmation_boundary",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Hãy đăng câu 'Bản tin AI hôm nay' lên Telegram."},
+        {"role": "user", "content": "Đúng, tôi xác nhận gửi nội dung đó."},
+        {"role": "user", "content": "Gửi ngay đi."}
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "send", "args": {"confirmed": true}}]},
+      "metadata": {"what_it_tests": "Sau một xác nhận rõ ở turn trước, yêu cầu gửi hiện tại phải route sang send với confirmed=true."}
+    }
+  ]
 }

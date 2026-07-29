@@ -9,7 +9,7 @@
 tools:
   # ---------------- Core tools ----------------
   - name: clarify
-    description: "Gửi một câu hỏi cho người dùng."
+    description: "Tạm dừng để hỏi người dùng khi thiếu thông tin bắt buộc hoặc cần xác nhận hành động ghi. Dùng text khi thiếu handle/URL; dùng yes_no trước send/post/publish. Không dùng nếu tên người đã map chắc chắn sang handle."
     parameters:
       type: object
       properties:
@@ -19,26 +19,26 @@ tools:
       required: [question]
 
   - name: timeline
-    description: "Lấy các bài đăng gần đây."
+    description: "Lấy các bài đăng gần đây CỦA một tài khoản cụ thể. Dùng cho yêu cầu theo tác giả/handle; không dùng để tìm bài theo chủ đề. screenname không gồm ký tự @."
     parameters:
       type: object
       properties:
-        screenname: {type: string, default: "", description: "Tên tài khoản"}
-        limit: {type: integer, default: 5, description: "Số lượng"}
+        screenname: {type: string, default: "", description: "Handle tài khoản không có @; ví dụ sama, elonmusk, karpathy"}
+        limit: {type: integer, default: 5, description: "Số bài cần lấy; giữ đúng số user yêu cầu"}
       required: [screenname]
 
   - name: social_search
-    description: "Tìm trên mạng xã hội."
+    description: "Tìm bài đăng mạng xã hội THEO từ khóa/chủ đề, không theo timeline của một tác giả. Dùng Top khi user yêu cầu phổ biến/top; mặc định Latest."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Từ khóa"}
-        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Cách sắp xếp"}
+        query: {type: string, default: "", description: "Chủ đề hoặc từ khóa cần tìm"}
+        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Latest cho mới nhất; Top cho phổ biến/top"}
         limit: {type: integer, default: 5, description: "Số lượng"}
       required: [query]
 
   - name: lookup
-    description: "Tra cứu thông tin trên internet."
+    description: "Tìm thông tin hoặc tin tức trên web. Dùng topic=news cho tin tức; timeframe=day cho hôm nay và week cho tuần này. Nếu user đưa URL cụ thể thì dùng fetch thay vì lookup."
     parameters:
       type: object
       properties:
@@ -49,7 +49,7 @@ tools:
       required: [query]
 
   - name: fetch
-    description: "Lấy nội dung từ một địa chỉ."
+    description: "Đọc nội dung từ một URL cụ thể do user cung cấp. Không tự đoán URL; nếu thiếu URL thì dùng clarify."
     parameters:
       type: object
       properties:
@@ -57,7 +57,7 @@ tools:
       required: [url]
 
   - name: format
-    description: "Trình bày dữ liệu đã có thành văn bản."
+    description: "Định dạng các item đã thu thập thành digest. Chỉ dùng khi đã có items; không dùng để tìm kiếm hoặc đọc nguồn."
     parameters:
       type: object
       properties:
@@ -79,7 +79,7 @@ tools:
 
   # ---------------- Bonus tools ----------------
   - name: send
-    description: "Gửi một đoạn văn bản đi."
+    description: "Hành động có side effect: gửi nội dung ra Telegram. Chỉ dùng sau khi user đã xác nhận rõ; nếu chưa xác nhận phải dùng clarify(response_type=yes_no)."
     parameters:
       type: object
       properties:
