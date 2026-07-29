@@ -42,6 +42,10 @@ class ResearchAgent:
             temperature=0.0,
             tool_choice=tool_choice,
         )
+        
+        
+        
+        def 
         results: list[dict[str, Any]] = []
         for call in response.tool_calls:
             func = TOOL_FUNCTIONS.get(call.name)
