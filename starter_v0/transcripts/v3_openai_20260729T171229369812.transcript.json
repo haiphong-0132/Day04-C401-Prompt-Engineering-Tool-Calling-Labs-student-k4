@@ -1,0 +1,74 @@
+{
+  "transcript_id": "v3_openai_20260729T171229369812",
+  "version": "v3",
+  "artifact_version": "v3+p84c2883349ac+t8c9a73ae34b7",
+  "prompt_hash": "84c2883349ac719c1a90a1d3ad9dcd949145d3493df5de80fe499ca673649b72",
+  "tools_hash": "8c9a73ae34b7d200ef5d1e6d684920cb565715467ad66efca3d3e8e39144e1b4",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T17:12:29",
+  "updated_at": "2026-07-29T17:12:43",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:12:39",
+      "user": "Christiano ronaldo đã cưới chưa",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi không thể tìm kiếm thông tin trực tuyến về việc Cristiano Ronaldo đã kết hôn hay chưa. Tuy nhiên, theo thông tin trước đây, Cristiano Ronaldo đã có một mối quan hệ lâu dài với Georgina Rodriguez, và họ có với nhau một số đứa trẻ. Nếu bạn cần thông tin cụ thể hơn, tôi khuyên bạn nên kiểm tra các nguồn tin tức thể thao hoặc trang mạng xã hội của anh ấy.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Cristiano Ronaldo đã cưới chưa",
+                "topic": "general"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Cristiano Ronaldo đã cưới chưa",
+                "topic": "general"
+              },
+              "result": {
+                "tool": "web_search",
+                "error": "RuntimeError",
+                "message": "Missing TAVILY_API_KEY env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi không thể tìm kiếm thông tin trực tuyến về việc Cristiano Ronaldo đã kết hôn hay chưa. Tuy nhiên, theo thông tin trước đây, Cristiano Ronaldo đã có một mối quan hệ lâu dài với Georgina Rodriguez, và họ có với nhau một số đứa trẻ. Nếu bạn cần thông tin cụ thể hơn, tôi khuyên bạn nên kiểm tra các nguồn tin tức thể thao hoặc trang mạng xã hội của anh ấy.",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Cristiano Ronaldo đã cưới chưa",
+            "topic": "general"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:12:43"
+    }
+  ]
+}

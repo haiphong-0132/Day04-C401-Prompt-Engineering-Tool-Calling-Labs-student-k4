@@ -1,0 +1,91 @@
+{
+  "transcript_id": "v3_openai_20260729T171039150136",
+  "version": "v3",
+  "artifact_version": "v3+p84c2883349ac+t8c9a73ae34b7",
+  "prompt_hash": "84c2883349ac719c1a90a1d3ad9dcd949145d3493df5de80fe499ca673649b72",
+  "tools_hash": "8c9a73ae34b7d200ef5d1e6d684920cb565715467ad66efca3d3e8e39144e1b4",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T17:10:39",
+  "updated_at": "2026-07-29T17:11:37",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:10:52",
+      "user": "Hoàng Sa Trường Sa là của quốc gia nào",
+      "status": "answered",
+      "assistant_text": "Hoàng Sa (Paracel Islands) và Trường Sa (Spratly Islands) hoàn toàn thuộc về chủ quyền của Việt Nam.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Hoàng Sa (Paracel Islands) và Trường Sa (Spratly Islands) hoàn toàn thuộc về chủ quyền của Việt Nam.",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T17:10:54"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-07-29T17:11:32",
+      "user": "Christiano Ronaldo đã cưới chưa",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi không thể tìm kiếm thông tin về tình trạng hôn nhân của Cristiano Ronaldo. Tuy nhiên, theo thông tin trước đây, Cristiano Ronaldo đã có một mối quan hệ lâu dài với Georgina Rodriguez, và họ có với nhau một con gái. Nếu bạn cần thông tin cụ thể hơn, tôi khuyên bạn nên kiểm tra các nguồn tin tức thể thao hoặc trang mạng xã hội của anh ấy.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Cristiano Ronaldo marriage status",
+                "topic": "general"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Cristiano Ronaldo marriage status",
+                "topic": "general"
+              },
+              "result": {
+                "tool": "web_search",
+                "error": "RuntimeError",
+                "message": "Missing TAVILY_API_KEY env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi không thể tìm kiếm thông tin về tình trạng hôn nhân của Cristiano Ronaldo. Tuy nhiên, theo thông tin trước đây, Cristiano Ronaldo đã có một mối quan hệ lâu dài với Georgina Rodriguez, và họ có với nhau một con gái. Nếu bạn cần thông tin cụ thể hơn, tôi khuyên bạn nên kiểm tra các nguồn tin tức thể thao hoặc trang mạng xã hội của anh ấy.",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Cristiano Ronaldo marriage status",
+            "topic": "general"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:11:37"
+    }
+  ]
+}

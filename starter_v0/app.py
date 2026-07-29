@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from datetime import datetime
 from pathlib import Path
@@ -117,7 +118,8 @@ st.caption("Trò chuyện research trực tiếp, theo dõi được tool trace 
 
 with st.sidebar:
     st.header("Cấu hình chạy")
-    provider_name = st.selectbox("Provider", ["openai", "openrouter", "anthropic", "gemini"], index=0)
+    provider_name = st.selectbox("Provider", ["openai", "nvidia", "openrouter", "anthropic", "gemini"], index=0)
+    api_key_input = st.text_input(f"{provider_name.upper()} API Key", type="password", placeholder="Paste API Key here (optional)")
     model_override = st.text_input("Ghi đè model (không bắt buộc)", placeholder="Dùng model mặc định của provider")
     version = st.text_input("Phiên bản artifact", value="v3")
     history_window = st.slider("Số cặp hội thoại lưu ngữ cảnh", min_value=1, max_value=10, value=5)
@@ -187,6 +189,10 @@ if prompt:
     with st.chat_message("assistant"):
         with st.spinner("Agent đang chọn tool phù hợp…"):
             try:
+                if api_key_input.strip():
+                    key_env = f"{provider_name.upper()}_API_KEY"
+                    os.environ[key_env] = api_key_input.strip()
+
                 provider = make_provider(provider_name)
                 result = run_model_tool_loop(
                     provider=provider,

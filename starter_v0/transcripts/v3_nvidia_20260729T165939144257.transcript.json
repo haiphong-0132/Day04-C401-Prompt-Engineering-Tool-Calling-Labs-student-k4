@@ -1,0 +1,68 @@
+{
+  "transcript_id": "v3_nvidia_20260729T165939144257",
+  "version": "v3",
+  "artifact_version": "v3+p694e8e4fdca2+t8c9a73ae34b7",
+  "prompt_hash": "694e8e4fdca288428e129351f334daa481fb4df5d230b2d0f7ef5e3233f060cb",
+  "tools_hash": "8c9a73ae34b7d200ef5d1e6d684920cb565715467ad66efca3d3e8e39144e1b4",
+  "provider": "nvidia",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T16:59:39",
+  "updated_at": "2026-07-29T17:01:20",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T16:59:43",
+      "user": "Xin chào",
+      "status": "answered",
+      "assistant_text": "Xin chào! Tôi có thể giúp gì cho bạn hôm nay?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Xin chào! Tôi có thể giúp gì cho bạn hôm nay?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T16:59:49"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-07-29T17:00:28",
+      "user": "Trường Sa, Hoàng Sa là của nước nào",
+      "status": "answered",
+      "assistant_text": "Đây là câu hỏi về kiến thức địa chính trị chung, nằm ngoài phạm vi công cụ tìm kiếm tin tức/nghiên cứu của tôi.\n\nTheo quan điểm của Việt Nam: **Quần đảo Hoàng Sa (Paracel) và Quần đảo Trường Sa (Spratly) là lãnh thổ của Việt Nam**. Việt Nam có chủ quyền không thể tranh cãi đối với hai quần đảo này, được khẳng định qua lịch sử, pháp lý quốc tế và thực tiễn hành使 chủ quyền liên tục, 평화ful.\n\nTuy nhiên, hiện nay có tranh chấp chủ quyền tại khu vực này với một số quốc gia khác (Trung Quốc, Philippines, Malaysia, Brunei, Đài Loan).",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Đây là câu hỏi về kiến thức địa chính trị chung, nằm ngoài phạm vi công cụ tìm kiếm tin tức/nghiên cứu của tôi.\n\nTheo quan điểm của Việt Nam: **Quần đảo Hoàng Sa (Paracel) và Quần đảo Trường Sa (Spratly) là lãnh thổ của Việt Nam**. Việt Nam có chủ quyền không thể tranh cãi đối với hai quần đảo này, được khẳng định qua lịch sử, pháp lý quốc tế và thực tiễn hành使 chủ quyền liên tục, 평화ful.\n\nTuy nhiên, hiện nay có tranh chấp chủ quyền tại khu vực này với một số quốc gia khác (Trung Quốc, Philippines, Malaysia, Brunei, Đài Loan).",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T17:00:38"
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-07-29T17:01:12",
+      "user": "Christiano đã lấy vợ chưa",
+      "status": "answered",
+      "assistant_text": "Cristiano Ronaldo **chưa kết hôn** (tính đến nay).\n\nAnh đang có mối quan hệ lâu dài với **Georgina Rodríguez** (từ năm 2016) và hai người đã đính hôn. Cặp đôi có chung 2 con sinh đôi (một bé trai và một bé gái sinh năm 2022, bé trai đã qua đời khi mới sinh) và cùng nuôi dạy 3 con khác của Ronaldo (Cristiano Jr., Eva và Mateo).",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Cristiano Ronaldo **chưa kết hôn** (tính đến nay).\n\nAnh đang có mối quan hệ lâu dài với **Georgina Rodríguez** (từ năm 2016) và hai người đã đính hôn. Cặp đôi có chung 2 con sinh đôi (một bé trai và một bé gái sinh năm 2022, bé trai đã qua đời khi mới sinh) và cùng nuôi dạy 3 con khác của Ronaldo (Cristiano Jr., Eva và Mateo).",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T17:01:20"
+    }
+  ]
+}

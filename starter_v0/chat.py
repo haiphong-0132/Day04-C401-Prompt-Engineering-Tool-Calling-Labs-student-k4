@@ -90,7 +90,9 @@ def run_model_tool_loop(
     all_tool_events: list[dict[str, Any]] = []
 
     for round_index in range(1, max_tool_rounds + 1):
-        response = provider.complete(working_messages, tools, model=model, temperature=0.0)
+        # Guardrail: Ép buộc phải gọi tool ở vòng 1 để chống hallucination
+        current_tool_choice = "required" if round_index == 1 else None
+        response = provider.complete(working_messages, tools, model=model, temperature=0.0, tool_choice=current_tool_choice)
         calls = response.tool_calls
         round_record: dict[str, Any] = {
             "round": round_index,
@@ -112,7 +114,10 @@ def run_model_tool_loop(
         non_clarification_events: list[dict[str, Any]] = []
 
         for call in calls:
-            print(f"🔧 {call.name}({json.dumps(call.args, ensure_ascii=False, sort_keys=True)})")
+            try:
+                print(f"[Tool] {call.name}({json.dumps(call.args, ensure_ascii=False, sort_keys=True)})")
+            except UnicodeEncodeError:
+                print(f"[Tool] {call.name}({json.dumps(call.args, ensure_ascii=True, sort_keys=True)})")
             event = execute_tool_call(call)
             round_record["tool_results"].append(event)
             all_tool_events.append(event)

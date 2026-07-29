@@ -1,0 +1,140 @@
+{
+  "transcript_id": "v3_openai_20260729T172006057102",
+  "version": "v3",
+  "artifact_version": "v3+pf074cfdbf031+t8c9a73ae34b7",
+  "prompt_hash": "f074cfdbf03165db1fb502f131b0275a1396e57916eb443569065c6b55aec356",
+  "tools_hash": "8c9a73ae34b7d200ef5d1e6d684920cb565715467ad66efca3d3e8e39144e1b4",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T17:20:06",
+  "updated_at": "2026-07-29T17:20:14",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:20:06",
+      "user": "Thiên An Môn Trung Quốc",
+      "status": "answered",
+      "assistant_text": "Thiên An Môn, hay còn gọi là Sự kiện Thiên An Môn, là một trong những sự kiện quan trọng trong lịch sử Trung Quốc, diễn ra vào ngày 4 tháng 6 năm 1989. Đây là các cuộc biểu tình do sinh viên lãnh đạo, diễn ra tại Quảng trường Thiên An Môn ở Bắc Kinh. Sự kiện này đã dẫn đến một cuộc đàn áp mạnh mẽ từ chính quyền Trung Quốc.\n\nDưới đây là một số nguồn thông tin chi tiết về sự kiện này:\n\n1. **[Sự kiện Thiên An Môn](https://vi.wikipedia.org/wiki/S%E1%BB%B1_ki%E1%BB%87n_Thi%C3%AAn_An_M%C3%B4n)** - Wikipedia: Tóm tắt về các cuộc biểu tình và sự kiện diễn ra vào ngày 4 tháng 6.\n   \n2. **[Thảm sát Thiên An Môn: Từ nhân chứng thành người lưu ...](https://www.bbc.com/vietnamese/world-48538983)** - BBC: Bài viết về những nhân chứng và tác động của sự kiện.\n\n3. **[Toàn Cảnh Thiên An Môn! TQ Đã \"Nghiền Nát\" Cuộc Biểu ...](https://www.youtube.com/watch?v=78x9UVwQZAo)** - Video trên YouTube mô tả sự kiện và những ảnh hưởng của nó.\n\n4. **[Vụ Thảm Sát Thiên An Môn | Cảnh Quay Kịch Tính Về ...](https://www.reddit.com/r/ADVChina/comments/1l44mjm/tiananmen_square_massacre_dramatic_footage_of/?tl=vi)** - Reddit: Cảnh quay kịch tính về cuộc đàn áp.\n\n5. **[Sự kiện Thiên An Môn năm 1989](https://www.hinhanhlichsu.org/2019/09/su-kien-thien-an-mon-nam-1989.html)** - Bài viết chi tiết về sự kiện và bối cảnh lịch sử.\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi cụ thể nào khác, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Thiên An Môn Trung Quốc",
+                "topic": "general"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Thiên An Môn Trung Quốc",
+                "topic": "general"
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "Thiên An Môn Trung Quốc",
+                "topic": "general",
+                "timeframe": "week",
+                "items": [
+                  {
+                    "title": "Sự kiện Thiên An Môn",
+                    "url": "https://vi.wikipedia.org/wiki/S%E1%BB%B1_ki%E1%BB%87n_Thi%C3%AAn_An_M%C3%B4n",
+                    "source": "vi.wikipedia.org",
+                    "summary": "Thiên An Môn, ở Trung Quốc được gọi là Sự cố ngày 4 tháng 6 ・ là các cuộc biểu tình do sinh viên lãnh đạo được tổ chức ・ ôn, Bắc Kinh trong năm 1989."
+                  },
+                  {
+                    "title": "Thảm sát Thiên An Môn: Từ nhân chứng thành người lưu ...",
+                    "url": "https://www.bbc.com/vietnamese/world-48538983",
+                    "source": "bbc.com",
+                    "summary": "Thiên An Môn, giảng viên đại học trẻ Ngô Nhân Hoa (Wu Renhua) cùng 20 sinh viên. Luật Trung Quốc (KHCT-Luật). ảm sát Ngày 4 tháng 6. uyền Trung ..."
+                  },
+                  {
+                    "title": "Toàn Cảnh Thiên An Môn! TQ Đã \"Nghiền Nát\" Cuộc Biểu ...",
+                    "url": "https://www.youtube.com/watch?v=78x9UVwQZAo",
+                    "source": "youtube.com",
+                    "summary": "Video này kể về: Quảng trường Thiên An Môn, ngày 4 tháng 6 năm 1989. Chỉ cần nhắc đến cụm từ ấy, hơn một tỷ người Trung Quốc hôm nay vẫn bị ..."
+                  },
+                  {
+                    "title": "Vụ Thảm Sát Thiên An Môn | Cảnh Quay Kịch Tính Về ...",
+                    "url": "https://www.reddit.com/r/ADVChina/comments/1l44mjm/tiananmen_square_massacre_dramatic_footage_of/?tl=vi",
+                    "source": "reddit.com",
+                    "summary": "Vụ Thảm Sát Thiên An Môn | Cảnh Quay Kịch Tính Về Cuộc Đàn Áp của Quân Đội đối với Phong Trào Biểu Tình của Trung Quốc (1989)."
+                  },
+                  {
+                    "title": "Sự kiện Thiên An Môn năm 1989",
+                    "url": "https://www.hinhanhlichsu.org/2019/09/su-kien-thien-an-mon-nam-1989.html",
+                    "source": "hinhanhlichsu.org",
+                    "summary": "Thiên An Môn ở thủ đô Bắc Kinh của Trung Quốc trong mùa xuân năm 1989. Trung Quốc đã tuyên bố thiết quân luật vào ngày 20 tháng 5, và huy động tới 300.000 quân ..."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Thiên An Môn, hay còn gọi là Sự kiện Thiên An Môn, là một trong những sự kiện quan trọng trong lịch sử Trung Quốc, diễn ra vào ngày 4 tháng 6 năm 1989. Đây là các cuộc biểu tình do sinh viên lãnh đạo, diễn ra tại Quảng trường Thiên An Môn ở Bắc Kinh. Sự kiện này đã dẫn đến một cuộc đàn áp mạnh mẽ từ chính quyền Trung Quốc.\n\nDưới đây là một số nguồn thông tin chi tiết về sự kiện này:\n\n1. **[Sự kiện Thiên An Môn](https://vi.wikipedia.org/wiki/S%E1%BB%B1_ki%E1%BB%87n_Thi%C3%AAn_An_M%C3%B4n)** - Wikipedia: Tóm tắt về các cuộc biểu tình và sự kiện diễn ra vào ngày 4 tháng 6.\n   \n2. **[Thảm sát Thiên An Môn: Từ nhân chứng thành người lưu ...](https://www.bbc.com/vietnamese/world-48538983)** - BBC: Bài viết về những nhân chứng và tác động của sự kiện.\n\n3. **[Toàn Cảnh Thiên An Môn! TQ Đã \"Nghiền Nát\" Cuộc Biểu ...](https://www.youtube.com/watch?v=78x9UVwQZAo)** - Video trên YouTube mô tả sự kiện và những ảnh hưởng của nó.\n\n4. **[Vụ Thảm Sát Thiên An Môn | Cảnh Quay Kịch Tính Về ...](https://www.reddit.com/r/ADVChina/comments/1l44mjm/tiananmen_square_massacre_dramatic_footage_of/?tl=vi)** - Reddit: Cảnh quay kịch tính về cuộc đàn áp.\n\n5. **[Sự kiện Thiên An Môn năm 1989](https://www.hinhanhlichsu.org/2019/09/su-kien-thien-an-mon-nam-1989.html)** - Bài viết chi tiết về sự kiện và bối cảnh lịch sử.\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi cụ thể nào khác, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Thiên An Môn Trung Quốc",
+            "topic": "general"
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Thiên An Môn Trung Quốc",
+            "topic": "general",
+            "timeframe": "week",
+            "items": [
+              {
+                "title": "Sự kiện Thiên An Môn",
+                "url": "https://vi.wikipedia.org/wiki/S%E1%BB%B1_ki%E1%BB%87n_Thi%C3%AAn_An_M%C3%B4n",
+                "source": "vi.wikipedia.org",
+                "summary": "Thiên An Môn, ở Trung Quốc được gọi là Sự cố ngày 4 tháng 6 ・ là các cuộc biểu tình do sinh viên lãnh đạo được tổ chức ・ ôn, Bắc Kinh trong năm 1989."
+              },
+              {
+                "title": "Thảm sát Thiên An Môn: Từ nhân chứng thành người lưu ...",
+                "url": "https://www.bbc.com/vietnamese/world-48538983",
+                "source": "bbc.com",
+                "summary": "Thiên An Môn, giảng viên đại học trẻ Ngô Nhân Hoa (Wu Renhua) cùng 20 sinh viên. Luật Trung Quốc (KHCT-Luật). ảm sát Ngày 4 tháng 6. uyền Trung ..."
+              },
+              {
+                "title": "Toàn Cảnh Thiên An Môn! TQ Đã \"Nghiền Nát\" Cuộc Biểu ...",
+                "url": "https://www.youtube.com/watch?v=78x9UVwQZAo",
+                "source": "youtube.com",
+                "summary": "Video này kể về: Quảng trường Thiên An Môn, ngày 4 tháng 6 năm 1989. Chỉ cần nhắc đến cụm từ ấy, hơn một tỷ người Trung Quốc hôm nay vẫn bị ..."
+              },
+              {
+                "title": "Vụ Thảm Sát Thiên An Môn | Cảnh Quay Kịch Tính Về ...",
+                "url": "https://www.reddit.com/r/ADVChina/comments/1l44mjm/tiananmen_square_massacre_dramatic_footage_of/?tl=vi",
+                "source": "reddit.com",
+                "summary": "Vụ Thảm Sát Thiên An Môn | Cảnh Quay Kịch Tính Về Cuộc Đàn Áp của Quân Đội đối với Phong Trào Biểu Tình của Trung Quốc (1989)."
+              },
+              {
+                "title": "Sự kiện Thiên An Môn năm 1989",
+                "url": "https://www.hinhanhlichsu.org/2019/09/su-kien-thien-an-mon-nam-1989.html",
+                "source": "hinhanhlichsu.org",
+                "summary": "Thiên An Môn ở thủ đô Bắc Kinh của Trung Quốc trong mùa xuân năm 1989. Trung Quốc đã tuyên bố thiết quân luật vào ngày 20 tháng 5, và huy động tới 300.000 quân ..."
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:20:14"
+    }
+  ]
+}

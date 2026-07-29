@@ -12,5 +12,5 @@ class NvidiaProvider(OpenAIProvider):
         super().__init__(
             api_key_env="NVIDIA_API_KEY",
             base_url=os.getenv("NVIDIA_BASE_URL", "https://integrate.api.nvidia.com/v1"),
-            default_model="meta/llama-3.1-8b-instruct",
+            default_model="nvidia/nemotron-3-ultra-550b-a55b",
         )

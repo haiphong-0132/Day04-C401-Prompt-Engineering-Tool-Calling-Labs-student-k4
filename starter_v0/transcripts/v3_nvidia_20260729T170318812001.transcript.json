@@ -1,0 +1,28 @@
+{
+  "transcript_id": "v3_nvidia_20260729T170318812001",
+  "version": "v3",
+  "artifact_version": "v3+p016a8d302e2d+t8c9a73ae34b7",
+  "prompt_hash": "016a8d302e2df621747760892b12f48ff2e4256bb926e9e08b39146b8de924d0",
+  "tools_hash": "8c9a73ae34b7d200ef5d1e6d684920cb565715467ad66efca3d3e8e39144e1b4",
+  "provider": "nvidia",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T17:03:18",
+  "updated_at": "2026-07-29T17:04:08",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:03:28",
+      "user": "Trường Sa hoàng sa là của nước nào",
+      "status": "provider_error",
+      "assistant_text": "Không thể gọi provider. Hãy kiểm tra provider đã chọn, API key, quota và model.",
+      "rounds": [],
+      "tool_events": [],
+      "error": "UnicodeEncodeError: 'charmap' codec can't encode characters in position 45-46: character maps to <undefined>",
+      "ended_at": "2026-07-29T17:04:08"
+    }
+  ]
+}

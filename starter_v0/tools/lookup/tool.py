@@ -10,27 +10,26 @@ from tools._shared import TIMEOUT, domain, err
 
 def web_search(query: str = "", topic: str = "general", timeframe: str | None = "week", max_results: int = 5) -> dict[str, Any]:
     try:
-        key = os.getenv("TAVILY_API_KEY")
+        key = os.getenv("SERP_API_KEY")
         if not key:
-            raise RuntimeError("Missing TAVILY_API_KEY env var")
-        body: dict[str, Any] = {"query": query, "topic": topic, "max_results": int(max_results or 5), "search_depth": "basic"}
-        if timeframe:
-            body["time_range"] = timeframe
-        response = requests.post(
-            "https://api.tavily.com/search",
-            json=body,
-            headers={"Authorization": f"Bearer {key}"},
+            raise RuntimeError("Missing SERP_API_KEY env var. Vui lòng nhập key trong file .env")
+            
+        endpoint = os.getenv("SERP_ENDPOINT", "https://serpapi.com/search")
+        response = requests.get(
+            endpoint,
+            params={"engine": "google", "q": query, "api_key": key},
             timeout=TIMEOUT,
         )
         response.raise_for_status()
         data = response.json()
+        
         items = [{
             "title": item.get("title"),
-            "url": item.get("url"),
-            "source": domain(item.get("url", "")),
-            "summary": item.get("content"),
-            "score": item.get("score"),
-        } for item in data.get("results", [])]
+            "url": item.get("link"),
+            "source": domain(item.get("link", "")),
+            "summary": item.get("snippet"),
+        } for item in data.get("organic_results", [])[:max_results]]
+        
         return {"tool": "web_search", "query": query, "topic": topic, "timeframe": timeframe, "items": items}
     except Exception as exc:
         return err("web_search", exc)

@@ -1,0 +1,74 @@
+{
+  "transcript_id": "v3_openai_20260729T170812380783",
+  "version": "v3",
+  "artifact_version": "v3+p016a8d302e2d+t8c9a73ae34b7",
+  "prompt_hash": "016a8d302e2df621747760892b12f48ff2e4256bb926e9e08b39146b8de924d0",
+  "tools_hash": "8c9a73ae34b7d200ef5d1e6d684920cb565715467ad66efca3d3e8e39144e1b4",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T17:08:12",
+  "updated_at": "2026-07-29T17:08:37",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T17:08:31",
+      "user": "Trường Sa Hoàng Sa thuộc chủ quyền quốc gia nào ",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi không thể truy cập thông tin trực tuyến để cung cấp câu trả lời chính xác về chủ quyền của Trường Sa và Hoàng Sa. Tuy nhiên, theo thông tin phổ biến, cả hai quần đảo này đều nằm trong tranh chấp chủ quyền giữa Việt Nam, Trung Quốc và một số quốc gia khác.\n\n- **Trường Sa** (Spratly Islands) và **Hoàng Sa** (Paracel Islands) đều được Việt Nam tuyên bố là một phần lãnh thổ của mình.\n- Trung Quốc cũng tuyên bố chủ quyền đối với cả hai quần đảo này, dẫn đến nhiều tranh chấp trong khu vực.\n\nNếu bạn cần thông tin chi tiết hơn hoặc nguồn cụ thể, tôi có thể cố gắng tìm kiếm lại.",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Trường Sa Hoàng Sa chủ quyền quốc gia",
+                "topic": "general"
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Trường Sa Hoàng Sa chủ quyền quốc gia",
+                "topic": "general"
+              },
+              "result": {
+                "tool": "web_search",
+                "error": "RuntimeError",
+                "message": "Missing TAVILY_API_KEY env var"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi không thể truy cập thông tin trực tuyến để cung cấp câu trả lời chính xác về chủ quyền của Trường Sa và Hoàng Sa. Tuy nhiên, theo thông tin phổ biến, cả hai quần đảo này đều nằm trong tranh chấp chủ quyền giữa Việt Nam, Trung Quốc và một số quốc gia khác.\n\n- **Trường Sa** (Spratly Islands) và **Hoàng Sa** (Paracel Islands) đều được Việt Nam tuyên bố là một phần lãnh thổ của mình.\n- Trung Quốc cũng tuyên bố chủ quyền đối với cả hai quần đảo này, dẫn đến nhiều tranh chấp trong khu vực.\n\nNếu bạn cần thông tin chi tiết hơn hoặc nguồn cụ thể, tôi có thể cố gắng tìm kiếm lại.",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Trường Sa Hoàng Sa chủ quyền quốc gia",
+            "topic": "general"
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T17:08:37"
+    }
+  ]
+}
