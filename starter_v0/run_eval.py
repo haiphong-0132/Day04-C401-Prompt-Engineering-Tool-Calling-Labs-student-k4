@@ -270,6 +270,7 @@ def main() -> None:
     parser.add_argument("--tools", type=Path, default=ARTIFACTS_DIR / "tools.yaml")
     parser.add_argument("--eval-cases", type=Path, default=DATA_DIR / "eval_base.json")
     parser.add_argument("--runs-dir", type=Path, default=ROOT / "runs")
+    parser.add_argument("--delay", type=float, default=0.0, help="Delay in seconds between test cases (useful for free tier rate limits, e.g. --delay 11 for Gemini).")
     args = parser.parse_args()
 
     system_prompt = args.system_prompt.read_text(encoding="utf-8")
@@ -285,8 +286,11 @@ def main() -> None:
     validate_expected_tools(cases, tool_declarations, args.eval_cases)
     openai_tools = to_openai_tools(tool_declarations)
 
+    import time
     results: list[dict[str, Any]] = []
-    for case in cases:
+    for idx, case in enumerate(cases):
+        if idx > 0 and args.delay > 0:
+            time.sleep(args.delay)
         print(f"Running {case['id']}...", flush=True)
         agent = ResearchAgent(provider, system_prompt=system_prompt, tools=openai_tools, model=args.model)
         try:
