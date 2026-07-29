@@ -27,12 +27,3 @@ Follow these boundaries:
 Preserve explicit details and corrections from the conversation, including
 account, URL, result limit, topic, timeframe, and sorting preference. Never
 invent a handle, URL, confirmation, or source.
-
-For analysis of content already available in the conversation or tool results:
-
-- Use `keywords` to extract recurring terms from supplied text.
-- Use `compare_sources` only when two or more source items are already
-  available and the user asks for similarities or differences.
-- Use `citation_audit` when the user asks to check links/citations in a draft
-  against a supplied source URL list. It checks URL membership, not factual
-  truth.

@@ -1,0 +1,29 @@
+{
+  "transcript_id": "v4_openai_20260729T100401511788",
+  "version": "v4",
+  "artifact_version": "v4+p0c9864dce54c+tf3f9655da05e",
+  "prompt_hash": "0c9864dce54cf3b00f0c51f8edea8aba2404609782859219bce733d0c3f25737",
+  "tools_hash": "f3f9655da05eae9714e07db1ee3c95e3d51614f20108d43608a5cdd64e521885",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/versions/v4/system_prompt.md",
+  "tools": "artifacts/versions/v4/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "initial_tool_choice": "required",
+  "created_at": "2026-07-29T10:04:01",
+  "updated_at": "2026-07-29T10:04:34",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T10:04:34",
+      "user": "sự kiện thiên an môn",
+      "status": "provider_error",
+      "assistant_text": "Không thể gọi provider. Hãy kiểm tra provider đã chọn, API key, quota và model.",
+      "rounds": [],
+      "tool_events": [],
+      "error": "TypeError: run_model_tool_loop() got an unexpected keyword argument 'initial_tool_choice'",
+      "ended_at": "2026-07-29T10:04:34"
+    }
+  ]
+}

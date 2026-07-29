@@ -1,0 +1,34 @@
+{
+  "transcript_id": "v1_openai_20260729T094918142340",
+  "version": "v1",
+  "artifact_version": "v1+p106315e904cc+t011c271ef0bb",
+  "prompt_hash": "106315e904cccf497e5fcfcdc2e7006779f8ef1d9a726a6be56fea817e289278",
+  "tools_hash": "011c271ef0bbad1e19a5d7b660b2ed481b7d72950f1faa8a0798c3bdd8784ee1",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/versions/v1/system_prompt.md",
+  "tools": "artifacts/versions/v1/tools.yaml",
+  "history_window": 10,
+  "max_tool_rounds": 6,
+  "created_at": "2026-07-29T09:49:18",
+  "updated_at": "2026-07-29T09:49:19",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T09:49:18",
+      "user": "bạn có thể làm gì",
+      "status": "answered",
+      "assistant_text": "Tôi có thể giúp bạn tìm kiếm thông tin trên internet, thu thập các bài viết, bài đăng trên mạng xã hội, và tạo các bản tóm tắt hoặc báo cáo nghiên cứu. Nếu bạn có yêu cầu cụ thể nào về thông tin, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": "Tôi có thể giúp bạn tìm kiếm thông tin trên internet, thu thập các bài viết, bài đăng trên mạng xã hội, và tạo các bản tóm tắt hoặc báo cáo nghiên cứu. Nếu bạn có yêu cầu cụ thể nào về thông tin, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [],
+      "ended_at": "2026-07-29T09:49:19"
+    }
+  ]
+}

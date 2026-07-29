@@ -1,0 +1,156 @@
+{
+  "transcript_id": "v3_openai_20260729T092123669033",
+  "version": "v3",
+  "artifact_version": "v3+pfd94fee88f64+t932ac8dd4073",
+  "prompt_hash": "fd94fee88f6430bbfb6cce7da0a3998dc2c54c668e7cb233b1a68cff8e000428",
+  "tools_hash": "932ac8dd4073271965bb7244beb5e60ab639f13c787049da5c002077aed7c04d",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T09:21:23",
+  "updated_at": "2026-07-29T09:21:44",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T09:21:34",
+      "user": "tìm cho tôi thông tin về cuộc chiến mỹ - iran",
+      "status": "answered",
+      "assistant_text": "Dưới đây là một số thông tin gần đây về cuộc chiến giữa Mỹ và Iran:\n\n1. **[Thời sự quốc tế 28/7: Ngay sau Houthi, thêm lực lượng mới vừa tấn công Ả Rập Xê Út, cực nóng kết quả](https://www.youtube.com/watch?v=M2_HYNcsMrw)** - Cuộc chiến tại Iran tiếp tục trở thành gánh nặng chính trị đối với chính quyền Tổng thống Trump. Kết quả khảo sát cho thấy chỉ 31% người Mỹ hiểu rõ tình hình tại eo biển Homos, và 76% cho rằng cuộc chiến với Iran khó khăn hơn dự tính. Mỹ đã tiến hành nhiều cuộc không kích nhằm vào các mục tiêu của Iran, trong khi Iran đáp trả bằng các đòn tấn công vào lực lượng Mỹ và đồng minh.\n\n2. **[Thời sự quốc tế: Hình ảnh bất ngờ chụp ở Iran lúc này khiến Mỹ và Israel “như ngồi trên lửa”](https://www.youtube.com/watch?v=kxahtuFrgro)** - Cuộc đối đầu giữa Mỹ và Iran đang bước vào giai đoạn phức tạp hơn với các đòn không kích và trả đũa. Mỹ đang nhắm tới các mục tiêu nhạy cảm bên trong Iran, trong khi Iran cũng có khả năng tiến hành các cuộc tấn công vào các quốc gia láng giềng.\n\n3. **[Tâm điểm 29/7: Iran đánh úp bất ngờ lực lượng Mỹ đúng lúc ...](https://www.youtube.com/watch?v=9eOr5wv2LuM)** - Cuộc xung đột quân sự giữa Mỹ và Iran bắt đầu vào tháng 2 năm nay, với thỏa thuận ngưng bắn chỉ tồn tại trong thời gian ngắn. Lãnh đạo quân đội Iran đã cảnh báo rằng bất kỳ cuộc tấn công nào từ Mỹ đều có thể dẫn đến các cuộc tấn công trả đũa.\n\n4. **[Thời sự quốc tế 28/7: Mỹ liên tục “vỡ kế hoạch”, ông Trump ...](https://www.youtube.com/watch?v=KmCyMcssDLg)** - Cuộc chiến này có thể không thể giành chiến thắng nếu Mỹ vẫn tự giới hạn phạm vi hành động. Iran vẫn đủ khả năng làm gia tăng cái giá toàn cầu của cuộc chiến.\n\n5. **[Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'](https://thanhnien.vn/tieu-diem-quoc-te-ngay-237-my-chi-khung-cho-cuoc-chien-iran-mo-hinh-ai-noi-loan-18526072223425879.htm)** - Mỹ đang chi tiêu lớn cho cuộc chiến này, và có nhiều thông tin đáng chú ý liên quan đến tình hình quốc tế.\n\nNếu bạn cần thêm thông tin chi tiết hoặc có câu hỏi cụ thể nào khác, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "cuộc chiến Mỹ - Iran",
+                "topic": "general",
+                "timeframe": "week",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "cuộc chiến Mỹ - Iran",
+                "topic": "general",
+                "timeframe": "week",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "cuộc chiến Mỹ - Iran",
+                "topic": "general",
+                "timeframe": "week",
+                "items": [
+                  {
+                    "title": "Thời sự quốc tế 28/7:Ngay sau Houthi, thêm lực lượng mới vừa tấn công Ả Rập Xê Út, cực nóng kết quả",
+                    "url": "https://www.youtube.com/watch?v=M2_HYNcsMrw",
+                    "source": "youtube.com",
+                    "summary": "cuộc chiến tại Iran tiếp tục trở thành gánh nặng chính trị đối với chính quyền Tổng thống Trump. Kết quả khảo sát mới của CBS News cho thấy chỉ 31% người Mỹ cho biết họ hiểu rõ tình hình tại eo biển Homos. Chỉ 40% tin rằng Mỹ đang chiếm ưu thế trong cuộc xung đột và tới 76% cho rằng cuộc chiến với Iran khó khăn hơn nhiều so với dự tính của chính quyền. Trong nhiều tháng qua, ông Trump tìm cách buộc Iran phải nhượng bộ mà không để Mỹ xa lầy vào các cuộc chiến trên bộ ở Trung Đông. Tuy nhiên, [...] Mỹ rút lui hoàn toàn. Kết quả khảo sát được công bố trong bối cảnh giao tranh Mỹ Iran tiếp tục leo thang sau khi thỏa thuận ngừng bắn tạm thời đổ vỡ. Trong hai tuần qua, Mỹ liên tục tiến hành các cuộc không kích nhằm vào nhiều mục tiêu của Iran, còn Tiran đáp trả bằng các đòn tấn công nhằm vào lực lượng Mỹ và đồng minh trong khu vực. Cuối tuần qua, hai binh sĩ Mỹ đã thiệt mạng tại Jordan trong khi giá xăng trung bình trên toàn nước Mỹ đã vượt 4 đô la Mỹ một galon, làm ra tăng áp lực đối với chi [...] Mỹ gia tăng, cuộc chiến với Iran cũng trở thành gánh nặng chính trị đối với Nhà Trắng. Theo kết quả khảo sát của Washington, Portsoport được truyền thông Mỹ dẫn lại, chỉ khoảng 29% người Mỹ bày tổng ủng hộ cuộc chiến. Ngay cả một số nghị sĩ Cộng hòa cũng thừa nhận chính quyền chưa giải thích đầy đủ với người dân và quốc hội về mục tiêu cũng như kế hoạch của chiến dịch quân sự. Hạ nghị sĩ Don Bacon cho rằng Tổng thống Trump phải chịu một phần trách nhiệm khi không tạo ra được sự đồng thuận rộng",
+                    "score": 0.72559077
+                  },
+                  {
+                    "title": "Thời sự quốc tế: Hình ảnh bất ngờ chụp ở Iran lúc này khiến Mỹ và Israel “như ngồi trên lửa”",
+                    "url": "https://www.youtube.com/watch?v=kxahtuFrgro",
+                    "source": "youtube.com",
+                    "summary": "của Iran đã phá hủy vô hiệu hóa bảy trung tâm chỉ huy và kiểm soát, sáu radar phòng không Patriot, ba hệ thống radar và tám hệ thống radar cảnh báo sớm. Ngoài ra, các lực lượng Hedan đã phá hủy hàng chục máy bay chiến đấu, máy bay không người lái trinh sát và tác chiến, máy bay tiếp nhiên liệu trên không cùng trục thăng hạng nặng, tên lửa dự trữ của Washington. Sau nhiều tuần leo thang quân sự, cuộc đối đầu giữa Mỹ và Iran đang bước vào giai đoạn phức tạp hơn khi các đòn không kích, trả đũa và [...] sẽ ném bom và phá hủy một cây cầu hay nhà máy điện của họ. Vấn đề then chốt đối với chính quyền ông Trump là dù quân đội Mỹ có ưu thế vượt trội về sức mạnh quân sự truyền thống, Mỹ và Iran dường như đang tiến hành hai kiểu chiến dịch khác nhau. Mỹ đang tăng cường tấn công theo chiều dọc, nhắm tới các mục tiêu ngày càng nhạy cảm và có giá trị cao bên trong Iran, đồng thời mở rộng dân phạm vi địa lý của các cuộc tấn công nhằm tác động đến tính toán chiến lược của giới lãnh đạo tại Teheran. Trong [...] nhẫn chính trị của Tổng thống Trump đối với cuộc xung đột. Tuy nhiên, điều đó không đồng nghĩa với việc giới lãnh đạo Iran có thể duy trì chiến đấu vô thời hạn. Ông Alex Vatanka lưu ý họ có thể không tin tưởng Mỹ nhưng vẫn cho rằng một thỏa thuận sẽ tốt hơn việc mạo hiểm với một cuộc chiến không hồi kết. Hiện nay, khả năng phong tỏa eo biển Homos cũng như tiến hành các cuộc tấn công vào các quốc gia láng giềng vẫn là đòn bảy lớn nhất của Iran. Iran cũng được cho là đã học cách tận dụng các cuộc",
+                    "score": 0.68723184
+                  },
+                  {
+                    "title": "Tâm điểm 29/7: Iran đánh úp bất ngờ lực lượng Mỹ đúng lúc ...",
+                    "url": "https://www.youtube.com/watch?v=9eOr5wv2LuM",
+                    "source": "youtube.com",
+                    "summary": "trường cuối cùng và chính thức của chúng ta. Cứ mỗi công dân tự hào của Cộng hào Hồi giáo Iran thiệt mạng, một binh sĩ Mỹ sẽ phải ra đi về cõi Vĩnh Hằng. Chúng tôi đã chuẩn bị sẵn những tấm vé trực tiếp miễn phí xuống địa ngục cho các người. Cuộc xung đột quân sự giữa Mỹ và Iran bắt đầu vào tháng 2 năm nay. Mặc dù hai bên đã đạt được thỏa thuận ngưng bắn vào tháng sáu vừa qua nhưng thỏa thuận này chỉ tồn tại trong thời gian ngắn khi giao tranh lại tiếp diễn chỉ vài tuần sau đó. Kể từ giữa tháng [...] tuyên bố rằng Mỹ sẽ tiến hành một cuộc tấn công quyết định vào một cơ sở mà Iran được cho là đang sử dụng để phát triển vũ khí hạt nhân. Lãnh đạo quân đội Iran sau đó cảnh báo rằng bất kỳ cuộc tấn công nào như vậy đều có thể dẫn đến các cuộc tấn công trả đũa nhằm vào các cơ sở quân sự của Mỹ, bao gồm cả những cơ sở nằm trên lãnh thổ của các đồng minh của Washington. Ngày 27 tháng , ngoại trưởng Yemen Ba Afra Anzoba cảnh báo lực lượng Ha đang tìm cách áp dụng chiến thuật của Iran tại eo biển Hos [...] quả của cơ chế kiểm soát phổ biến vũ khí hạt nhân trong khu vực. Chỉ huy tư lệnh Trung ương khát tam Anbia của Iran, thiếu tướng Ali Abdolahi tuyên bố nước này sẽ loại bỏ một binh sĩ Mỹ cho mỗi công dân Iran thiệt mạng trong các cuộc tấn công của Mỹ. Trong bối cảnh căng thẳng giữa Teheran và Washington tiếp tục leo thang sau khi thỏa thuận ngưng bắn sụp đổ. Ông Abdolahin nói, \"Quy tắc mà chúng ta đã chứng minh hiệu quả với đối thủ trong thực tế giờ đây là phương trình chiến trường cuối cùng và",
+                    "score": 0.68496037
+                  },
+                  {
+                    "title": "Thời sự quốc tế 28/7: Mỹ liên tục “vỡ kế hoạch”, ông Trump ...",
+                    "url": "https://www.youtube.com/watch?v=KmCyMcssDLg",
+                    "source": "youtube.com",
+                    "summary": "quả khảo sát mới của CBS News cho thấy chỉ 31% người Mỹ cho biết họ hiểu rõ tình hình tại eo biển Homos. Chỉ 40% tin rằng Mỹ đang chiếm ưu thế trong cuộc xung đột và tới 76% cho rằng cuộc chiến với Iran khó khăn hơn nhiều so với dự tính của chính quyền. Trong nhiều tháng qua, ông Trump tìm cách buộc Iran phải nhượng bộ mà không để Mỹ xa lầy vào các cuộc chiến trên bộ ở Trung Đông. Tuy nhiên, thực tế cho thấy cuộc chiến này có thể không thể giành chiến thắng nếu Mỹ vẫn tự giới hạn phạm vi hành [...] của cuộc xung đột đồng nghĩa với việc chỉ cần Iran còn có thể sử dụng UAV và tên lửa để đe dọa tâu thuyên tại eo biển Homos. Nước này vẫn đủ khả năng làm gia tăng cái giá toàn cầu của cuộc chiến. Bên cạnh đó, việc chính quyền Iran vẫn tồn tại sau cái chết của lãnh tụ tối cao Ali Khamine cũng tạo ra hình ảnh về khả năng chống chịu trước siêu cường số một thế giới. Trong khi đó, cuộc chiến tại Iran tiếp tục trở thành gánh nặng chính trị đối với chính quyền Tổng thống Trump. Kết quả khảo sát mới [...] sát được công bố trong bối cảnh giao tranh Mỹ Iran tiếp tục leo thang sau khi thỏa thuận ngừng bắn tạm thời đổ vỡ. Trong hai tuần qua, Mỹ liên tục tiến hành các cuộc không kích nhằm vào nhiều mục tiêu của Iran, còn Terran đáp trả bằng các đòn tấn công nhằm vào lực lượng Mỹ và đồng minh trong khu vực. Cuối tuần qua, hai binh sĩ Mỹ đã tuyệt mạng tại Jordan trong khi giá xăng trung bình trên toàn nước Mỹ đã vượt 4 đô la Mỹ một gông, làm ra tăng áp lực đối với chi phí sinh hoạt và trở thành chủ đề",
+                    "score": 0.63288915
+                  },
+                  {
+                    "title": "Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'",
+                    "url": "https://thanhnien.vn/tieu-diem-quoc-te-ngay-237-my-chi-khung-cho-cuoc-chien-iran-mo-hinh-ai-noi-loan-18526072223425879.htm",
+                    "source": "thanhnien.vn",
+                    "summary": "Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'\n\nVideo Thế giới\n\n# Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'\n\nTT Phát triển Nội dung số\n\nTT Phát triển Nội dung số\n\nChia sẻ\n\nKính mời quý vị theo dõi bản tin 'Tiêu điểm quốc tế' ngày 23.7.2026 của Báo Thanh Niên với nhiều thông tin đáng chú ý.\n\n## Tin liên quan\n\nTiêu điểm quốc tế 22.7: Ông Trump muốn Iran trả giá đắt | Đụng độ Trung Quốc - Philippines [...] Tiêu điểm quốc tế   bản tin quốc tế   tin tức quốc tế   tin quốc tế   tin thế giới\n\n#### Bạn không thể gửi bình luận liên tục. Xin hãy đợi 60 giy nữa.\n\nBình luận (0)\n\nGửi bình luận\n\nĐăng nhập để bình luận\n\nQuan tm nhất Mới nhất\n\nXem thêm bình luận [...] Bạn cần biết   Tiện ích   Liên hệ\n\nTheo dõi báo trên\n\nYoutube   Facebook   Tiktok   Zalo\n\nBáo thanh niên \n\nQuảng cáo   Đặt báo   Đăng nhập \n\navatar-user\n\nBình luận mới được duyệt Xem tất cả\n\nThông tin tài khoản   Đổi mật khẩu   Tin đã lưu   Tin đã xem  Đăng xuất\n\nĐóng menu\n\nChào ngày mới   Tin 24h   Tin thị trường   Tin 360\n\nVideo   Magazine\n\nTiện ích   Bạn cần biết   Liên hệ   Thông tin toà soạn   Liên hệ quảng cáo",
+                    "score": 0.532839
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Dưới đây là một số thông tin gần đây về cuộc chiến giữa Mỹ và Iran:\n\n1. **[Thời sự quốc tế 28/7: Ngay sau Houthi, thêm lực lượng mới vừa tấn công Ả Rập Xê Út, cực nóng kết quả](https://www.youtube.com/watch?v=M2_HYNcsMrw)** - Cuộc chiến tại Iran tiếp tục trở thành gánh nặng chính trị đối với chính quyền Tổng thống Trump. Kết quả khảo sát cho thấy chỉ 31% người Mỹ hiểu rõ tình hình tại eo biển Homos, và 76% cho rằng cuộc chiến với Iran khó khăn hơn dự tính. Mỹ đã tiến hành nhiều cuộc không kích nhằm vào các mục tiêu của Iran, trong khi Iran đáp trả bằng các đòn tấn công vào lực lượng Mỹ và đồng minh.\n\n2. **[Thời sự quốc tế: Hình ảnh bất ngờ chụp ở Iran lúc này khiến Mỹ và Israel “như ngồi trên lửa”](https://www.youtube.com/watch?v=kxahtuFrgro)** - Cuộc đối đầu giữa Mỹ và Iran đang bước vào giai đoạn phức tạp hơn với các đòn không kích và trả đũa. Mỹ đang nhắm tới các mục tiêu nhạy cảm bên trong Iran, trong khi Iran cũng có khả năng tiến hành các cuộc tấn công vào các quốc gia láng giềng.\n\n3. **[Tâm điểm 29/7: Iran đánh úp bất ngờ lực lượng Mỹ đúng lúc ...](https://www.youtube.com/watch?v=9eOr5wv2LuM)** - Cuộc xung đột quân sự giữa Mỹ và Iran bắt đầu vào tháng 2 năm nay, với thỏa thuận ngưng bắn chỉ tồn tại trong thời gian ngắn. Lãnh đạo quân đội Iran đã cảnh báo rằng bất kỳ cuộc tấn công nào từ Mỹ đều có thể dẫn đến các cuộc tấn công trả đũa.\n\n4. **[Thời sự quốc tế 28/7: Mỹ liên tục “vỡ kế hoạch”, ông Trump ...](https://www.youtube.com/watch?v=KmCyMcssDLg)** - Cuộc chiến này có thể không thể giành chiến thắng nếu Mỹ vẫn tự giới hạn phạm vi hành động. Iran vẫn đủ khả năng làm gia tăng cái giá toàn cầu của cuộc chiến.\n\n5. **[Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'](https://thanhnien.vn/tieu-diem-quoc-te-ngay-237-my-chi-khung-cho-cuoc-chien-iran-mo-hinh-ai-noi-loan-18526072223425879.htm)** - Mỹ đang chi tiêu lớn cho cuộc chiến này, và có nhiều thông tin đáng chú ý liên quan đến tình hình quốc tế.\n\nNếu bạn cần thêm thông tin chi tiết hoặc có câu hỏi cụ thể nào khác, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "cuộc chiến Mỹ - Iran",
+            "topic": "general",
+            "timeframe": "week",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "cuộc chiến Mỹ - Iran",
+            "topic": "general",
+            "timeframe": "week",
+            "items": [
+              {
+                "title": "Thời sự quốc tế 28/7:Ngay sau Houthi, thêm lực lượng mới vừa tấn công Ả Rập Xê Út, cực nóng kết quả",
+                "url": "https://www.youtube.com/watch?v=M2_HYNcsMrw",
+                "source": "youtube.com",
+                "summary": "cuộc chiến tại Iran tiếp tục trở thành gánh nặng chính trị đối với chính quyền Tổng thống Trump. Kết quả khảo sát mới của CBS News cho thấy chỉ 31% người Mỹ cho biết họ hiểu rõ tình hình tại eo biển Homos. Chỉ 40% tin rằng Mỹ đang chiếm ưu thế trong cuộc xung đột và tới 76% cho rằng cuộc chiến với Iran khó khăn hơn nhiều so với dự tính của chính quyền. Trong nhiều tháng qua, ông Trump tìm cách buộc Iran phải nhượng bộ mà không để Mỹ xa lầy vào các cuộc chiến trên bộ ở Trung Đông. Tuy nhiên, [...] Mỹ rút lui hoàn toàn. Kết quả khảo sát được công bố trong bối cảnh giao tranh Mỹ Iran tiếp tục leo thang sau khi thỏa thuận ngừng bắn tạm thời đổ vỡ. Trong hai tuần qua, Mỹ liên tục tiến hành các cuộc không kích nhằm vào nhiều mục tiêu của Iran, còn Tiran đáp trả bằng các đòn tấn công nhằm vào lực lượng Mỹ và đồng minh trong khu vực. Cuối tuần qua, hai binh sĩ Mỹ đã thiệt mạng tại Jordan trong khi giá xăng trung bình trên toàn nước Mỹ đã vượt 4 đô la Mỹ một galon, làm ra tăng áp lực đối với chi [...] Mỹ gia tăng, cuộc chiến với Iran cũng trở thành gánh nặng chính trị đối với Nhà Trắng. Theo kết quả khảo sát của Washington, Portsoport được truyền thông Mỹ dẫn lại, chỉ khoảng 29% người Mỹ bày tổng ủng hộ cuộc chiến. Ngay cả một số nghị sĩ Cộng hòa cũng thừa nhận chính quyền chưa giải thích đầy đủ với người dân và quốc hội về mục tiêu cũng như kế hoạch của chiến dịch quân sự. Hạ nghị sĩ Don Bacon cho rằng Tổng thống Trump phải chịu một phần trách nhiệm khi không tạo ra được sự đồng thuận rộng",
+                "score": 0.72559077
+              },
+              {
+                "title": "Thời sự quốc tế: Hình ảnh bất ngờ chụp ở Iran lúc này khiến Mỹ và Israel “như ngồi trên lửa”",
+                "url": "https://www.youtube.com/watch?v=kxahtuFrgro",
+                "source": "youtube.com",
+                "summary": "của Iran đã phá hủy vô hiệu hóa bảy trung tâm chỉ huy và kiểm soát, sáu radar phòng không Patriot, ba hệ thống radar và tám hệ thống radar cảnh báo sớm. Ngoài ra, các lực lượng Hedan đã phá hủy hàng chục máy bay chiến đấu, máy bay không người lái trinh sát và tác chiến, máy bay tiếp nhiên liệu trên không cùng trục thăng hạng nặng, tên lửa dự trữ của Washington. Sau nhiều tuần leo thang quân sự, cuộc đối đầu giữa Mỹ và Iran đang bước vào giai đoạn phức tạp hơn khi các đòn không kích, trả đũa và [...] sẽ ném bom và phá hủy một cây cầu hay nhà máy điện của họ. Vấn đề then chốt đối với chính quyền ông Trump là dù quân đội Mỹ có ưu thế vượt trội về sức mạnh quân sự truyền thống, Mỹ và Iran dường như đang tiến hành hai kiểu chiến dịch khác nhau. Mỹ đang tăng cường tấn công theo chiều dọc, nhắm tới các mục tiêu ngày càng nhạy cảm và có giá trị cao bên trong Iran, đồng thời mở rộng dân phạm vi địa lý của các cuộc tấn công nhằm tác động đến tính toán chiến lược của giới lãnh đạo tại Teheran. Trong [...] nhẫn chính trị của Tổng thống Trump đối với cuộc xung đột. Tuy nhiên, điều đó không đồng nghĩa với việc giới lãnh đạo Iran có thể duy trì chiến đấu vô thời hạn. Ông Alex Vatanka lưu ý họ có thể không tin tưởng Mỹ nhưng vẫn cho rằng một thỏa thuận sẽ tốt hơn việc mạo hiểm với một cuộc chiến không hồi kết. Hiện nay, khả năng phong tỏa eo biển Homos cũng như tiến hành các cuộc tấn công vào các quốc gia láng giềng vẫn là đòn bảy lớn nhất của Iran. Iran cũng được cho là đã học cách tận dụng các cuộc",
+                "score": 0.68723184
+              },
+              {
+                "title": "Tâm điểm 29/7: Iran đánh úp bất ngờ lực lượng Mỹ đúng lúc ...",
+                "url": "https://www.youtube.com/watch?v=9eOr5wv2LuM",
+                "source": "youtube.com",
+                "summary": "trường cuối cùng và chính thức của chúng ta. Cứ mỗi công dân tự hào của Cộng hào Hồi giáo Iran thiệt mạng, một binh sĩ Mỹ sẽ phải ra đi về cõi Vĩnh Hằng. Chúng tôi đã chuẩn bị sẵn những tấm vé trực tiếp miễn phí xuống địa ngục cho các người. Cuộc xung đột quân sự giữa Mỹ và Iran bắt đầu vào tháng 2 năm nay. Mặc dù hai bên đã đạt được thỏa thuận ngưng bắn vào tháng sáu vừa qua nhưng thỏa thuận này chỉ tồn tại trong thời gian ngắn khi giao tranh lại tiếp diễn chỉ vài tuần sau đó. Kể từ giữa tháng [...] tuyên bố rằng Mỹ sẽ tiến hành một cuộc tấn công quyết định vào một cơ sở mà Iran được cho là đang sử dụng để phát triển vũ khí hạt nhân. Lãnh đạo quân đội Iran sau đó cảnh báo rằng bất kỳ cuộc tấn công nào như vậy đều có thể dẫn đến các cuộc tấn công trả đũa nhằm vào các cơ sở quân sự của Mỹ, bao gồm cả những cơ sở nằm trên lãnh thổ của các đồng minh của Washington. Ngày 27 tháng , ngoại trưởng Yemen Ba Afra Anzoba cảnh báo lực lượng Ha đang tìm cách áp dụng chiến thuật của Iran tại eo biển Hos [...] quả của cơ chế kiểm soát phổ biến vũ khí hạt nhân trong khu vực. Chỉ huy tư lệnh Trung ương khát tam Anbia của Iran, thiếu tướng Ali Abdolahi tuyên bố nước này sẽ loại bỏ một binh sĩ Mỹ cho mỗi công dân Iran thiệt mạng trong các cuộc tấn công của Mỹ. Trong bối cảnh căng thẳng giữa Teheran và Washington tiếp tục leo thang sau khi thỏa thuận ngưng bắn sụp đổ. Ông Abdolahin nói, \"Quy tắc mà chúng ta đã chứng minh hiệu quả với đối thủ trong thực tế giờ đây là phương trình chiến trường cuối cùng và",
+                "score": 0.68496037
+              },
+              {
+                "title": "Thời sự quốc tế 28/7: Mỹ liên tục “vỡ kế hoạch”, ông Trump ...",
+                "url": "https://www.youtube.com/watch?v=KmCyMcssDLg",
+                "source": "youtube.com",
+                "summary": "quả khảo sát mới của CBS News cho thấy chỉ 31% người Mỹ cho biết họ hiểu rõ tình hình tại eo biển Homos. Chỉ 40% tin rằng Mỹ đang chiếm ưu thế trong cuộc xung đột và tới 76% cho rằng cuộc chiến với Iran khó khăn hơn nhiều so với dự tính của chính quyền. Trong nhiều tháng qua, ông Trump tìm cách buộc Iran phải nhượng bộ mà không để Mỹ xa lầy vào các cuộc chiến trên bộ ở Trung Đông. Tuy nhiên, thực tế cho thấy cuộc chiến này có thể không thể giành chiến thắng nếu Mỹ vẫn tự giới hạn phạm vi hành [...] của cuộc xung đột đồng nghĩa với việc chỉ cần Iran còn có thể sử dụng UAV và tên lửa để đe dọa tâu thuyên tại eo biển Homos. Nước này vẫn đủ khả năng làm gia tăng cái giá toàn cầu của cuộc chiến. Bên cạnh đó, việc chính quyền Iran vẫn tồn tại sau cái chết của lãnh tụ tối cao Ali Khamine cũng tạo ra hình ảnh về khả năng chống chịu trước siêu cường số một thế giới. Trong khi đó, cuộc chiến tại Iran tiếp tục trở thành gánh nặng chính trị đối với chính quyền Tổng thống Trump. Kết quả khảo sát mới [...] sát được công bố trong bối cảnh giao tranh Mỹ Iran tiếp tục leo thang sau khi thỏa thuận ngừng bắn tạm thời đổ vỡ. Trong hai tuần qua, Mỹ liên tục tiến hành các cuộc không kích nhằm vào nhiều mục tiêu của Iran, còn Terran đáp trả bằng các đòn tấn công nhằm vào lực lượng Mỹ và đồng minh trong khu vực. Cuối tuần qua, hai binh sĩ Mỹ đã tuyệt mạng tại Jordan trong khi giá xăng trung bình trên toàn nước Mỹ đã vượt 4 đô la Mỹ một gông, làm ra tăng áp lực đối với chi phí sinh hoạt và trở thành chủ đề",
+                "score": 0.63288915
+              },
+              {
+                "title": "Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'",
+                "url": "https://thanhnien.vn/tieu-diem-quoc-te-ngay-237-my-chi-khung-cho-cuoc-chien-iran-mo-hinh-ai-noi-loan-18526072223425879.htm",
+                "source": "thanhnien.vn",
+                "summary": "Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'\n\nVideo Thế giới\n\n# Tiêu điểm quốc tế ngày 23.7: Mỹ chi 'khủng' cho cuộc chiến Iran | Mô hình AI 'nổi loạn'\n\nTT Phát triển Nội dung số\n\nTT Phát triển Nội dung số\n\nChia sẻ\n\nKính mời quý vị theo dõi bản tin 'Tiêu điểm quốc tế' ngày 23.7.2026 của Báo Thanh Niên với nhiều thông tin đáng chú ý.\n\n## Tin liên quan\n\nTiêu điểm quốc tế 22.7: Ông Trump muốn Iran trả giá đắt | Đụng độ Trung Quốc - Philippines [...] Tiêu điểm quốc tế   bản tin quốc tế   tin tức quốc tế   tin quốc tế   tin thế giới\n\n#### Bạn không thể gửi bình luận liên tục. Xin hãy đợi 60 giy nữa.\n\nBình luận (0)\n\nGửi bình luận\n\nĐăng nhập để bình luận\n\nQuan tm nhất Mới nhất\n\nXem thêm bình luận [...] Bạn cần biết   Tiện ích   Liên hệ\n\nTheo dõi báo trên\n\nYoutube   Facebook   Tiktok   Zalo\n\nBáo thanh niên \n\nQuảng cáo   Đặt báo   Đăng nhập \n\navatar-user\n\nBình luận mới được duyệt Xem tất cả\n\nThông tin tài khoản   Đổi mật khẩu   Tin đã lưu   Tin đã xem  Đăng xuất\n\nĐóng menu\n\nChào ngày mới   Tin 24h   Tin thị trường   Tin 360\n\nVideo   Magazine\n\nTiện ích   Bạn cần biết   Liên hệ   Thông tin toà soạn   Liên hệ quảng cáo",
+                "score": 0.532839
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T09:21:44"
+    }
+  ]
+}

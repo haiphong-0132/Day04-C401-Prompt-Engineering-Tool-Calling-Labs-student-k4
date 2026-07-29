@@ -11,6 +11,7 @@ from typing import Any
 import streamlit as st
 
 from chat import now_iso, run_model_tool_loop, safe_slug, trim_history, write_transcript
+from chat_store import initialize_database, list_conversations, load_conversation, save_conversation
 from env_loader import load_lab_env
 from providers import make_provider
 from tools import load_tool_declarations, to_openai_tools
@@ -20,7 +21,15 @@ from versioning import artifact_version_dict, build_artifact_version
 ROOT = Path(__file__).parent
 ARTIFACTS_DIR = ROOT / "artifacts"
 TRANSCRIPTS_DIR = ROOT / "transcripts"
+DATABASE_PATH = ROOT / "data" / "agent_history.sqlite3"
 load_lab_env(ROOT)
+initialize_database(DATABASE_PATH)
+
+
+def selected_artifact_paths(version: str) -> tuple[Path, Path]:
+    """Return the immutable prompt/tool snapshot selected in the UI."""
+    version_dir = ARTIFACTS_DIR / "versions" / version
+    return version_dir / "system_prompt.md", version_dir / "tools.yaml"
 
 
 def redact(value: Any) -> Any:
@@ -54,7 +63,15 @@ def tool_result_summary(result: Any) -> str:
 
 
 def new_transcript(
-    *, artifact: Any, provider: str, model: str | None, history_window: int, max_tool_rounds: int
+    *,
+    artifact: Any,
+    provider: str,
+    model: str | None,
+    history_window: int,
+    max_tool_rounds: int,
+    force_first_tool: bool,
+    system_prompt_path: Path,
+    tools_path: Path,
 ) -> tuple[dict[str, Any], Path]:
     timestamp = datetime.now().strftime("%Y%m%dT%H%M%S%f")
     transcript_id = "_".join([safe_slug(artifact.version), safe_slug(provider), timestamp])
@@ -64,10 +81,12 @@ def new_transcript(
         **artifact_version_dict(artifact),
         "provider": provider,
         "model": model,
-        "system_prompt": "artifacts/system_prompt.md",
-        "tools": "artifacts/tools.yaml",
+        "system_prompt": str(system_prompt_path.relative_to(ROOT)),
+        "tools": str(tools_path.relative_to(ROOT)),
         "history_window": history_window,
         "max_tool_rounds": max_tool_rounds,
+        "initial_tool_choice": "required" if force_first_tool else "auto",
+        "response_language": "vi",
         "created_at": now_iso(),
         "updated_at": now_iso(),
         "turns": [],
@@ -75,7 +94,15 @@ def new_transcript(
 
 
 def initialise_session(
-    *, artifact: Any, provider: str, model: str | None, history_window: int, max_tool_rounds: int
+    *,
+    artifact: Any,
+    provider: str,
+    model: str | None,
+    history_window: int,
+    max_tool_rounds: int,
+    force_first_tool: bool,
+    system_prompt_path: Path,
+    tools_path: Path,
 ) -> None:
     transcript, path = new_transcript(
         artifact=artifact,
@@ -83,12 +110,18 @@ def initialise_session(
         model=model,
         history_window=history_window,
         max_tool_rounds=max_tool_rounds,
+        force_first_tool=force_first_tool,
+        system_prompt_path=system_prompt_path,
+        tools_path=tools_path,
     )
     st.session_state.history = []
     st.session_state.display_messages = []
     st.session_state.transcript = transcript
     st.session_state.transcript_path = path
-    st.session_state.settings_key = (provider, model, artifact.artifact_version, history_window, max_tool_rounds)
+    st.session_state.settings_key = (
+        provider, model, artifact.artifact_version, history_window, max_tool_rounds, force_first_tool
+    )
+    save_conversation(DATABASE_PATH, transcript)
 
 
 def render_trace(turn: dict[str, Any]) -> None:
@@ -119,21 +152,34 @@ with st.sidebar:
     st.header("Cấu hình chạy")
     provider_name = st.selectbox("Provider", ["openai", "openrouter", "anthropic", "gemini"], index=0)
     model_override = st.text_input("Ghi đè model (không bắt buộc)", placeholder="Dùng model mặc định của provider")
-    version = st.text_input("Phiên bản artifact", value="v3")
+    version = st.segmented_control(
+        "Phiên bản artifact",
+        options=["v1", "v2", "v3", "v4"],
+        default="v4",
+        required=True,
+        key="artifact_version_picker",
+        width="stretch",
+    )
     history_window = st.slider("Số cặp hội thoại lưu ngữ cảnh", min_value=1, max_value=10, value=5)
     max_tool_rounds = st.slider("Số vòng gọi tool tối đa", min_value=1, max_value=8, value=4)
+    force_first_tool = st.toggle(
+        "Bắt buộc gọi tool ở vòng đầu",
+        value=True,
+        help="Bật cho yêu cầu research để model phải chọn ít nhất một tool trước khi trả lời.",
+    )
 
     st.divider()
     st.caption("API key được đọc từ `.env` và không bao giờ hiển thị trên UI.")
 
-system_prompt_path = ARTIFACTS_DIR / "system_prompt.md"
-tools_path = ARTIFACTS_DIR / "tools.yaml"
+system_prompt_path, tools_path = selected_artifact_paths(version)
 artifact = build_artifact_version(version, system_prompt_path, tools_path)
 tool_declarations = load_tool_declarations(tools_path)
 openai_tools = to_openai_tools(tool_declarations)
 
 selected_model = model_override.strip() or None
-settings_key = (provider_name, selected_model, artifact.artifact_version, history_window, max_tool_rounds)
+settings_key = (
+    provider_name, selected_model, artifact.artifact_version, history_window, max_tool_rounds, force_first_tool
+)
 if "settings_key" not in st.session_state or st.session_state.settings_key != settings_key:
     initialise_session(
         artifact=artifact,
@@ -141,11 +187,14 @@ if "settings_key" not in st.session_state or st.session_state.settings_key != se
         model=selected_model,
         history_window=history_window,
         max_tool_rounds=max_tool_rounds,
+        force_first_tool=force_first_tool,
+        system_prompt_path=system_prompt_path,
+        tools_path=tools_path,
     )
 
 left, right = st.columns([2, 1])
 with left:
-    st.info(f"Artifact: `{artifact.artifact_version}` · Provider: `{provider_name}` · Số tool: {len(tool_declarations)}")
+    st.info(f"Artifact: `{artifact.artifact_version}` · Nguồn: `artifacts/versions/{version}` · Provider: `{provider_name}` · Số tool: {len(tool_declarations)}")
 with right:
     if st.button("Bắt đầu hội thoại mới", width="stretch"):
         initialise_session(
@@ -154,6 +203,9 @@ with right:
             model=selected_model,
             history_window=history_window,
             max_tool_rounds=max_tool_rounds,
+            force_first_tool=force_first_tool,
+            system_prompt_path=system_prompt_path,
+            tools_path=tools_path,
         )
         st.rerun()
 
@@ -180,6 +232,13 @@ if prompt:
     }
     messages = [
         {"role": "system", "content": system_prompt_path.read_text(encoding="utf-8")},
+        {
+            "role": "system",
+            "content": (
+                "Always answer the user in Vietnamese. Keep proper names, quoted source titles, "
+                "and URLs in their original form when needed for accurate citation."
+            ),
+        },
         *trim_history(st.session_state.history, history_window),
         {"role": "user", "content": prompt},
     ]
@@ -194,6 +253,7 @@ if prompt:
                     tools=openai_tools,
                     model=selected_model,
                     max_tool_rounds=max_tool_rounds,
+                    initial_tool_choice="required" if force_first_tool else None,
                 )
                 turn.update(result)
                 answer = result["assistant_text"]
@@ -213,6 +273,7 @@ if prompt:
     turn["ended_at"] = now_iso()
     st.session_state.transcript["turns"].append(redact(turn))
     write_transcript(st.session_state.transcript_path, st.session_state.transcript)
+    save_conversation(DATABASE_PATH, st.session_state.transcript)
     st.session_state.display_messages.append({"role": "assistant", "content": answer, "turn": turn})
     st.rerun()
 
@@ -224,3 +285,37 @@ st.download_button(
     file_name=st.session_state.transcript_path.name,
     mime="application/json",
 )
+
+with st.sidebar:
+    st.divider()
+    st.header("Lịch sử hội thoại")
+    saved_conversations = list_conversations(DATABASE_PATH)
+    if not saved_conversations:
+        st.caption("Chưa có hội thoại nào được lưu.")
+    else:
+        history_labels = {
+            item["transcript_id"]: (
+                f"{item['updated_at']} · {item['version']} · "
+                f"{item['turn_count']} lượt · {item['provider']}"
+            )
+            for item in saved_conversations
+        }
+        selected_history_id = st.selectbox(
+            "Hội thoại đã lưu",
+            options=list(history_labels),
+            format_func=history_labels.get,
+            key="saved_conversation_picker",
+        )
+        selected_history = load_conversation(DATABASE_PATH, selected_history_id)
+        if selected_history:
+            st.caption(
+                f"Artifact: {selected_history['artifact_version']} · "
+                f"Cập nhật: {selected_history['updated_at']}"
+            )
+            st.download_button(
+                "Tải transcript đã chọn",
+                data=json_view(selected_history),
+                file_name=f"{selected_history_id}.transcript.json",
+                mime="application/json",
+                key="download_saved_transcript",
+            )

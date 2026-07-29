@@ -9,7 +9,7 @@
 tools:
   # ---------------- Core tools ----------------
   - name: clarify
-    description: "Tạm dừng để hỏi người dùng khi thiếu thông tin bắt buộc hoặc cần xác nhận hành động ghi. Dùng text khi thiếu handle/URL; dùng yes_no trước send/post/publish. Không dùng nếu tên người đã map chắc chắn sang handle."
+    description: "Gửi một câu hỏi cho người dùng."
     parameters:
       type: object
       properties:
@@ -19,26 +19,26 @@ tools:
       required: [question]
 
   - name: timeline
-    description: "Lấy các bài đăng gần đây CỦA một tài khoản cụ thể. Dùng cho yêu cầu theo tác giả/handle; không dùng để tìm bài theo chủ đề. screenname không gồm ký tự @."
+    description: "Lấy các bài đăng gần đây."
     parameters:
       type: object
       properties:
-        screenname: {type: string, default: "", description: "Handle tài khoản không có @; ví dụ sama, elonmusk, karpathy"}
-        limit: {type: integer, default: 5, description: "Số bài cần lấy; giữ đúng số user yêu cầu"}
+        screenname: {type: string, default: "", description: "Tên tài khoản"}
+        limit: {type: integer, default: 5, description: "Số lượng"}
       required: [screenname]
 
   - name: social_search
-    description: "Tìm bài đăng mạng xã hội THEO từ khóa/chủ đề, không theo timeline của một tác giả. Dùng Top khi user yêu cầu phổ biến/top; mặc định Latest."
+    description: "Tìm trên mạng xã hội."
     parameters:
       type: object
       properties:
-        query: {type: string, default: "", description: "Chủ đề hoặc từ khóa cần tìm"}
-        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Latest cho mới nhất; Top cho phổ biến/top"}
+        query: {type: string, default: "", description: "Từ khóa"}
+        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Cách sắp xếp"}
         limit: {type: integer, default: 5, description: "Số lượng"}
       required: [query]
 
   - name: lookup
-    description: "Tìm thông tin hoặc tin tức trên web. Dùng topic=news cho tin tức; timeframe=day cho hôm nay và week cho tuần này. Nếu user đưa URL cụ thể thì dùng fetch thay vì lookup."
+    description: "Tra cứu thông tin trên internet."
     parameters:
       type: object
       properties:
@@ -49,7 +49,7 @@ tools:
       required: [query]
 
   - name: fetch
-    description: "Đọc nội dung từ một URL cụ thể do user cung cấp. Không tự đoán URL; nếu thiếu URL thì dùng clarify."
+    description: "Lấy nội dung từ một địa chỉ."
     parameters:
       type: object
       properties:
@@ -57,7 +57,7 @@ tools:
       required: [url]
 
   - name: format
-    description: "Định dạng các item đã thu thập thành digest. Chỉ dùng khi đã có items; không dùng để tìm kiếm hoặc đọc nguồn."
+    description: "Trình bày dữ liệu đã có thành văn bản."
     parameters:
       type: object
       properties:
@@ -79,7 +79,7 @@ tools:
 
   # ---------------- Bonus tools ----------------
   - name: send
-    description: "Hành động có side effect: gửi nội dung ra Telegram. Chỉ dùng sau khi user đã xác nhận rõ; nếu chưa xác nhận phải dùng clarify(response_type=yes_no)."
+    description: "Gửi một đoạn văn bản đi."
     parameters:
       type: object
       properties:
@@ -116,45 +116,3 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
-
-  # ---------------- Team-added local analysis tools ----------------
-  - name: keywords
-    description: "Trích các từ khóa xuất hiện nhiều trong văn bản đã có. Chỉ dùng với text user cung cấp hoặc text/kết quả đã lấy; không tìm web."
-    parameters:
-      type: object
-      properties:
-        text: {type: string, default: "", description: "Văn bản cần trích từ khóa"}
-        max_keywords: {type: integer, default: 8, description: "Số từ khóa tối đa, từ 1 đến 20"}
-      required: [text]
-
-  - name: compare_sources
-    description: "So sánh các item nguồn đã có để tìm từ khóa chung và riêng. Chỉ dùng khi có từ hai nguồn trở lên và user yêu cầu so sánh; không đánh giá độ đúng của sự kiện."
-    parameters:
-      type: object
-      properties:
-        items:
-          type: array
-          default: []
-          description: "Các item nguồn đã thu thập"
-          items:
-            type: object
-            properties:
-              title: {type: string}
-              summary: {type: string}
-              source: {type: string}
-              url: {type: string}
-        focus: {type: string, default: "", description: "Khía cạnh hoặc từ khóa muốn tập trung, có thể để trống"}
-      required: [items]
-
-  - name: citation_audit
-    description: "Kiểm tra URL trích dẫn trong draft có thuộc danh sách URL nguồn đã cung cấp hay không. Không xác minh nội dung claim hoặc tự tìm URL."
-    parameters:
-      type: object
-      properties:
-        draft: {type: string, default: "", description: "Bản nháp cần kiểm tra URL"}
-        allowed_urls:
-          type: array
-          default: []
-          description: "Danh sách URL nguồn được phép dùng"
-          items: {type: string}
-      required: [draft, allowed_urls]

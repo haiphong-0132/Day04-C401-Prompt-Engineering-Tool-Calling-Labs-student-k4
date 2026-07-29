@@ -1,0 +1,355 @@
+{
+  "transcript_id": "v1_openai_20260729T092637496140",
+  "version": "v1",
+  "artifact_version": "v1+pfd94fee88f64+t932ac8dd4073",
+  "prompt_hash": "fd94fee88f6430bbfb6cce7da0a3998dc2c54c668e7cb233b1a68cff8e000428",
+  "tools_hash": "932ac8dd4073271965bb7244beb5e60ab639f13c787049da5c002077aed7c04d",
+  "provider": "openai",
+  "model": null,
+  "system_prompt": "artifacts/system_prompt.md",
+  "tools": "artifacts/tools.yaml",
+  "history_window": 10,
+  "max_tool_rounds": 6,
+  "created_at": "2026-07-29T09:26:37",
+  "updated_at": "2026-07-29T09:40:38",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T09:37:07",
+      "user": "Ronaldo chuẩn bị cưới",
+      "status": "answered",
+      "assistant_text": "Hiện tại, tôi không thể tìm thấy thông tin mới nhất về việc Ronaldo chuẩn bị cưới do lỗi truy cập từ nguồn dữ liệu. Bạn có muốn tôi thử tìm kiếm thông tin khác hoặc một chủ đề khác liên quan đến Ronaldo không?",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "social_search",
+              "args": {
+                "query": "Ronaldo chuẩn bị cưới",
+                "search_type": "Latest",
+                "limit": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "social_search",
+              "args": {
+                "query": "Ronaldo chuẩn bị cưới",
+                "search_type": "Latest",
+                "limit": 5
+              },
+              "result": {
+                "tool": "search_tweets",
+                "error": "HTTPError",
+                "message": "403 Client Error: Forbidden for url: https://twitter-api45.p.rapidapi.com/search.php?query=Ronaldo+chu%E1%BA%A9n+b%E1%BB%8B+c%C6%B0%E1%BB%9Bi&search_type=Latest"
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Hiện tại, tôi không thể tìm thấy thông tin mới nhất về việc Ronaldo chuẩn bị cưới do lỗi truy cập từ nguồn dữ liệu. Bạn có muốn tôi thử tìm kiếm thông tin khác hoặc một chủ đề khác liên quan đến Ronaldo không?",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "Ronaldo chuẩn bị cưới",
+            "search_type": "Latest",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "error": "HTTPError",
+            "message": "403 Client Error: Forbidden for url: https://twitter-api45.p.rapidapi.com/search.php?query=Ronaldo+chu%E1%BA%A9n+b%E1%BB%8B+c%C6%B0%E1%BB%9Bi&search_type=Latest"
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T09:37:12"
+    },
+    {
+      "turn_index": 2,
+      "started_at": "2026-07-29T09:39:04",
+      "user": "Messi vô địch world cup",
+      "status": "answered",
+      "assistant_text": "Dưới đây là một số tin tức gần đây liên quan đến Lionel Messi và World Cup:\n\n1. **[Lionel Messi wins award days after controversial FIFA World Cup Final - Yahoo Sports](https://sports.yahoo.com/articles/lionel-messi-wins-award-days-220400212.html)**: Messi đã nhận được một giải thưởng ngay sau khi Argentina thất bại trong trận chung kết FIFA World Cup trước Tây Ban Nha. Mặc dù Argentina đã cố gắng làm gián đoạn trận đấu, Messi vẫn được công nhận là cầu thủ xuất sắc nhất của giải đấu bởi IFFHS.\n\n2. **[Lionel Messi & Kylian Mbappe beaten to World Cup Goal of the Tournament award - Goal.com](https://www.goal.com/en-us/lists/lionel-messi-kylian-mbappe-world-cup-goal-tournament-award-iconic-strike-argentina-prize/bltc07304b073d956b8)**: Messi và Mbappe đã không giành được giải thưởng Bàn thắng của Giải đấu World Cup, mà giải thưởng này đã thuộc về Sidny Lopes Cabral với một pha ghi bàn ấn tượng vào lưới Argentina.\n\n3. **[Lionel Messi Named Best Player of 2026 World Cup by IFFHS - Telecom Asia Sport](https://www.telecomasia.net/news/football/lionel-messi-best-player-2026-world-cup-iffhs/)**: Messi đã được vinh danh là cầu thủ xuất sắc nhất của World Cup 2026 bởi IFFHS, dựa trên chỉ số hiệu suất của anh trong các trận đấu.\n\n4. **[Kylian Mbappe Revealed as FC 27 Cover Star After Winning World Cup Golden Boot - Bleacher Report](https://bleacherreport.com/articles/25456827-kylian-mbappe-revealed-[REDACTED])**: Mbappe đã giành được Chiếc giày vàng tại World Cup 2026, trong khi Tây Ban Nha đã đánh bại Argentina để giành chức vô địch.\n\n5. **[Lionel Messi Attends Match Between Leonés and Central Córdoba - Telecom Asia Sport](https://www.telecomasia.net/news/football/messi-attends-match-leones-central-cordoba/)**: Messi đã có lần xuất hiện công khai đầu tiên sau trận chung kết World Cup 2026, khi anh tham dự một trận đấu ở Rosario cùng con trai.\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi khác, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "Messi vô địch World Cup",
+                "topic": "news",
+                "timeframe": "week",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "Messi vô địch World Cup",
+                "topic": "news",
+                "timeframe": "week",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "Messi vô địch World Cup",
+                "topic": "news",
+                "timeframe": "week",
+                "items": [
+                  {
+                    "title": "Lionel Messi wins award days after controversial FIFA World Cup Final - Yahoo Sports",
+                    "url": "https://sports.yahoo.com/articles/lionel-messi-wins-award-days-220400212.html",
+                    "source": "sports.yahoo.com",
+                    "summary": "# Lionel Messi wins award days after controversial FIFA World Cup Final. Lionel Messi has secured an honor just days after Argentina fell short in the FIFA World Cup Final against Spain. The final was tarnished, however, by Argentina's attempts to disrupt proceedings throughout, with Lionel Scaloni's team trying to undermine Spain's dominance through deliberate fouls at every turn. Spain's World Cup triumph also resulted in its captain, Rodri, claiming the FIFA World Cup Golden Ball, an accolade presented to the competition's standout performer, and one Messi collected four years earlier after guiding Argentina to victory in Qatar. \"The International Federation of Football History and Statistics is proud to announce that Lionel Messi of Argentina has been named the IFFHS Best Player, the highest individual honor bestowed by our federation upon the outstanding performer of the tournament,\" the organization said in a statement.",
+                    "score": 0.6783488
+                  },
+                  {
+                    "title": "Lionel Messi & Kylian Mbappe beaten to World Cup Goal of the Tournament award as iconic strike vs Argentina takes the prize - Goal.com",
+                    "url": "https://www.goal.com/en-us/lists/lionel-messi-kylian-mbappe-world-cup-goal-tournament-award-iconic-strike-argentina-prize/bltc07304b073d956b8",
+                    "source": "goal.com",
+                    "summary": "# Lionel Messi & Kylian Mbappe beaten to World Cup Goal of the Tournament award as iconic strike vs Argentina takes the prize. Sidny Lopes Cabral has officially secured the 2026 World Cup Goal of the Tournament award following his spectacular effort against Argentina. The Cabo Verde star produced a moment of magic that saw off stiff competition from some of the biggest names in world football. FIFA has confirmed that Cabral's stunning strike against Argentina in the round of 32 has been voted the Hyundai Goal of the Tournament for the 2026 World Cup. The 23-year-old Rotterdam-born defender produced a moment of individual brilliance that resonated with fans globally, ultimately seeing him top a shortlist that included Messi, Mbappe, and Julian Alvarez. Lopes Cabral revealed that Marcelo, one of his career idols, sent him a congratulatory message confirming that he had voted for the Cabo Verdean's effort.",
+                    "score": 0.5806618
+                  },
+                  {
+                    "title": "Lionel Messi Named Best Player of 2026 World Cup by IFFHS - Telecom Asia Sport",
+                    "url": "https://www.telecomasia.net/news/football/lionel-messi-best-player-2026-world-cup-iffhs/",
+                    "source": "telecomasia.net",
+                    "summary": "# Lionel Messi Named Best Player of 2026 World Cup by IFFHS. Image 2: Lionel Messi Named Best Player of 2026 World Cup by IFFHS. **Argentina's Lionel Messi has been named the best player of the 2026 World Cup by the International Federation of Football History and Statistics (IFFHS).**. \"The International Federation of Football History and Statistics (IFFHS) proudly announces that Argentina's Lionel Messi has been named the best player of the 2026 World Cup — the highest individual award given by our federation to the tournament's most outstanding player,\" the statement read. The decision was made using the IFFHS weighted performance index, which considers match ratings, goals scored, assists, and the player's impact on team results at all stages of the knockout rounds. *   Best Betting Sites in Ghana. *   Best Betting Sites in Kenya. *   Best Betting Sites in Nigeria. *   Best Betting Sites in South Africa. *   Best Cricket Betting Sites in India.",
+                    "score": 0.5559422
+                  },
+                  {
+                    "title": "Kylian Mbappe Revealed as FC 27 Cover Star After Winning World Cup Golden Boot - Bleacher Report",
+                    "url": "https://bleacherreport.com/articles/25456827-kylian-mbappe-revealed-[REDACTED]",
+                    "source": "bleacherreport.com",
+                    "summary": "Fresh off winning the 2026 World Cup's Golden Boot with France, Mbappé will be the main cover athlete for the fourth time, the first since EA made the rebrand from FIFA to EA FC. Image 4 ### World Cup Award Winners 🌟 Bleacher ReportImage 5 ### Spain Topples Argentina To Win World Cup 🏆 Bleacher ReportImage 6: Spain v Argentina: Final - FIFA World Cup 2026 ### Why Messi Is Still the GOAT 🐐 Bleacher Report. Image 8 ### World Cup Award Winners 🌟 Bleacher ReportImage 9 ### Spain Topples Argentina To Win World Cup 🏆 Bleacher ReportImage 10: Spain v Argentina: Final - FIFA World Cup 2026 ### Why Messi Is Still the GOAT 🐐 Bleacher ReportImage 11: Spain v Argentina: Final - FIFA World Cup 2026 ### Final World Cup Power Rankings 📊 Bleacher ReportImage 12: Spain v Argentina: Final - FIFA World Cup 2026 ### Messi-Yamal 1-of-1 Card 🤯 Bleacher Report.",
+                    "score": 0.41463867
+                  },
+                  {
+                    "title": "Lionel Messi Attends Match Between Leonés and Central Córdoba - Telecom Asia Sport",
+                    "url": "https://www.telecomasia.net/news/football/messi-attends-match-leones-central-cordoba/",
+                    "source": "telecomasia.net",
+                    "summary": "*   Sites de Paris Sportifs en Côte d'Ivoire. # Lionel Messi Attends Match Between Leonés and Central Córdoba. Image 2: Lionel Messi Attends Match Between Leonés and Central Córdoba. **Argentina and Inter Miami captain Lionel Messi made his first public appearance since the 2026 World Cup final, attending a Primera C match in Rosario with his son.**. When the player noticed the cameras, he smiled and waved to the gathered crowd. At the 2026 World Cup, Argentina reached the final and claimed the silver medal. 26/07/2026 07:07Tim Tszyu Claims Unanimous Decision Victory Over Errol Spence in Sydney. *   Best Betting Sites in Ghana. *   Best Betting Sites in Kenya. *   Best Betting Sites in Nigeria. *   Best Betting Sites in South Africa. *   Best Cricket Betting Sites in India. You must include the name of the author (creator) of the work (material) and the party of attribution, copyright notice, license title, disclaimer notice and link to the material, if provided with the material.",
+                    "score": 0.3391493
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Dưới đây là một số tin tức gần đây liên quan đến Lionel Messi và World Cup:\n\n1. **[Lionel Messi wins award days after controversial FIFA World Cup Final - Yahoo Sports](https://sports.yahoo.com/articles/lionel-messi-wins-award-days-220400212.html)**: Messi đã nhận được một giải thưởng ngay sau khi Argentina thất bại trong trận chung kết FIFA World Cup trước Tây Ban Nha. Mặc dù Argentina đã cố gắng làm gián đoạn trận đấu, Messi vẫn được công nhận là cầu thủ xuất sắc nhất của giải đấu bởi IFFHS.\n\n2. **[Lionel Messi & Kylian Mbappe beaten to World Cup Goal of the Tournament award - Goal.com](https://www.goal.com/en-us/lists/lionel-messi-kylian-mbappe-world-cup-goal-tournament-award-iconic-strike-argentina-prize/bltc07304b073d956b8)**: Messi và Mbappe đã không giành được giải thưởng Bàn thắng của Giải đấu World Cup, mà giải thưởng này đã thuộc về Sidny Lopes Cabral với một pha ghi bàn ấn tượng vào lưới Argentina.\n\n3. **[Lionel Messi Named Best Player of 2026 World Cup by IFFHS - Telecom Asia Sport](https://www.telecomasia.net/news/football/lionel-messi-best-player-2026-world-cup-iffhs/)**: Messi đã được vinh danh là cầu thủ xuất sắc nhất của World Cup 2026 bởi IFFHS, dựa trên chỉ số hiệu suất của anh trong các trận đấu.\n\n4. **[Kylian Mbappe Revealed as FC 27 Cover Star After Winning World Cup Golden Boot - Bleacher Report](https://bleacherreport.com/articles/25456827-kylian-mbappe-revealed-[REDACTED])**: Mbappe đã giành được Chiếc giày vàng tại World Cup 2026, trong khi Tây Ban Nha đã đánh bại Argentina để giành chức vô địch.\n\n5. **[Lionel Messi Attends Match Between Leonés and Central Córdoba - Telecom Asia Sport](https://www.telecomasia.net/news/football/messi-attends-match-leones-central-cordoba/)**: Messi đã có lần xuất hiện công khai đầu tiên sau trận chung kết World Cup 2026, khi anh tham dự một trận đấu ở Rosario cùng con trai.\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi khác, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "Messi vô địch World Cup",
+            "topic": "news",
+            "timeframe": "week",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "Messi vô địch World Cup",
+            "topic": "news",
+            "timeframe": "week",
+            "items": [
+              {
+                "title": "Lionel Messi wins award days after controversial FIFA World Cup Final - Yahoo Sports",
+                "url": "https://sports.yahoo.com/articles/lionel-messi-wins-award-days-220400212.html",
+                "source": "sports.yahoo.com",
+                "summary": "# Lionel Messi wins award days after controversial FIFA World Cup Final. Lionel Messi has secured an honor just days after Argentina fell short in the FIFA World Cup Final against Spain. The final was tarnished, however, by Argentina's attempts to disrupt proceedings throughout, with Lionel Scaloni's team trying to undermine Spain's dominance through deliberate fouls at every turn. Spain's World Cup triumph also resulted in its captain, Rodri, claiming the FIFA World Cup Golden Ball, an accolade presented to the competition's standout performer, and one Messi collected four years earlier after guiding Argentina to victory in Qatar. \"The International Federation of Football History and Statistics is proud to announce that Lionel Messi of Argentina has been named the IFFHS Best Player, the highest individual honor bestowed by our federation upon the outstanding performer of the tournament,\" the organization said in a statement.",
+                "score": 0.6783488
+              },
+              {
+                "title": "Lionel Messi & Kylian Mbappe beaten to World Cup Goal of the Tournament award as iconic strike vs Argentina takes the prize - Goal.com",
+                "url": "https://www.goal.com/en-us/lists/lionel-messi-kylian-mbappe-world-cup-goal-tournament-award-iconic-strike-argentina-prize/bltc07304b073d956b8",
+                "source": "goal.com",
+                "summary": "# Lionel Messi & Kylian Mbappe beaten to World Cup Goal of the Tournament award as iconic strike vs Argentina takes the prize. Sidny Lopes Cabral has officially secured the 2026 World Cup Goal of the Tournament award following his spectacular effort against Argentina. The Cabo Verde star produced a moment of magic that saw off stiff competition from some of the biggest names in world football. FIFA has confirmed that Cabral's stunning strike against Argentina in the round of 32 has been voted the Hyundai Goal of the Tournament for the 2026 World Cup. The 23-year-old Rotterdam-born defender produced a moment of individual brilliance that resonated with fans globally, ultimately seeing him top a shortlist that included Messi, Mbappe, and Julian Alvarez. Lopes Cabral revealed that Marcelo, one of his career idols, sent him a congratulatory message confirming that he had voted for the Cabo Verdean's effort.",
+                "score": 0.5806618
+              },
+              {
+                "title": "Lionel Messi Named Best Player of 2026 World Cup by IFFHS - Telecom Asia Sport",
+                "url": "https://www.telecomasia.net/news/football/lionel-messi-best-player-2026-world-cup-iffhs/",
+                "source": "telecomasia.net",
+                "summary": "# Lionel Messi Named Best Player of 2026 World Cup by IFFHS. Image 2: Lionel Messi Named Best Player of 2026 World Cup by IFFHS. **Argentina's Lionel Messi has been named the best player of the 2026 World Cup by the International Federation of Football History and Statistics (IFFHS).**. \"The International Federation of Football History and Statistics (IFFHS) proudly announces that Argentina's Lionel Messi has been named the best player of the 2026 World Cup — the highest individual award given by our federation to the tournament's most outstanding player,\" the statement read. The decision was made using the IFFHS weighted performance index, which considers match ratings, goals scored, assists, and the player's impact on team results at all stages of the knockout rounds. *   Best Betting Sites in Ghana. *   Best Betting Sites in Kenya. *   Best Betting Sites in Nigeria. *   Best Betting Sites in South Africa. *   Best Cricket Betting Sites in India.",
+                "score": 0.5559422
+              },
+              {
+                "title": "Kylian Mbappe Revealed as FC 27 Cover Star After Winning World Cup Golden Boot - Bleacher Report",
+                "url": "https://bleacherreport.com/articles/25456827-kylian-mbappe-revealed-[REDACTED]",
+                "source": "bleacherreport.com",
+                "summary": "Fresh off winning the 2026 World Cup's Golden Boot with France, Mbappé will be the main cover athlete for the fourth time, the first since EA made the rebrand from FIFA to EA FC. Image 4 ### World Cup Award Winners 🌟 Bleacher ReportImage 5 ### Spain Topples Argentina To Win World Cup 🏆 Bleacher ReportImage 6: Spain v Argentina: Final - FIFA World Cup 2026 ### Why Messi Is Still the GOAT 🐐 Bleacher Report. Image 8 ### World Cup Award Winners 🌟 Bleacher ReportImage 9 ### Spain Topples Argentina To Win World Cup 🏆 Bleacher ReportImage 10: Spain v Argentina: Final - FIFA World Cup 2026 ### Why Messi Is Still the GOAT 🐐 Bleacher ReportImage 11: Spain v Argentina: Final - FIFA World Cup 2026 ### Final World Cup Power Rankings 📊 Bleacher ReportImage 12: Spain v Argentina: Final - FIFA World Cup 2026 ### Messi-Yamal 1-of-1 Card 🤯 Bleacher Report.",
+                "score": 0.41463867
+              },
+              {
+                "title": "Lionel Messi Attends Match Between Leonés and Central Córdoba - Telecom Asia Sport",
+                "url": "https://www.telecomasia.net/news/football/messi-attends-match-leones-central-cordoba/",
+                "source": "telecomasia.net",
+                "summary": "*   Sites de Paris Sportifs en Côte d'Ivoire. # Lionel Messi Attends Match Between Leonés and Central Córdoba. Image 2: Lionel Messi Attends Match Between Leonés and Central Córdoba. **Argentina and Inter Miami captain Lionel Messi made his first public appearance since the 2026 World Cup final, attending a Primera C match in Rosario with his son.**. When the player noticed the cameras, he smiled and waved to the gathered crowd. At the 2026 World Cup, Argentina reached the final and claimed the silver medal. 26/07/2026 07:07Tim Tszyu Claims Unanimous Decision Victory Over Errol Spence in Sydney. *   Best Betting Sites in Ghana. *   Best Betting Sites in Kenya. *   Best Betting Sites in Nigeria. *   Best Betting Sites in South Africa. *   Best Cricket Betting Sites in India. You must include the name of the author (creator) of the work (material) and the party of attribution, copyright notice, license title, disclaimer notice and link to the material, if provided with the material.",
+                "score": 0.3391493
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T09:39:13"
+    },
+    {
+      "turn_index": 3,
+      "started_at": "2026-07-29T09:40:35",
+      "user": "kết quả xổ số miền bắc 28/7/2026",
+      "status": "answered",
+      "assistant_text": "Kết quả xổ số miền Bắc ngày 28/7/2026 như sau:\n\n1. **Kết quả xổ số miền Bắc (XSMB)**: 874845. [Xem chi tiết tại Thethao247.vn](https://thethao247.vn/503-xsmb-28-7-2026-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-d430042.html).\n\n2. **Giải thưởng**:\n   - Giải Đặc biệt: Trùng 5 số cuối, có 3 giải x 1 tỷ đồng.\n   - Giải Nhì: Trùng 5 số cuối với 1 trong 2 vé giải nhì, có 30 giải x 5 triệu đồng.\n   - Giải Ba: Trùng 5 số cuối với 1 trong 6 vé giải ba, có 90 giải x 1 triệu đồng.\n   - Giải Tư: Trùng 4 số cuối với 1 trong 4 vé giải tư, có 600 giải x 400 nghìn đồng.\n   - Giải Năm: Trùng 4 số cuối với 1 trong 6 vé giải năm, có 900 giải x 200 nghìn đồng.\n   - Giải Sáu: Trùng 3 số cuối 1 trong 3 vé giải sáu, có 4.500 giải x 100 nghìn đồng.\n   - Giải Bảy: Trùng 2 số cuối 1 trong 4 vé giải bảy, có 60.000 giải x 40 nghìn đồng. [Xem thêm tại Thethaovanhoa.vn](https://thethaovanhoa.vn/xsmb-28-7-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-truc-tiep-xo-so-hom-nay-ngay-28-thang-7-20260728072004222.htm).\n\n3. **Thông tin thêm**: Kết quả xổ số được phát hành bởi Công ty xổ số kiến thiết miền Bắc và được quay thưởng vào lúc 18h10 hàng ngày. [Chi tiết tại Báo Sức khỏe & Đời sống](https://baomoi.com/ket-qua-xo-so-kqxs-hom-nay-thu-ba-ngay-28-7-2026-c55711945.epi).\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi khác, hãy cho tôi biết!",
+      "rounds": [
+        {
+          "round": 1,
+          "assistant_text": null,
+          "tool_calls": [
+            {
+              "name": "lookup",
+              "args": {
+                "query": "kết quả xổ số miền bắc 28/7/2026",
+                "topic": "general",
+                "timeframe": "day",
+                "max_results": 5
+              }
+            }
+          ],
+          "tool_results": [
+            {
+              "tool": "lookup",
+              "args": {
+                "query": "kết quả xổ số miền bắc 28/7/2026",
+                "topic": "general",
+                "timeframe": "day",
+                "max_results": 5
+              },
+              "result": {
+                "tool": "web_search",
+                "query": "kết quả xổ số miền bắc 28/7/2026",
+                "topic": "general",
+                "timeframe": "day",
+                "items": [
+                  {
+                    "title": "XSMB 28/7/2026 - Kết quả xổ số miền Bắc hôm nay 28/7/2026",
+                    "url": "https://thethao247.vn/503-xsmb-28-7-2026-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-d430042.html",
+                    "source": "thethao247.vn",
+                    "summary": "# XSMB 28/7/2026 - Kết quả xổ số miền Bắc hôm nay 28/7/2026\n\nAuthor Thethao247.vn\n\n## Kết quả xổ số miền Bắc (XSMB) hôm nay 28/7\n\nXSMB 28/7/2026 - Kết quả xổ số miền Bắc hôm nay 28/7/2026 874845\n\n## Cơ cấu giải thưởng xổ số miền Bắc XSMB như sau:\n\n## Điều kiện lĩnh thưởng Xổ số miền Bắc: [...] Nếu trúng thưởng xổ số miền Bắc, bạn có thể liên hệ trực tiếp đến Công ty xổ số phát hành vé số để được nhận thưởng. Vé số trúng thưởng phải còn nguyên vẹn, không bị tẩy xóa, chắp vá, rách và trong thời hạn 30 ngày.Nếu như quá ngày phát hành tờ vé số 30 ngày, người chơi sẽ không được nhận thưởng.\n\nNếu trúng giải có giá trị từ 10 triệu đồng một giải trở lên, người nhận giải sẽ phải nộp thuế thu nhập cá nhân tương ứng 10% giá trị giải thưởng.\n\n## Lịch mở thưởng xổ số miền Bắc hằng ngày [...] Lịch thi đấu\n\nTrực tiếp\n\nTrực tiếp bóng đá\n\nKết quả bóng đá\n\nLivescore\n\nBảng xếp hạng bóng đá\n\nThể thao 247\n\nTiện ích bóng đá\n\nGiải đấu nổi bật\n\nBảng xếp hạng bóng đá\n\nKết quả bóng đá\n\nThể thao tổng hợp\n\nCông ty TNHH MTV GenPress\n\nGiấy phép thiết lập Mạng xã hội số 365/GP-BTTTT, Ký ngày 4/12/2024\n\nĐịa chỉ Hà Nội: Tầng 04, Tòa nhà Star, Lô D32 KĐT Cầu Giấy, Đường Dương Đình Nghệ, Yên Hòa, Cầu Giấy, Hà Nội.\n\nMã số thuế: 0110067529\n\nĐiện thoại: 0847100247\n\nNgười chịu trách nhiệm: Trần Xuân Hùng",
+                    "score": 0.93511593
+                  },
+                  {
+                    "title": "XSMB 28/7 - Kết quả Xổ số miền Bắc hôm nay 28/7/2026 - Kết quả XSMB thứ Ba ngày 28 tháng 7",
+                    "url": "https://thethaovanhoa.vn/xsmb-28-7-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-truc-tiep-xo-so-hom-nay-ngay-28-thang-7-20260728072004222.htm",
+                    "source": "thethaovanhoa.vn",
+                    "summary": "Khuyến khích: Sai 1 số (ngoại trừ giải phụ đặc biệt), có 15.000 giải x 40 nghìn đồng\n\nĐặc biệt: Trùng 5 số cuối, có 3 giải x 1 tỷ đồng (+ 50 triệu nếu ký hiệu trùng)\n\nPhụ Đặc biệt: Trùng 4 số cuối, có 12 giải x 20 triệu đồng\n\n#### Điều kiện nhận thưởng XSMB\n\nVề thể lệ trả thưởng thì xổ số miền Bắc vẫn giống như XSMN và XSMT, cụ thể như sau:\n\nVé phải nguyên vẹn, không rách, tẩy... (hạn 30 ngày từ ngày phát hành).\n\nTrúng trên 10 triệu đồng, phải nộp thuế 10% giá trị giải. [...] Giải Nhì: Trùng 5 số cuối với 1 trong 2 vé giải nhì, có 30 giải x 5 triệu đồng\n\nGiải Ba: Trùng 5 số cuối với 1 trong 6 vé giải ba, có 90 giải x 1 triệu đồng\n\nGiải Tư: Trùng 4 số cuối với 1 trong 4 vé giải tư, có 600 giải x 400 nghìn đồng\n\nGiải Năm: Trùng 4 số cuối với 1 trong 6 vé giải năm, có 900 giải x 200 nghìn đồng\n\nGiải Sáu: Trùng 3 số cuối 1 trong 3 vé giải sáu, có 4.500 giải x 100 nghìn đồng\n\nGiải Bảy: Trùng 2 số cuối 1 trong 4 vé giải bảy, có 60.000 giải x 40 nghìn đồng [...] XSMB 28/7: Kết quả Xổ số miền Bắc hôm nay thứ Ba ngày 28/7/2026 quay thưởng lúc 18h10 được trực tiếp cập nhật nhanh nhất, chính xác nhất trên Thethaovanhoa.vn.\n\n## Kết quả Xổ số miền Bắc hôm nay ngày 28/7/2026\n\nXSMB được phát hành bởi Công ty xổ số kiến thiết Miền Bắc, quay thưởng vào lúc 18h10 các ngày trong tuần. Quý khách trúng giải nhận thưởng tại Cty xổ số kiến thiết miền Bắc, địa chỉ số nhà 53E Hàng Bài, Cửa Nam, Hà Nội.\n\n## Tham khảo kết quả XSMB các ngày gần đy",
+                    "score": 0.9328032
+                  },
+                  {
+                    "title": "Kết quả xổ số - KQXS hôm nay thứ Ba ngày 28/7/2026 - Chuyên trang Gia Đình & Xã Hội - Báo Sức khỏe & Đời sống",
+                    "url": "https://baomoi.com/ket-qua-xo-so-kqxs-hom-nay-thu-ba-ngay-28-7-2026-c55711945.epi",
+                    "source": "baomoi.com",
+                    "summary": "Đầu tiên, xổ số miền Bắc hôm nay thứ Ba ngày 28/7/2026 có kết quả như sau:\n\nKết quả xổ số miền Nam ngày 28/7/2026.\n\nKQXSMT - Kết quả xổ số miền Trung\n\nTiếp theo, xổ số miền Trung hôm nay thứ Ba ngày 28/7/2026 có kết quả như sau:\n\nKết quả xổ số miền Trung ngày 28/7/2026.\n\nKQXSMB - Kết quả xổ số miền Nam\n\nCuối cùng, xổ số miền Nam hôm nay thứ Ba ngày 28/7/2026 có kết quả như sau:\n\nKết quả xổ số miền Bắc ngày 28/7/2026.\n\nXS Vietlott - Xổ số Vietlott [...] Kết quả xổ số\n\nChuyên trang Gia đình và Xã hội cập nhật kết quả xổ số - KQXS hôm nay thứ Ba ngày 28/7/2026. Xổ số miền Nam - XSMN, xổ số miền Trung - XSMT, xổ số miền Bắc - XSMB, xổ số Vietlott - XS Vietlott có kết quả như thế nào?\n\nTheo đó, kết quả xổ số thứ Ba ngày 28/7/2026 được mở thưởng tại 6 công ty xổ số kiến thiết: Quảng Ninh - XSQN, Bạc Liêu - XSBL, Bến Tre - XSBTR, Vũng Tàu - XSVT, Đắk Lắk - XSDLK, Quảng Nam - XSQNA.\n\nKQXSMN - Kết quả xổ số miền Bắc [...] Bóng đá\n\n Chủ đề nóng\n Tiện ích\n  + Kết quả xổ số\n  + Giá vàng hôm nay\n  + Thời tiết\n  + Lịch m\n\nĐời sống\n\n# Kết quả xổ số - KQXS hôm nay thứ Ba ngày 28/7/2026\n\n### Kết quả xổ số hôm nay - KQXS thứ Ba ngày 28/7/2026: Xổ số miền Nam - XSMN, xổ số miền Trung - XSMT, xổ số miền Bắc - XSMB, xổ số Vietlott - XS Vietlott.\n\n2037 liên quanGốc\n\nKết quả xổ số",
+                    "score": 0.9100432
+                  },
+                  {
+                    "title": "XSMB 28/7 - Kết quả xổ số miền Bắc hôm nay ngày 28/ ...",
+                    "url": "https://giaoducthoidai.vn/xsmb-287-ket-qua-xo-so-mien-bac-hom-nay-ngay-2872026-post786303.html",
+                    "source": "giaoducthoidai.vn",
+                    "summary": "|  |\n\n| XSMB 28/7 - Kết quả xổ số miền Bắc hôm nay ngày 28/7/2026 |\n\nKết quả XSMB hôm nay, thứ Ba ngày 28/7/2026\n\nLịch mở thưởng xổ số miền Bắc hàng ngày\n\nThứ Hai: Mở thưởng xổ số Thủ đô Hà Nội.\n\nThứ Ba: Quay số mở thưởng tại xổ số Quảng Ninh.\n\nThứ Tư: Quay số mở thưởng xổ số Bắc Ninh.\n\nThứ Năm: Quay số mở thưởng xổ số Thủ đô Hà Nội.\n\nThứ Sáu: Quay số mở thưởng xổ số Hải Phòng\n\nThứ Bảy: Quay số mở thưởng xổ số Nam Định.\n\nChủ Nhật: Quay số mở thưởng xổ số Thái Bình. [...] Sự kiện\n\n #Thực học - Thực nghiệp\n #Tổng rà soát hệ thống văn bản quy phạm pháp luật\n\nVăn hóa\n\n Đời sống văn hoá\n Sao\n Sáng tác\n\nzalo;) facebook; \"Chia sẻ qua Facebook\") Bản in;) Bình luận Tin mới\n\n# XSMB 28/7 - Kết quả xổ số miền Bắc hôm nay ngày 28/7/2026\n\nLinh Ngô\n\nTheo dõi báo trên  Theo dõi trên Google News   Theo dõi trên Zalo\n\nGD&TĐ - XSMB 28/7/2026. Trực tiếp KQXSMB ngày 28/7. Kết quả xổ số miền Bắc thứ Ba ngày 28/7/2026 được quay thưởng lúc 18h10 ngày liên tục trong tuần.\n\n|  | [...] ### XSMN 28/7 - Kết quả xổ số miền Nam hôm nay ngày 28/7/2026\n\n### Tin tiêu điểm\n\nThiết giáp hạng nặng trên khung T-72 xuyên thủng tuyến phòng thủ đối phương?  \n\n## Thiết giáp hạng nặng trên khung T-72 xuyên thủng tuyến phòng thủ đối phương?\n\n Thế giới \n\nGD&TĐ - Những xe bọc thép chở qun sử dụng khung gầm xe tăng chiến đấu chủ lực có lẽ là phương tiện cần thiết với Qun đội Nga hiện nay.\n\nSẽ gọi tái ngũ hàng trăm tiêm kích MiG-31 trong kho dự trữ?",
+                    "score": 0.9092728
+                  },
+                  {
+                    "title": "Kết quả xổ số Miền Bắc Ngày 28/07/2026",
+                    "url": "https://www.minhchinh.com/ket-qua-xo-so-mien-bac/28-07-2026.html",
+                    "source": "minhchinh.com",
+                    "summary": "XỔ SỐ ĐIỆN TOÁN - Ngày 28/07/2026 ; G.Năm · G.Sáu ; 6520. 1724. 2965. 7102. 8361. 5090 · 412. 496. 321.",
+                    "score": 0.8941352
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "assistant_text": "Kết quả xổ số miền Bắc ngày 28/7/2026 như sau:\n\n1. **Kết quả xổ số miền Bắc (XSMB)**: 874845. [Xem chi tiết tại Thethao247.vn](https://thethao247.vn/503-xsmb-28-7-2026-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-d430042.html).\n\n2. **Giải thưởng**:\n   - Giải Đặc biệt: Trùng 5 số cuối, có 3 giải x 1 tỷ đồng.\n   - Giải Nhì: Trùng 5 số cuối với 1 trong 2 vé giải nhì, có 30 giải x 5 triệu đồng.\n   - Giải Ba: Trùng 5 số cuối với 1 trong 6 vé giải ba, có 90 giải x 1 triệu đồng.\n   - Giải Tư: Trùng 4 số cuối với 1 trong 4 vé giải tư, có 600 giải x 400 nghìn đồng.\n   - Giải Năm: Trùng 4 số cuối với 1 trong 6 vé giải năm, có 900 giải x 200 nghìn đồng.\n   - Giải Sáu: Trùng 3 số cuối 1 trong 3 vé giải sáu, có 4.500 giải x 100 nghìn đồng.\n   - Giải Bảy: Trùng 2 số cuối 1 trong 4 vé giải bảy, có 60.000 giải x 40 nghìn đồng. [Xem thêm tại Thethaovanhoa.vn](https://thethaovanhoa.vn/xsmb-28-7-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-truc-tiep-xo-so-hom-nay-ngay-28-thang-7-20260728072004222.htm).\n\n3. **Thông tin thêm**: Kết quả xổ số được phát hành bởi Công ty xổ số kiến thiết miền Bắc và được quay thưởng vào lúc 18h10 hàng ngày. [Chi tiết tại Báo Sức khỏe & Đời sống](https://baomoi.com/ket-qua-xo-so-kqxs-hom-nay-thu-ba-ngay-28-7-2026-c55711945.epi).\n\nNếu bạn cần thêm thông tin hoặc có câu hỏi khác, hãy cho tôi biết!",
+          "tool_calls": [],
+          "tool_results": []
+        }
+      ],
+      "tool_events": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "kết quả xổ số miền bắc 28/7/2026",
+            "topic": "general",
+            "timeframe": "day",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "query": "kết quả xổ số miền bắc 28/7/2026",
+            "topic": "general",
+            "timeframe": "day",
+            "items": [
+              {
+                "title": "XSMB 28/7/2026 - Kết quả xổ số miền Bắc hôm nay 28/7/2026",
+                "url": "https://thethao247.vn/503-xsmb-28-7-2026-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-d430042.html",
+                "source": "thethao247.vn",
+                "summary": "# XSMB 28/7/2026 - Kết quả xổ số miền Bắc hôm nay 28/7/2026\n\nAuthor Thethao247.vn\n\n## Kết quả xổ số miền Bắc (XSMB) hôm nay 28/7\n\nXSMB 28/7/2026 - Kết quả xổ số miền Bắc hôm nay 28/7/2026 874845\n\n## Cơ cấu giải thưởng xổ số miền Bắc XSMB như sau:\n\n## Điều kiện lĩnh thưởng Xổ số miền Bắc: [...] Nếu trúng thưởng xổ số miền Bắc, bạn có thể liên hệ trực tiếp đến Công ty xổ số phát hành vé số để được nhận thưởng. Vé số trúng thưởng phải còn nguyên vẹn, không bị tẩy xóa, chắp vá, rách và trong thời hạn 30 ngày.Nếu như quá ngày phát hành tờ vé số 30 ngày, người chơi sẽ không được nhận thưởng.\n\nNếu trúng giải có giá trị từ 10 triệu đồng một giải trở lên, người nhận giải sẽ phải nộp thuế thu nhập cá nhân tương ứng 10% giá trị giải thưởng.\n\n## Lịch mở thưởng xổ số miền Bắc hằng ngày [...] Lịch thi đấu\n\nTrực tiếp\n\nTrực tiếp bóng đá\n\nKết quả bóng đá\n\nLivescore\n\nBảng xếp hạng bóng đá\n\nThể thao 247\n\nTiện ích bóng đá\n\nGiải đấu nổi bật\n\nBảng xếp hạng bóng đá\n\nKết quả bóng đá\n\nThể thao tổng hợp\n\nCông ty TNHH MTV GenPress\n\nGiấy phép thiết lập Mạng xã hội số 365/GP-BTTTT, Ký ngày 4/12/2024\n\nĐịa chỉ Hà Nội: Tầng 04, Tòa nhà Star, Lô D32 KĐT Cầu Giấy, Đường Dương Đình Nghệ, Yên Hòa, Cầu Giấy, Hà Nội.\n\nMã số thuế: 0110067529\n\nĐiện thoại: 0847100247\n\nNgười chịu trách nhiệm: Trần Xuân Hùng",
+                "score": 0.93511593
+              },
+              {
+                "title": "XSMB 28/7 - Kết quả Xổ số miền Bắc hôm nay 28/7/2026 - Kết quả XSMB thứ Ba ngày 28 tháng 7",
+                "url": "https://thethaovanhoa.vn/xsmb-28-7-ket-qua-xo-so-mien-bac-hom-nay-28-7-2026-truc-tiep-xo-so-hom-nay-ngay-28-thang-7-20260728072004222.htm",
+                "source": "thethaovanhoa.vn",
+                "summary": "Khuyến khích: Sai 1 số (ngoại trừ giải phụ đặc biệt), có 15.000 giải x 40 nghìn đồng\n\nĐặc biệt: Trùng 5 số cuối, có 3 giải x 1 tỷ đồng (+ 50 triệu nếu ký hiệu trùng)\n\nPhụ Đặc biệt: Trùng 4 số cuối, có 12 giải x 20 triệu đồng\n\n#### Điều kiện nhận thưởng XSMB\n\nVề thể lệ trả thưởng thì xổ số miền Bắc vẫn giống như XSMN và XSMT, cụ thể như sau:\n\nVé phải nguyên vẹn, không rách, tẩy... (hạn 30 ngày từ ngày phát hành).\n\nTrúng trên 10 triệu đồng, phải nộp thuế 10% giá trị giải. [...] Giải Nhì: Trùng 5 số cuối với 1 trong 2 vé giải nhì, có 30 giải x 5 triệu đồng\n\nGiải Ba: Trùng 5 số cuối với 1 trong 6 vé giải ba, có 90 giải x 1 triệu đồng\n\nGiải Tư: Trùng 4 số cuối với 1 trong 4 vé giải tư, có 600 giải x 400 nghìn đồng\n\nGiải Năm: Trùng 4 số cuối với 1 trong 6 vé giải năm, có 900 giải x 200 nghìn đồng\n\nGiải Sáu: Trùng 3 số cuối 1 trong 3 vé giải sáu, có 4.500 giải x 100 nghìn đồng\n\nGiải Bảy: Trùng 2 số cuối 1 trong 4 vé giải bảy, có 60.000 giải x 40 nghìn đồng [...] XSMB 28/7: Kết quả Xổ số miền Bắc hôm nay thứ Ba ngày 28/7/2026 quay thưởng lúc 18h10 được trực tiếp cập nhật nhanh nhất, chính xác nhất trên Thethaovanhoa.vn.\n\n## Kết quả Xổ số miền Bắc hôm nay ngày 28/7/2026\n\nXSMB được phát hành bởi Công ty xổ số kiến thiết Miền Bắc, quay thưởng vào lúc 18h10 các ngày trong tuần. Quý khách trúng giải nhận thưởng tại Cty xổ số kiến thiết miền Bắc, địa chỉ số nhà 53E Hàng Bài, Cửa Nam, Hà Nội.\n\n## Tham khảo kết quả XSMB các ngày gần đy",
+                "score": 0.9328032
+              },
+              {
+                "title": "Kết quả xổ số - KQXS hôm nay thứ Ba ngày 28/7/2026 - Chuyên trang Gia Đình & Xã Hội - Báo Sức khỏe & Đời sống",
+                "url": "https://baomoi.com/ket-qua-xo-so-kqxs-hom-nay-thu-ba-ngay-28-7-2026-c55711945.epi",
+                "source": "baomoi.com",
+                "summary": "Đầu tiên, xổ số miền Bắc hôm nay thứ Ba ngày 28/7/2026 có kết quả như sau:\n\nKết quả xổ số miền Nam ngày 28/7/2026.\n\nKQXSMT - Kết quả xổ số miền Trung\n\nTiếp theo, xổ số miền Trung hôm nay thứ Ba ngày 28/7/2026 có kết quả như sau:\n\nKết quả xổ số miền Trung ngày 28/7/2026.\n\nKQXSMB - Kết quả xổ số miền Nam\n\nCuối cùng, xổ số miền Nam hôm nay thứ Ba ngày 28/7/2026 có kết quả như sau:\n\nKết quả xổ số miền Bắc ngày 28/7/2026.\n\nXS Vietlott - Xổ số Vietlott [...] Kết quả xổ số\n\nChuyên trang Gia đình và Xã hội cập nhật kết quả xổ số - KQXS hôm nay thứ Ba ngày 28/7/2026. Xổ số miền Nam - XSMN, xổ số miền Trung - XSMT, xổ số miền Bắc - XSMB, xổ số Vietlott - XS Vietlott có kết quả như thế nào?\n\nTheo đó, kết quả xổ số thứ Ba ngày 28/7/2026 được mở thưởng tại 6 công ty xổ số kiến thiết: Quảng Ninh - XSQN, Bạc Liêu - XSBL, Bến Tre - XSBTR, Vũng Tàu - XSVT, Đắk Lắk - XSDLK, Quảng Nam - XSQNA.\n\nKQXSMN - Kết quả xổ số miền Bắc [...] Bóng đá\n\n Chủ đề nóng\n Tiện ích\n  + Kết quả xổ số\n  + Giá vàng hôm nay\n  + Thời tiết\n  + Lịch m\n\nĐời sống\n\n# Kết quả xổ số - KQXS hôm nay thứ Ba ngày 28/7/2026\n\n### Kết quả xổ số hôm nay - KQXS thứ Ba ngày 28/7/2026: Xổ số miền Nam - XSMN, xổ số miền Trung - XSMT, xổ số miền Bắc - XSMB, xổ số Vietlott - XS Vietlott.\n\n2037 liên quanGốc\n\nKết quả xổ số",
+                "score": 0.9100432
+              },
+              {
+                "title": "XSMB 28/7 - Kết quả xổ số miền Bắc hôm nay ngày 28/ ...",
+                "url": "https://giaoducthoidai.vn/xsmb-287-ket-qua-xo-so-mien-bac-hom-nay-ngay-2872026-post786303.html",
+                "source": "giaoducthoidai.vn",
+                "summary": "|  |\n\n| XSMB 28/7 - Kết quả xổ số miền Bắc hôm nay ngày 28/7/2026 |\n\nKết quả XSMB hôm nay, thứ Ba ngày 28/7/2026\n\nLịch mở thưởng xổ số miền Bắc hàng ngày\n\nThứ Hai: Mở thưởng xổ số Thủ đô Hà Nội.\n\nThứ Ba: Quay số mở thưởng tại xổ số Quảng Ninh.\n\nThứ Tư: Quay số mở thưởng xổ số Bắc Ninh.\n\nThứ Năm: Quay số mở thưởng xổ số Thủ đô Hà Nội.\n\nThứ Sáu: Quay số mở thưởng xổ số Hải Phòng\n\nThứ Bảy: Quay số mở thưởng xổ số Nam Định.\n\nChủ Nhật: Quay số mở thưởng xổ số Thái Bình. [...] Sự kiện\n\n #Thực học - Thực nghiệp\n #Tổng rà soát hệ thống văn bản quy phạm pháp luật\n\nVăn hóa\n\n Đời sống văn hoá\n Sao\n Sáng tác\n\nzalo;) facebook; \"Chia sẻ qua Facebook\") Bản in;) Bình luận Tin mới\n\n# XSMB 28/7 - Kết quả xổ số miền Bắc hôm nay ngày 28/7/2026\n\nLinh Ngô\n\nTheo dõi báo trên  Theo dõi trên Google News   Theo dõi trên Zalo\n\nGD&TĐ - XSMB 28/7/2026. Trực tiếp KQXSMB ngày 28/7. Kết quả xổ số miền Bắc thứ Ba ngày 28/7/2026 được quay thưởng lúc 18h10 ngày liên tục trong tuần.\n\n|  | [...] ### XSMN 28/7 - Kết quả xổ số miền Nam hôm nay ngày 28/7/2026\n\n### Tin tiêu điểm\n\nThiết giáp hạng nặng trên khung T-72 xuyên thủng tuyến phòng thủ đối phương?  \n\n## Thiết giáp hạng nặng trên khung T-72 xuyên thủng tuyến phòng thủ đối phương?\n\n Thế giới \n\nGD&TĐ - Những xe bọc thép chở qun sử dụng khung gầm xe tăng chiến đấu chủ lực có lẽ là phương tiện cần thiết với Qun đội Nga hiện nay.\n\nSẽ gọi tái ngũ hàng trăm tiêm kích MiG-31 trong kho dự trữ?",
+                "score": 0.9092728
+              },
+              {
+                "title": "Kết quả xổ số Miền Bắc Ngày 28/07/2026",
+                "url": "https://www.minhchinh.com/ket-qua-xo-so-mien-bac/28-07-2026.html",
+                "source": "minhchinh.com",
+                "summary": "XỔ SỐ ĐIỆN TOÁN - Ngày 28/07/2026 ; G.Năm · G.Sáu ; 6520. 1724. 2965. 7102. 8361. 5090 · 412. 496. 321.",
+                "score": 0.8941352
+              }
+            ]
+          }
+        }
+      ],
+      "ended_at": "2026-07-29T09:40:38"
+    }
+  ]
+}
