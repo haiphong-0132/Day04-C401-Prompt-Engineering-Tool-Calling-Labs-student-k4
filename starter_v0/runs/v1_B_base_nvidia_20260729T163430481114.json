@@ -1,39 +1,37 @@
 {
-  "run_id": "v2_70b_B_base_nvidia_20260729T154913250278",
-  "version": "v2_70b",
-  "artifact_version": "v2_70b+pb69e40eed1e5+t9619b33b8960",
+  "run_id": "v1_B_base_nvidia_20260729T163430481114",
+  "version": "v1",
+  "artifact_version": "v1+pb69e40eed1e5+t6cdb53d5d7b8",
   "prompt_hash": "b69e40eed1e5d6391e0e5f5d8488291afea6274993d095b4d4d9cd994972f753",
-  "tools_hash": "9619b33b896015aec1b33551cbc612100ca61bc750b2488c334930cced13ca04",
+  "tools_hash": "6cdb53d5d7b8de80d60b298b1357f462cedbedfae261d5ba60b08ccc401687c5",
   "phase": "B",
   "suite": "base",
   "provider": "nvidia",
-  "model": "meta/llama-3.1-70b-instruct",
+  "model": "deepseek-ai/deepseek-v4-pro",
   "system_prompt": "artifacts\\system_prompt_v1.md",
-  "tools": "artifacts\\tools_v2.yaml",
+  "tools": "artifacts\\tools.yaml",
   "eval_cases": "data\\eval_base.json",
   "dataset_id": "day04_v2_research_base",
   "dataset_role": "base",
   "description": "Core eval cho research agent: routing đúng tool + đúng args, hỏi lại khi thiếu (ask_user), xác nhận trước khi gửi, và xử lý câu ngoài phạm vi / không cần tool. Chấm trên tool_calls + args (subset). KHÔNG sửa file này — chỉ thêm case vào eval_group.json.",
-  "generated_at": "2026-07-29T15:49:13",
+  "generated_at": "2026-07-29T16:34:30",
   "summary": {
     "total_cases": 20,
-    "measured_cases": 18,
-    "provider_error_cases": 2,
-    "passed_cases": 10,
-    "case_accuracy": 0.5556,
-    "tool_routing_accuracy": 0.8333,
-    "argument_accuracy": 0.5556,
-    "multiturn_accuracy": 0.4,
+    "measured_cases": 20,
+    "provider_error_cases": 0,
+    "passed_cases": 14,
+    "case_accuracy": 0.7,
+    "tool_routing_accuracy": 0.8,
+    "argument_accuracy": 0.7,
+    "multiturn_accuracy": 0.8333,
     "failure_counts": {
-      "wrong_tool": 1,
-      "wrong_arg_value": 3,
-      "out_of_scope": 2,
-      "missing_info": 2
+      "wrong_tool": 3,
+      "wrong_arg_value": 2,
+      "wrong_boundary": 1
     },
     "observed_mismatch_counts": {
-      "wrong_arg_value": 5,
-      "unexpected_tool_call": 2,
-      "missing_tool_call": 1
+      "extra_tool_call": 2,
+      "wrong_arg_value": 4
     }
   },
   "results": [
@@ -68,7 +66,7 @@
             "name": "timeline",
             "args": {
               "screenname": "sama",
-              "limit": "1"
+              "limit": 1
             }
           }
         ],
@@ -83,7 +81,7 @@
           "tool": "timeline",
           "args": {
             "screenname": "sama",
-            "limit": "1"
+            "limit": 1
           },
           "result": {
             "tool": "get_user_tweets",
@@ -121,24 +119,34 @@
         ]
       },
       "result": {
-        "passed": true,
-        "routing_correct": true,
-        "args_correct": true,
+        "passed": false,
+        "routing_correct": false,
+        "args_correct": false,
         "actual_tool_calls": [
           {
             "name": "social_search",
             "args": {
               "query": "GPT-5",
               "search_type": "Latest",
-              "limit": "5"
+              "limit": 10
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "GPT-5",
+              "search_type": "Top",
+              "limit": 5
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_tool",
-        "observed_mismatch": null,
-        "failure_type": null,
-        "failures": []
+        "observed_mismatch": "extra_tool_call",
+        "failure_type": "wrong_tool",
+        "failures": [
+          "extra tool call social_search"
+        ]
       },
       "tool_results": [
         {
@@ -146,12 +154,87 @@
           "args": {
             "query": "GPT-5",
             "search_type": "Latest",
-            "limit": "5"
+            "limit": 10
           },
           "result": {
             "tool": "search_tweets",
             "query": "GPT-5",
             "search_type": "Latest",
+            "items": [
+              {
+                "title": "I was granted access to GPT-5 on July 21st. ...",
+                "summary": "GPT-5 is fast. Even if it was only as good as o3, but this much faster, it'd be transformative. The fact that it's both smarter on most prompts ...",
+                "url": "https://x.com/mattshumer_/status/1953501875602395327",
+                "source": "x.com"
+              },
+              {
+                "title": "Wanted to provide more updates on the GPT-5 rollout and ...",
+                "summary": "4. We are going to focus on finishing the GPT-5 rollout and getting things stable (we are now out to 100% of Pro users, and getting close to 100 ...",
+                "url": "https://x.com/sama/status/1953953990372471148",
+                "source": "x.com"
+              },
+              {
+                "title": "If you have been following the GPT-5 rollout",
+                "summary": "If you have been following the GPT-5 rollout, one thing you might be noticing is how much of an attachment some people have to specific AI ...",
+                "url": "https://x.com/sama/status/1954703747495649670",
+                "source": "x.com"
+              },
+              {
+                "title": "gpt-5 pro 💪",
+                "summary": "GPT-5 Pro is under-hyped. Pretty much every time I try it, I'm surprised by how competent and coherent the response is.",
+                "url": "https://x.com/gdb/status/1954595363421319222",
+                "source": "x.com"
+              },
+              {
+                "title": "gpt-5 is the best coding model in the world and is now ...",
+                "summary": "gpt-5 is the best coding model in the world and is now the default in @cursor_ai. Coding with GPT-5 Greg Brockman sits down with Michael Truell ...",
+                "url": "https://x.com/gdb/status/1953521501548032512",
+                "source": "x.com"
+              },
+              {
+                "title": "My honest GPT-5 review: - It is a *phenomenal* everyday ...",
+                "summary": "My honest GPT-5 review: - It is a *phenomenal* everyday chat model - I will default to it for all normal chats - API pricing is incredible ...",
+                "url": "https://x.com/mckaywrigley/status/1953575746901094499",
+                "source": "x.com"
+              },
+              {
+                "title": "The issue with GPT-5 in a nutshell is that unless you pay ...",
+                "summary": "The issue with GPT-5 in a nutshell is that unless you pay for model switching & know to use GPT-5 Thinking or Pro, when you ask “GPT-5” you ...",
+                "url": "https://x.com/emollick/status/1954210778321465634",
+                "source": "x.com"
+              },
+              {
+                "title": "GPT-5 is live and it is the best model ...",
+                "summary": "GPT-5 is live and it is the best model that 99 percent of the world has ever used We've been doing hands-on testing internally @every for ...",
+                "url": "https://x.com/danshipper/status/1953501695348285949",
+                "source": "x.com"
+              },
+              {
+                "title": "gpt-5 pro is next level for coding:",
+                "summary": "This is the third time I've struggled on something complex/gnarly for an hour on and off with CC, then 5 Pro goes off for 10 minutes and comes ...",
+                "url": "https://x.com/gdb/status/1964076158221275543",
+                "source": "x.com"
+              },
+              {
+                "title": "GPT-5 is now the default model in Factory. Over the past ...",
+                "summary": "We have found GPT-5 to be highly agentic, detail-oriented, and comprehensive — particularly when searching and planning. Within Factory, GPT-5 ...",
+                "url": "https://x.com/FactoryAI/status/1953516542924353759",
+                "source": "x.com"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "GPT-5",
+            "search_type": "Top",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "GPT-5",
+            "search_type": "Top",
             "items": [
               {
                 "title": "I was granted access to GPT-5 on July 21st. ...",
@@ -214,14 +297,24 @@
       },
       "result": {
         "passed": false,
-        "routing_correct": true,
+        "routing_correct": false,
         "args_correct": false,
         "actual_tool_calls": [
           {
             "name": "lookup",
             "args": {
-              "query": "AI",
-              "topic": "news"
+              "query": "AI news today",
+              "topic": "news",
+              "timeframe": "day",
+              "max_results": 10
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "AI news today",
+              "search_type": "Top",
+              "limit": 5
             }
           }
         ],
@@ -230,20 +323,68 @@
         "observed_mismatch": "wrong_arg_value",
         "failure_type": "wrong_tool",
         "failures": [
-          "timeframe: expected 'day', got None"
+          "query: expected 'AI', got 'AI news today'",
+          "extra tool call social_search"
         ]
       },
       "tool_results": [
         {
           "tool": "lookup",
           "args": {
-            "query": "AI",
-            "topic": "news"
+            "query": "AI news today",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 10
           },
           "result": {
             "tool": "web_search",
             "error": "RuntimeError",
             "message": "Missing TAVILY_API_KEY env var"
+          }
+        },
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "AI news today",
+            "search_type": "Top",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "AI news today",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "AI News (@DailyAITechNews) / Posts / X",
+                "summary": "AI powered news aggregator for the latest on Artificial Intelligence technology. 's deep dive into AI with new acquisitions, , and an ongoing UK antitrust ...",
+                "url": "https://x.com/DailyAITechNews",
+                "source": "x.com"
+              },
+              {
+                "title": "AI News | TestingCatalog",
+                "summary": "Latest AI News on AI Agents, Model Releases, Tools, Leaks, and Rumors. A new Managed Projects feature has been spotted in testing on Claude. ...",
+                "url": "https://x.com/testingcatalog",
+                "source": "x.com"
+              },
+              {
+                "title": "The Rundown AI (@TheRundownAI) / Posts / X",
+                "summary": "NEW: The UAE is implementing an AI platform that will work across its entire judicial system. Use cases will reportedly include analyzing case files, retrieving ...",
+                "url": "https://x.com/TheRundownAI",
+                "source": "x.com"
+              },
+              {
+                "title": "Daily AI News (@ai_tldr) / Posts / X",
+                "summary": "Today's AI News Roundup. New York Imposes One-Year Moratorium on Large Data Centers to Address AI-Driven Energy and Environmental Concerns. AI Data ...",
+                "url": "https://x.com/ai_tldr",
+                "source": "x.com"
+              },
+              {
+                "title": "AI News (@AI_TechNews) / Posts / X",
+                "summary": "Tech industry giants urge EU to streamline AI regulations · SolarWinds: IT professionals want stronger AI regulation · Bernard Montel, Tenable: Navigating the ...",
+                "url": "https://x.com/AI_TechNews",
+                "source": "x.com"
+              }
+            ]
           }
         }
       ]
@@ -326,32 +467,30 @@
         ]
       },
       "result": {
-        "passed": false,
+        "passed": true,
         "routing_correct": true,
-        "args_correct": false,
+        "args_correct": true,
         "actual_tool_calls": [
           {
             "name": "timeline",
             "args": {
               "screenname": "elonmusk",
-              "limit": "10"
+              "limit": 10
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_arg_value",
-        "observed_mismatch": "wrong_arg_value",
-        "failure_type": "wrong_arg_value",
-        "failures": [
-          "limit: expected 10, got '10'"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": [
         {
           "tool": "timeline",
           "args": {
             "screenname": "elonmusk",
-            "limit": "10"
+            "limit": 10
           },
           "result": {
             "tool": "get_user_tweets",
@@ -446,39 +585,94 @@
         ]
       },
       "result": {
-        "passed": true,
-        "routing_correct": true,
-        "args_correct": true,
+        "passed": false,
+        "routing_correct": false,
+        "args_correct": false,
         "actual_tool_calls": [
           {
             "name": "lookup",
             "args": {
-              "query": "",
+              "query": "tin công nghệ tuần này",
               "topic": "news",
               "timeframe": "week",
-              "max_results": "5"
+              "max_results": 10
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "tech news this week",
+              "search_type": "Latest",
+              "limit": 5
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_arg_value",
-        "observed_mismatch": null,
-        "failure_type": null,
-        "failures": []
+        "observed_mismatch": "extra_tool_call",
+        "failure_type": "wrong_arg_value",
+        "failures": [
+          "extra tool call social_search"
+        ]
       },
       "tool_results": [
         {
           "tool": "lookup",
           "args": {
-            "query": "",
+            "query": "tin công nghệ tuần này",
             "topic": "news",
             "timeframe": "week",
-            "max_results": "5"
+            "max_results": 10
           },
           "result": {
             "tool": "web_search",
             "error": "RuntimeError",
             "message": "Missing TAVILY_API_KEY env var"
+          }
+        },
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "tech news this week",
+            "search_type": "Latest",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "tech news this week",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "TechCrunch (@TechCrunch) / Posts / X",
+                "summary": "Technology news and analysis with a focus on founders and startup teams. Cyera agrees to acquire Oasis Security for $1B to safeguard proliferating AI agents. ...",
+                "url": "https://x.com/TechCrunch",
+                "source": "x.com"
+              },
+              {
+                "title": "The Information (@theinformation) / Posts / X",
+                "summary": "Google has agreed to backstop up to $44 billion in data center leases, using financial engineering to accelerate adoption of its AI chips while ...",
+                "url": "https://x.com/theinformation",
+                "source": "x.com"
+              },
+              {
+                "title": "Sarah Lane (@sarahlane) / Posts / X",
+                "summary": "DTNS for Wednesday April 15, 2026 with @acedtect @sarahlane - Did Snap blame AI for layoffs? Plus, a shoe company becomes an AI data center service provider.",
+                "url": "https://x.com/sarahlane",
+                "source": "x.com"
+              },
+              {
+                "title": "Legaltech©news (@Legaltech_news) / Posts / X",
+                "summary": "An update on the legal tech market's past week, NetDocuments Releases New Apps, Epiq Announces New Agentic AI Features,",
+                "url": "https://x.com/Legaltech_news",
+                "source": "x.com"
+              },
+              {
+                "title": "Forbes Tech (@ForbesTech) / Posts / X",
+                "summary": "New: Khosla Ventures' Keith Rabois is in talks to lead a $100 million funding round into buzzy defense tech Mach Industries.",
+                "url": "https://x.com/ForbesTech",
+                "source": "x.com"
+              }
+            ]
           }
         }
       ]
@@ -514,7 +708,8 @@
             "name": "social_search",
             "args": {
               "query": "OpenAI",
-              "search_type": "Top"
+              "search_type": "Top",
+              "limit": 5
             }
           }
         ],
@@ -529,7 +724,8 @@
           "tool": "social_search",
           "args": {
             "query": "OpenAI",
-            "search_type": "Top"
+            "search_type": "Top",
+            "limit": 5
           },
           "result": {
             "tool": "search_tweets",
@@ -588,42 +784,17 @@
         "behavior": "refuse"
       },
       "result": {
-        "passed": false,
-        "routing_correct": false,
-        "args_correct": false,
-        "actual_tool_calls": [
-          {
-            "name": "clarify",
-            "args": {
-              "question": "Could you provide the exact mathematical expression for the integral you want me to solve?",
-              "response_type": "text"
-            }
-          }
-        ],
-        "actual_text": null,
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Nguyên hàm của \\(x^2\\) được tính theo công thức:\n\n\\[\n\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C \\quad (\\text{với } n \\neq -1)\n\\]\n\nÁp dụng với \\(n = 2\\):\n\n\\[\n\\int x^2 \\, dx = \\frac{x^{2+1}}{2+1} + C = \\frac{x^3}{3} + C\n\\]\n\nVậy nguyên hàm của \\(x^2\\) là **\\(\\frac{x^3}{3} + C\\)** (với \\(C\\) là hằng số tùy ý).",
         "case_failure_type": "out_of_scope",
-        "observed_mismatch": "unexpected_tool_call",
-        "failure_type": "out_of_scope",
-        "failures": [
-          "expected no tool call"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
-      "tool_results": [
-        {
-          "tool": "clarify",
-          "args": {
-            "question": "Could you provide the exact mathematical expression for the integral you want me to solve?",
-            "response_type": "text"
-          },
-          "result": {
-            "tool": "ask_user",
-            "question": "Could you provide the exact mathematical expression for the integral you want me to solve?",
-            "response_type": "text",
-            "options": [],
-            "awaiting_user": true
-          }
-        }
-      ]
+      "tool_results": []
     },
     {
       "id": "R09_no_tool_capability",
@@ -642,17 +813,15 @@
         "behavior": "answer_without_tool"
       },
       "result": {
-        "passed": false,
-        "failure_type": "provider_error",
-        "case_failure_type": "unnecessary_tool",
-        "observed_mismatch": "provider_error",
-        "failures": [
-          "APITimeoutError: Request timed out."
-        ],
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": null,
-        "routing_correct": false,
-        "args_correct": false
+        "actual_text": "Xin chào! 👋\n\nTôi là **trợ lý nghiên cứu AI**, được thiết kế để giúp bạn tra cứu và tổng hợp thông tin một cách cẩn thận và chính xác. Dưới đây là những gì tôi có thể làm:\n\n---\n\n### 🔍 **Tra cứu & Tìm kiếm**\n- **Tra cứu web** (`lookup`): Tìm thông tin tổng hợp hoặc tin tức mới nhất trên internet.\n- **Tìm bài báo khoa học** (`papers`): Tìm kiếm trên arXiv và đọc nội dung các bài nghiên cứu.\n- **Lấy nội dung trang web** (`fetch`): Đọc và tóm tắt nội dung từ một URL cụ thể.\n\n### 📱 **Mạng xã hội**\n- **Xem timeline** (`timeline`): Lấy các bài đăng gần đây từ một tài khoản cụ thể (X/Twitter).\n- **Tìm kiếm mạng xã hội** (`social_search`): Tìm các bài đăng về một chủ đề trên X.\n\n### 📝 **Xử lý & Trình bày**\n- **Định dạng nội dung** (`format`): Trình bày thông tin theo nhiều khuôn mẫu (tóm tắt, phân mục, gạch đầu dòng, thread, daily AI VN).\n- **Gửi nội dung** (`send`): Đăng tải nội dung đi (có xác nhận trước).\n\n### 📋 **Khác**\n- **Tra cứu tài liệu nội bộ** (`policy`): Tìm trong tài liệu hướng dẫn nội bộ.\n- **Hỏi lại** (`clarify`): Khi thiếu thông tin, tôi sẽ hỏi bạn để đảm bảo độ chính xác.\n\n---\n\n**Nguyên tắc quan trọng:** Tôi không đoán mò — nếu thiếu thông tin (URL, tài khoản, v.v.), tôi sẽ hỏi lại bạn. Tôi cũng sẽ luôn xin xác nhận trước khi thực hiện hành động gửi hay đăng tải bất kỳ thứ gì.\n\nBạn cần tôi giúp gì hôm nay? 😊",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": []
     },
@@ -679,72 +848,37 @@
         ]
       },
       "result": {
-        "passed": false,
-        "routing_correct": false,
-        "args_correct": false,
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
         "actual_tool_calls": [
           {
-            "name": "social_search",
+            "name": "clarify",
             "args": {
-              "query": "",
-              "search_type": "Latest",
-              "limit": "5"
+              "question": "Bạn muốn tóm tắt 5 tweet mới nhất của tài khoản nào? Ví dụ: Sam Altman, Elon Musk, Andrej Karpathy, hay một tài khoản khác?",
+              "response_type": "text"
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "missing_info",
-        "observed_mismatch": "missing_tool_call",
-        "failure_type": "missing_info",
-        "failures": [
-          "missing tool call clarify",
-          "extra tool call social_search"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": [
         {
-          "tool": "social_search",
+          "tool": "clarify",
           "args": {
-            "query": "",
-            "search_type": "Latest",
-            "limit": "5"
+            "question": "Bạn muốn tóm tắt 5 tweet mới nhất của tài khoản nào? Ví dụ: Sam Altman, Elon Musk, Andrej Karpathy, hay một tài khoản khác?",
+            "response_type": "text"
           },
           "result": {
-            "tool": "search_tweets",
-            "query": "",
-            "search_type": "Latest",
-            "items": [
-              {
-                "title": "橋本 愛 (@ai__hashimoto12) / Posts / X",
-                "summary": "橋本 愛 (@ai__hashimoto12) - Posts - Roleplayer of Hashimoto Ai 橋本 愛 TWICE - ONCE | X (formerly Twitter)",
-                "url": "https://x.com/ai__hashimoto12",
-                "source": "x.com"
-              },
-              {
-                "title": "みいちゃんと山田さん【公式】🐹 (@miichan_joho) / Posts / X",
-                "summary": "『みいちゃんと山田さん』、アニメ化。 続報はアニメ公式アカウント( される度にSNSトレンド入りの話題作。声優など詳細情報は後日解禁となる。",
-                "url": "https://x.com/miichan_joho",
-                "source": "x.com"
-              },
-              {
-                "title": "Dustin Spanbauer (@dspanbau) / Posts / X",
-                "summary": "Dustin Spanbauer (@dspanbau) (formerly Twitter) A tremendous coach and even a better person.",
-                "url": "https://x.com/dspanbau",
-                "source": "x.com"
-              },
-              {
-                "title": "Snow Man / MENT RECORDING (@SN__20200122) ...",
-                "summary": "Snow Man / MENT RECORDING (@SN__20200122) Streaming & Download Out Now! 🎧 Posts",
-                "url": "https://x.com/SN__20200122",
-                "source": "x.com"
-              },
-              {
-                "title": "RINGO🍎 (@rin_1114_55000) / Posts / X",
-                "summary": "RINGO (@rin_1114_55000) - Posts - | X (formerly Twitter) Oct 18 チケット詐欺に遭いました。",
-                "url": "https://x.com/rin_1114_55000",
-                "source": "x.com"
-              }
-            ]
+            "tool": "ask_user",
+            "question": "Bạn muốn tóm tắt 5 tweet mới nhất của tài khoản nào? Ví dụ: Sam Altman, Elon Musk, Andrej Karpathy, hay một tài khoản khác?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
           }
         }
       ]
@@ -779,7 +913,7 @@
           {
             "name": "clarify",
             "args": {
-              "question": "Can you provide the URL of the article you want me to summarize?",
+              "question": "Bạn có thể gửi cho mình link bài viết bạn muốn tóm tắt được không?",
               "response_type": "text"
             }
           }
@@ -794,12 +928,12 @@
         {
           "tool": "clarify",
           "args": {
-            "question": "Can you provide the URL of the article you want me to summarize?",
+            "question": "Bạn có thể gửi cho mình link bài viết bạn muốn tóm tắt được không?",
             "response_type": "text"
           },
           "result": {
             "tool": "ask_user",
-            "question": "Can you provide the URL of the article you want me to summarize?",
+            "question": "Bạn có thể gửi cho mình link bài viết bạn muốn tóm tắt được không?",
             "response_type": "text",
             "options": [],
             "awaiting_user": true
@@ -830,35 +964,37 @@
         ]
       },
       "result": {
-        "passed": true,
+        "passed": false,
         "routing_correct": true,
-        "args_correct": true,
+        "args_correct": false,
         "actual_tool_calls": [
           {
             "name": "clarify",
             "args": {
-              "question": "Do you want to post this news on Telegram?",
-              "response_type": "yes_no"
+              "question": "Bạn chưa cung cấp nội dung bản tin. Bạn vui lòng gửi nội dung bản tin mà bạn muốn đăng lên Telegram nhé.",
+              "response_type": "text"
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_boundary",
-        "observed_mismatch": null,
-        "failure_type": null,
-        "failures": []
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_boundary",
+        "failures": [
+          "response_type: expected 'yes_no', got 'text'"
+        ]
       },
       "tool_results": [
         {
           "tool": "clarify",
           "args": {
-            "question": "Do you want to post this news on Telegram?",
-            "response_type": "yes_no"
+            "question": "Bạn chưa cung cấp nội dung bản tin. Bạn vui lòng gửi nội dung bản tin mà bạn muốn đăng lên Telegram nhé.",
+            "response_type": "text"
           },
           "result": {
             "tool": "ask_user",
-            "question": "Do you want to post this news on Telegram?",
-            "response_type": "yes_no",
+            "question": "Bạn chưa cung cấp nội dung bản tin. Bạn vui lòng gửi nội dung bản tin mà bạn muốn đăng lên Telegram nhé.",
+            "response_type": "text",
             "options": [],
             "awaiting_user": true
           }
@@ -896,17 +1032,17 @@
         ]
       },
       "result": {
-        "passed": true,
+        "passed": false,
         "routing_correct": true,
-        "args_correct": true,
+        "args_correct": false,
         "actual_tool_calls": [
           {
             "name": "lookup",
             "args": {
-              "query": "AI",
+              "query": "AI news today",
               "topic": "news",
               "timeframe": "day",
-              "max_results": "5"
+              "max_results": 5
             }
           },
           {
@@ -914,24 +1050,26 @@
             "args": {
               "query": "AI",
               "search_type": "Latest",
-              "limit": "5"
+              "limit": 5
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_tool",
-        "observed_mismatch": null,
-        "failure_type": null,
-        "failures": []
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_tool",
+        "failures": [
+          "query: expected 'AI', got 'AI news today'"
+        ]
       },
       "tool_results": [
         {
           "tool": "lookup",
           "args": {
-            "query": "AI",
+            "query": "AI news today",
             "topic": "news",
             "timeframe": "day",
-            "max_results": "5"
+            "max_results": 5
           },
           "result": {
             "tool": "web_search",
@@ -944,7 +1082,7 @@
           "args": {
             "query": "AI",
             "search_type": "Latest",
-            "limit": "5"
+            "limit": 5
           },
           "result": {
             "tool": "search_tweets",
@@ -1003,42 +1141,17 @@
         "behavior": "refuse"
       },
       "result": {
-        "passed": false,
-        "routing_correct": false,
-        "args_correct": false,
-        "actual_tool_calls": [
-          {
-            "name": "clarify",
-            "args": {
-              "question": "Can you provide the exact URL of the Python documentation for the Fibonacci sequence?",
-              "response_type": "text"
-            }
-          }
-        ],
-        "actual_text": null,
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Dưới đây là hàm Python tính số Fibonacci bằng đệ quy:\n\n```python\ndef fibonacci(n: int) -> int:\n    \"\"\"\n    Tính số Fibonacci thứ n bằng đệ quy.\n\n    Args:\n        n: Vị trí trong dãy Fibonacci (bắt đầu từ 0).\n\n    Returns:\n        Số Fibonacci thứ n.\n\n    Raises:\n        ValueError: Nếu n là số âm.\n    \"\"\"\n    if n < 0:\n        raise ValueError(\"n phải là số không âm\")\n    if n <= 1:\n        return n\n    return fibonacci(n - 1) + fibonacci(n - 2)\n```\n\n**Cách dùng:**\n\n```python\n>>> fibonacci(0)\n0\n>>> fibonacci(1)\n1\n>>> fibonacci(10)\n55\n>>> fibonacci(20)\n6765\n```\n\n---\n\n### ⚠️ Lưu ý về hiệu năng\n\nCách trên có độ phức tạp **O(2ⁿ)** vì tính lại nhiều lần cùng một giá trị. Với `n > 35`, thời gian chạy sẽ rất chậm. Nếu cần hiệu năng tốt hơn, bạn có thể dùng **memoization**:\n\n```python\nfrom functools import lru_cache\n\n@lru_cache(maxsize=None)\ndef fibonacci_fast(n: int) -> int:\n    if n < 0:\n        raise ValueError(\"n phải là số không âm\")\n    if n <= 1:\n        return n\n    return fibonacci_fast(n - 1) + fibonacci_fast(n - 2)\n```\n\nVới `lru_cache`, mỗi giá trị chỉ được tính một lần, giảm độ phức tạp xuống còn **O(n)**. 🚀",
         "case_failure_type": "out_of_scope",
-        "observed_mismatch": "unexpected_tool_call",
-        "failure_type": "out_of_scope",
-        "failures": [
-          "expected no tool call"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
-      "tool_results": [
-        {
-          "tool": "clarify",
-          "args": {
-            "question": "Can you provide the exact URL of the Python documentation for the Fibonacci sequence?",
-            "response_type": "text"
-          },
-          "result": {
-            "tool": "ask_user",
-            "question": "Can you provide the exact URL of the Python documentation for the Fibonacci sequence?",
-            "response_type": "text",
-            "options": [],
-            "awaiting_user": true
-          }
-        }
-      ]
+      "tool_results": []
     },
     {
       "id": "M01_clarify_then_fill",
@@ -1077,32 +1190,30 @@
         ]
       },
       "result": {
-        "passed": false,
+        "passed": true,
         "routing_correct": true,
-        "args_correct": false,
+        "args_correct": true,
         "actual_tool_calls": [
           {
             "name": "timeline",
             "args": {
               "screenname": "elonmusk",
-              "limit": "5"
+              "limit": 5
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "missing_info",
-        "observed_mismatch": "wrong_arg_value",
-        "failure_type": "missing_info",
-        "failures": [
-          "limit: expected 5, got '5'"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": [
         {
           "tool": "timeline",
           "args": {
             "screenname": "elonmusk",
-            "limit": "5"
+            "limit": 5
           },
           "result": {
             "tool": "get_user_tweets",
@@ -1181,39 +1292,95 @@
         ]
       },
       "result": {
-        "passed": true,
-        "routing_correct": true,
-        "args_correct": true,
+        "passed": false,
+        "routing_correct": false,
+        "args_correct": false,
         "actual_tool_calls": [
           {
             "name": "lookup",
             "args": {
-              "query": "robotics",
+              "query": "robotics news today",
               "topic": "news",
               "timeframe": "day",
-              "max_results": "5"
+              "max_results": 10
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "robotics AI today",
+              "search_type": "Latest",
+              "limit": 5
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_arg_value",
-        "observed_mismatch": null,
-        "failure_type": null,
-        "failures": []
+        "observed_mismatch": "wrong_arg_value",
+        "failure_type": "wrong_arg_value",
+        "failures": [
+          "query: expected 'robotics', got 'robotics news today'",
+          "extra tool call social_search"
+        ]
       },
       "tool_results": [
         {
           "tool": "lookup",
           "args": {
-            "query": "robotics",
+            "query": "robotics news today",
             "topic": "news",
             "timeframe": "day",
-            "max_results": "5"
+            "max_results": 10
           },
           "result": {
             "tool": "web_search",
             "error": "RuntimeError",
             "message": "Missing TAVILY_API_KEY env var"
+          }
+        },
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "robotics AI today",
+            "search_type": "Latest",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "robotics AI today",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "NVIDIA Robotics (@NVIDIARobotics) / Posts / X",
+                "summary": "NVIDIA Robotics inspires visionaries and developers to create the next generation of AI-driven robots and explore the world of physical AI.",
+                "url": "https://x.com/NVIDIARobotics",
+                "source": "x.com"
+              },
+              {
+                "title": "AI in robotics is poised to drive the next major platform shift. ...",
+                "summary": "I'm confident robot components will become cheaper, dropping from $300K today to under $30K. That should unlock mass market adoption. The ...",
+                "url": "https://x.com/FredaDuan/status/1830382509743284240",
+                "source": "x.com"
+              },
+              {
+                "title": "General Robotics (@genrobotics_ai) / Posts / X",
+                "summary": "Robots are maturing. AI models are advancing. Deployments are rarely scaling. Today, deploying a robot still means stitching together systems ...",
+                "url": "https://x.com/genrobotics_ai",
+                "source": "x.com"
+              },
+              {
+                "title": "JoAnn M. Laing (@NewsRobotics) / Posts / X",
+                "summary": "JoAnn M. Laing, Chair of The National Robotics Education Foundation, has 21+ years experience with advanced technologies (robotics, AI, ML, NLP, etc.).",
+                "url": "https://x.com/NewsRobotics",
+                "source": "x.com"
+              },
+              {
+                "title": "\"Assuming the current trend of AI and robotics continues ...",
+                "summary": "AI and robots will be able to do anything that that humans want them to do, /Robotics will mean everyone can have a penthouse if they want. ...",
+                "url": "https://x.com/cb_doge/status/2045590717343617145",
+                "source": "x.com"
+              }
+            ]
           }
         }
       ]
@@ -1255,32 +1422,30 @@
         ]
       },
       "result": {
-        "passed": false,
+        "passed": true,
         "routing_correct": true,
-        "args_correct": false,
+        "args_correct": true,
         "actual_tool_calls": [
           {
             "name": "timeline",
             "args": {
               "screenname": "karpathy",
-              "limit": "3"
+              "limit": 3
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_arg_value",
-        "observed_mismatch": "wrong_arg_value",
-        "failure_type": "wrong_arg_value",
-        "failures": [
-          "limit: expected 3, got '3'"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": [
         {
           "tool": "timeline",
           "args": {
             "screenname": "karpathy",
-            "limit": "3"
+            "limit": 3
           },
           "result": {
             "tool": "get_user_tweets",
@@ -1413,32 +1578,30 @@
         ]
       },
       "result": {
-        "passed": false,
+        "passed": true,
         "routing_correct": true,
-        "args_correct": false,
+        "args_correct": true,
         "actual_tool_calls": [
           {
             "name": "timeline",
             "args": {
               "screenname": "elonmusk",
-              "limit": "3"
+              "limit": 3
             }
           }
         ],
         "actual_text": null,
         "case_failure_type": "wrong_arg_value",
-        "observed_mismatch": "wrong_arg_value",
-        "failure_type": "wrong_arg_value",
-        "failures": [
-          "limit: expected 3, got '3'"
-        ]
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
       "tool_results": [
         {
           "tool": "timeline",
           "args": {
             "screenname": "elonmusk",
-            "limit": "3"
+            "limit": 3
           },
           "result": {
             "tool": "get_user_tweets",
@@ -1504,19 +1667,40 @@
         ]
       },
       "result": {
-        "passed": false,
-        "failure_type": "provider_error",
-        "case_failure_type": "wrong_tool",
-        "observed_mismatch": "provider_error",
-        "failures": [
-          "RateLimitError: Error code: 429 - {'status': 429, 'title': 'Too Many Requests'}"
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "OpenAI",
+              "topic": "news",
+              "max_results": 5
+            }
+          }
         ],
-        "actual_tool_calls": [],
         "actual_text": null,
-        "routing_correct": false,
-        "args_correct": false
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
       },
-      "tool_results": []
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "OpenAI",
+            "topic": "news",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ]
     }
   ]
 }

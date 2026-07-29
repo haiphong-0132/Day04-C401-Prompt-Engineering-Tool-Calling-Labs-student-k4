@@ -108,3 +108,11 @@ tools:
         max_pages: {type: integer, default: 5, description: "Maximum number of pages to read."}
         max_chars: {type: integer, default: 8000, description: "Maximum characters to return."}
       required: [arxiv_url]
+
+  - name: wikipedia_summary
+    description: "WIKIPEDIA SEARCH TOOL. Use this tool to get a summary of an entity (person, place, concept) from Wikipedia."
+    parameters:
+      type: object
+      properties:
+        title: {type: string, default: "", description: "The English title of the Wikipedia page (e.g., 'Artificial_intelligence', 'Albert_Einstein')."}
+      required: [title]

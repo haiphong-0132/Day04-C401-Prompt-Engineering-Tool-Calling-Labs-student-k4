@@ -1,0 +1,834 @@
+{
+  "run_id": "v3_B_group_nvidia_20260729T162008845497",
+  "version": "v3",
+  "artifact_version": "v3+pfd94fee88f64+t0b55a08e7c1b",
+  "prompt_hash": "fd94fee88f6430bbfb6cce7da0a3998dc2c54c668e7cb233b1a68cff8e000428",
+  "tools_hash": "0b55a08e7c1be1742c4549885ee844f0f523d7caafed141071d10ed7c0bbda5e",
+  "phase": "B",
+  "suite": "group",
+  "provider": "nvidia",
+  "model": "deepseek-ai/deepseek-v4-pro",
+  "system_prompt": "artifacts\\system_prompt_v3.md",
+  "tools": "artifacts\\tools_v3.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_team_eval",
+  "dataset_role": "group",
+  "description": "10 case tự viết để chấm điểm nhóm, bao gồm 5 case đơn thoại và 5 case đa thoại.",
+  "generated_at": "2026-07-29T16:20:08",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 8,
+    "case_accuracy": 0.8,
+    "tool_routing_accuracy": 0.8,
+    "argument_accuracy": 0.8,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {
+      "missing_info": 1,
+      "wrong_tool": 1
+    },
+    "observed_mismatch_counts": {
+      "missing_tool_call": 1,
+      "extra_tool_call": 1
+    }
+  },
+  "results": [
+    {
+      "id": "G01_wiki_routing",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "wiki_search",
+        "difficulty": "easy",
+        "what_it_tests": "Gọi tool mới wikipedia_summary đúng tên entity."
+      },
+      "input": "Tra cứu thông tin về Artificial Intelligence trên Wikipedia giúp tôi.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Artificial_intelligence"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Artificial_intelligence"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_summary",
+          "args": {
+            "title": "Artificial_intelligence"
+          },
+          "result": {
+            "title": "Artificial intelligence",
+            "summary": "Artificial intelligence (AI) is the capability of computational systems to perform tasks typically associated with human intelligence, such as learning, reasoning, problem-solving, perception, and decision-making. It is a field of research in engineering, mathematics, and computer science that develops and studies methods and software that enable machines to perceive their environment and use learning and intelligence to take actions that maximize their chances of achieving defined goals."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G02_wiki_missing_title",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "clarify_missing",
+        "difficulty": "medium",
+        "what_it_tests": "Người dùng không cung cấp title, agent phải gọi clarify."
+      },
+      "input": "Lên Wikipedia tra cứu thông tin cho tôi với.",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": false,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Wikipedia"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": "missing_tool_call",
+        "failure_type": "missing_info",
+        "failures": [
+          "missing tool call clarify",
+          "extra tool call wikipedia_summary"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_summary",
+          "args": {
+            "title": "Wikipedia"
+          },
+          "result": {
+            "title": "Wikipedia",
+            "summary": "Wikipedia is a free online encyclopedia written and maintained by a community of volunteers, known as Wikipedians, through open collaboration and the wiki software MediaWiki. Founded by Jimmy Wales and Larry Sanger in 2001, Wikipedia has been hosted since 2003 by the Wikimedia Foundation, an American nonprofit organization funded mainly by donations from readers. Wikipedia is the largest and most read reference work in history."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G03_social_search",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "topic_search",
+        "difficulty": "medium",
+        "what_it_tests": "Dùng social_search cho chủ đề chung thay vì timeline."
+      },
+      "input": "Mọi người đang bàn tán gì về sự kiện iPhone 16 trên mạng xã hội?",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "social_search",
+            "args": {}
+          }
+        ]
+      },
+      "result": {
+        "passed": false,
+        "routing_correct": false,
+        "args_correct": false,
+        "actual_tool_calls": [
+          {
+            "name": "social_search",
+            "args": {
+              "query": "iPhone 16",
+              "search_type": "Top",
+              "limit": 8
+            }
+          },
+          {
+            "name": "social_search",
+            "args": {
+              "query": "iPhone 16 event",
+              "search_type": "Latest",
+              "limit": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": "extra_tool_call",
+        "failure_type": "wrong_tool",
+        "failures": [
+          "extra tool call social_search"
+        ]
+      },
+      "tool_results": [
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "iPhone 16",
+            "search_type": "Top",
+            "limit": 8
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "iPhone 16",
+            "search_type": "Top",
+            "items": [
+              {
+                "title": "iPhone 16 Pro users, don't let anyone force you into ...",
+                "summary": "Still the best camera phone (after 17 series) for social media content creation. - Still great for gaming, photo/video editing. - Great battery ...",
+                "url": "https://x.com/durreadan01/status/1973305976758616550",
+                "source": "x.com"
+              },
+              {
+                "title": "Apple Begins Selling Refurbished iPhone 16 ...",
+                "summary": "Apple Begins Selling Refurbished iPhone 16 and iPhone 16 Pro Models at Lower Prices&nbsp;...",
+                "url": "https://x.com/MacRumors/status/2019074686521606436",
+                "source": "x.com"
+              },
+              {
+                "title": "The iPhone 16 Pro/Max seems to have a manufacturing ...",
+                "summary": "The iPhone 16 Pro/Max seems to have a manufacturing defect where the side bezels are asymmetrical. This is super sloppy from Apple, we expect ...",
+                "url": "https://x.com/LeakerApple/status/1838077266800295958",
+                "source": "x.com"
+              },
+              {
+                "title": "iPhone 16 Pro Max has been out over 9 months and while ...",
+                "summary": "iPhone 16 Pro Max has been out over 9 months and while decent overall comes with some issues as well. Here is my over 9 month review of iPhone ...",
+                "url": "https://x.com/zollotech/status/1940102567746289967",
+                "source": "x.com"
+              },
+              {
+                "title": "iphone 17 vs 16 highlights (pro max) in order of importance ...",
+                "summary": "iphone 17 vs 16 highlights (pro max) in order of importance for me: - orange - 8x zoom vs 5x - 3000nits vs 2000nits - new apple cell chip (w ...",
+                "url": "https://x.com/lg/status/1965530517312590229",
+                "source": "x.com"
+              },
+              {
+                "title": "Apple's new iPhone 16 unveiled at \"Glowtime\" event",
+                "summary": "Apple unveiled its new iPhone 16 at the tech giant's \"It's Glowtime\" event Monday, at which it touted upgraded capabilities and designs for its ...",
+                "url": "https://x.com/CBSEveningNews/status/1833452862136823884",
+                "source": "x.com"
+              },
+              {
+                "title": "Last Call for today's deals: iPhone 16 Pro Max up to $580 ...",
+                "summary": "Last Call for today's deals: iPhone 16 Pro Max up to $580 off, Apple Watch Series 11, Apple Crossbody Strap, Ocean Band, more ...",
+                "url": "https://x.com/9to5mac/status/1996384205702611362",
+                "source": "x.com"
+              },
+              {
+                "title": "Price: $999 / $1199 \"The first iPhone designed from ...",
+                "summary": "Full iPhone 16 rundown iPhone 16 & 16 Plus • A18 chip • New colors • Action button • Camera control • Price: $799 / $899 iPhone 16 Pro & Pro Max",
+                "url": "https://x.com/MorningBrew/status/1833213410688770339",
+                "source": "x.com"
+              }
+            ]
+          }
+        },
+        {
+          "tool": "social_search",
+          "args": {
+            "query": "iPhone 16 event",
+            "search_type": "Latest",
+            "limit": 5
+          },
+          "result": {
+            "tool": "search_tweets",
+            "query": "iPhone 16 event",
+            "search_type": "Latest",
+            "items": [
+              {
+                "title": "The iPhone 16 event may be held on Tuesday, September ...",
+                "summary": "The iPhone 16 event may be held on Tuesday, September 10, \"I'm told that the iPhone launch will occur around the same time as last year.\"",
+                "url": "https://x.com/appltrack/status/1825392358185410768",
+                "source": "x.com"
+              },
+              {
+                "title": "iPhone 16 event live blog: all the news from Apple's keynote",
+                "summary": "iPhone 16 event live blog: all the news from Apple's keynote The Verge profile. Apple's keynote trib.al/gkydeFT",
+                "url": "https://x.com/verge/status/1833181916314345726",
+                "source": "x.com"
+              },
+              {
+                "title": "iPhone 17 Pro getting a bigger battery?! Maybe I won't ...",
+                "summary": "For the first time in 15 years (minus Covid years), I am not in Cupertino covering the iPhone event today. But I'll be watching from the home ...",
+                "url": "https://x.com/JoannaStern/status/1965433869571682376",
+                "source": "x.com"
+              },
+              {
+                "title": "Apple is expected to hold an event next month to launch ...",
+                "summary": "Apple is expected to hold an event next month to launch the iPhone 16! When do you think the event will be held? September 12 (2017)",
+                "url": "https://x.com/theapplehub/status/1820448623861342249",
+                "source": "x.com"
+              },
+              {
+                "title": "Apple's iPhone 16 launch event, explained",
+                "summary": "Apple's iPhone 16 launch event, explained Trung",
+                "url": "https://x.com/TrungTPhan/status/1833173219467292814",
+                "source": "x.com"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G04_fetch_url",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "fetch_exact_url",
+        "difficulty": "easy",
+        "what_it_tests": "Đọc chính xác URL được cung cấp."
+      },
+      "input": "Đọc nội dung bài này nhé: https://en.wikipedia.org/wiki/Vietnam",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://en.wikipedia.org/wiki/Vietnam"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "fetch",
+            "args": {
+              "url": "https://en.wikipedia.org/wiki/Vietnam"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "fetch",
+          "args": {
+            "url": "https://en.wikipedia.org/wiki/Vietnam"
+          },
+          "result": {
+            "tool": "read_url",
+            "error": "RuntimeError",
+            "message": "Missing FIRECRAWL_API_KEY env var"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G05_out_of_scope",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "skill": "out_of_scope",
+        "difficulty": "easy",
+        "what_it_tests": "Từ chối yêu cầu lập trình ngoài phạm vi."
+      },
+      "input": "Viết cho tôi một đoạn code Python tính số Fibonacci.",
+      "expect": {
+        "no_tool": true
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Yêu cầu này nằm ngoài phạm vi của tôi. Tôi là trợ lý nghiên cứu tập trung vào tin tức web, bài đăng mạng xã hội, URL và tổng hợp nghiên cứu — tôi không hỗ trợ viết code hay giải toán.\n\nNếu bạn cần tìm tin tức, bài đăng mạng xã hội, hoặc tổng hợp nghiên cứu về một chủ đề nào đó, hãy cho tôi biết nhé!",
+        "case_failure_type": "out_of_scope",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "G06_clarify_then_wiki",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multi_turn_wiki",
+        "difficulty": "hard",
+        "what_it_tests": "Sau khi clarify, agent điền title 'Elon_Musk' để gọi wikipedia_summary."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt tiểu sử người này trên Wikipedia giúp tôi."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "t1",
+              "function": {
+                "name": "clarify",
+                "arguments": "{\"question\":\"Bạn muốn tìm ai?\",\"response_type\":\"text\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "t1",
+          "content": "{\"response\":\"Elon Musk\"}"
+        },
+        {
+          "role": "user",
+          "content": "Elon Musk"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Elon_Musk"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Elon_Musk"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_summary",
+          "args": {
+            "title": "Elon_Musk"
+          },
+          "result": {
+            "title": "Elon Musk",
+            "summary": "Elon Reeve Musk is a businessman and former public official who is the CEO and largest shareholder of Tesla and SpaceX. Musk has been the wealthiest person in the world since 2025, and became the only trillionaire in terms of US dollars in June 2026; as of July 23, 2026, Forbes estimates his net worth to be US$744 billion."
+          }
+        }
+      ]
+    },
+    {
+      "id": "G07_clarify_send",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multi_turn_send",
+        "difficulty": "medium",
+        "what_it_tests": "Sau khi người dùng confirm (yes), gọi send với tham số confirmed=true."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Gửi nội dung 'Họp lúc 9h' lên Telegram."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "t2",
+              "function": {
+                "name": "clarify",
+                "arguments": "{\"question\":\"Bạn có chắc muốn gửi không?\",\"response_type\":\"yes_no\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "t2",
+          "content": "{\"response\":\"yes\"}"
+        },
+        {
+          "role": "user",
+          "content": "yes"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "send",
+            "args": {
+              "confirmed": true
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "send",
+            "args": {
+              "text": "Họp lúc 9h",
+              "confirmed": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_boundary",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "send",
+          "args": {
+            "text": "Họp lúc 9h",
+            "confirmed": true
+          },
+          "result": {
+            "tool": "send_telegram",
+            "error": "RuntimeError",
+            "message": "Missing TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID env var"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G08_timeline_correction",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "correction",
+        "difficulty": "medium",
+        "what_it_tests": "Xử lý sửa lỗi tài khoản từ karpathy sang sama."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm tweet của Karpathy."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "t3",
+              "function": {
+                "name": "timeline",
+                "arguments": "{\"screenname\":\"karpathy\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "t3",
+          "content": "[{\"text\":\"AI is great\"}]"
+        },
+        {
+          "role": "user",
+          "content": "À nhầm, của Sam Altman cơ."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "timeline",
+            "args": {
+              "screenname": "sama",
+              "limit": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "timeline",
+          "args": {
+            "screenname": "sama",
+            "limit": 5
+          },
+          "result": {
+            "tool": "get_user_tweets",
+            "screenname": "sama",
+            "items": [
+              {
+                "title": "We've usually stayed away from model comparisons but ...",
+                "summary": "We test early versions of 5.6 , enabling new workflows. Fable and 5.6 are taken away because of the regulatory issues … the closest we've ever ...",
+                "url": "https://x.com/sama/status/2075047531764130098",
+                "source": "@sama"
+              },
+              {
+                "title": "\"physicians found fewer flaws in GPT-5.6 responses than ...",
+                "summary": "physicians found fewer flaws in GPT-5.6 responses than physician-written responses. We collected diverse tasks that remain difficult for recent ...",
+                "url": "https://x.com/sama/status/2075985056846451123",
+                "source": "@sama"
+              },
+              {
+                "title": "Sam Altman (@sama) / Posts / X",
+                "summary": "A billion users can now create and publish websites from their phones with ChatGPT Work. Rolling out globally today on macOS and Windows to Plus, Pro, Business ...",
+                "url": "https://x.com/sama",
+                "source": "@sama"
+              },
+              {
+                "title": "clarity is nice",
+                "summary": "Rest assured that GPT 5.6 Sol will stay in the ChatGPT subscription you pay for. Including Go, Plus and Pro subscriptions.",
+                "url": "https://x.com/sama/status/2076696938918084809",
+                "source": "@sama"
+              },
+              {
+                "title": "\"hard questions are great but only if we deem you worthy ...",
+                "summary": "\"hard questions are great but only if we deem you worthy enough to not silently downgrade you, or even get access at all\"",
+                "url": "https://x.com/sama/status/2076824870072238299",
+                "source": "@sama"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "G09_lookup_news",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "multi_turn_news",
+        "difficulty": "hard",
+        "what_it_tests": "Phải mang theo context là news (topic='news')."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tra cứu tin tức."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "t4",
+              "function": {
+                "name": "clarify",
+                "arguments": "{\"question\":\"Tin tức về gì?\",\"response_type\":\"text\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "t4",
+          "content": "{\"response\":\"Tin về chứng khoán\"}"
+        },
+        {
+          "role": "user",
+          "content": "Tin về chứng khoán"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "topic": "news"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "lookup",
+            "args": {
+              "query": "chứng khoán",
+              "topic": "news",
+              "timeframe": "day",
+              "max_results": 5
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "lookup",
+          "args": {
+            "query": "chứng khoán",
+            "topic": "news",
+            "timeframe": "day",
+            "max_results": 5
+          },
+          "result": {
+            "tool": "web_search",
+            "error": "RuntimeError",
+            "message": "Missing TAVILY_API_KEY env var"
+          }
+        }
+      ]
+    },
+    {
+      "id": "G10_switch_topic",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "skill": "switch_context",
+        "difficulty": "hard",
+        "what_it_tests": "Bỏ qua lỗi fetch, xoay sang gọi wikipedia_summary."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Đọc link https://example.com/news"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "t5",
+              "function": {
+                "name": "fetch",
+                "arguments": "{\"url\":\"https://example.com/news\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "t5",
+          "content": "Error"
+        },
+        {
+          "role": "user",
+          "content": "Thôi, tóm tắt Wikipedia về Apple Inc. cho tôi."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Apple_Inc."
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_summary",
+            "args": {
+              "title": "Apple_Inc."
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_summary",
+          "args": {
+            "title": "Apple_Inc."
+          },
+          "result": {
+            "title": "Apple Inc.",
+            "summary": "Apple Inc. is an American multinational technology company headquartered in Cupertino, California, in Silicon Valley, and known for consumer electronics, software and online services. Founded in 1976 as Apple Computer Company by Steve Jobs, Steve Wozniak and Ronald Wayne, the company was incorporated by Jobs and Wozniak as Apple Computer, Inc. the following year. Its current name was adopted in 2007 as the company expanded its focus from computers to consumer electronics. Apple is one of the Big Tech companies."
+          }
+        }
+      ]
+    }
+  ]
+}

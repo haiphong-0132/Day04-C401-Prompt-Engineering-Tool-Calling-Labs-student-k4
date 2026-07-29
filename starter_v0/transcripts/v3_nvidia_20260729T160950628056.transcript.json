@@ -1,0 +1,28 @@
+{
+  "transcript_id": "v3_nvidia_20260729T160950628056",
+  "version": "v3",
+  "artifact_version": "v3+pfd94fee88f64+t0b55a08e7c1b",
+  "prompt_hash": "fd94fee88f6430bbfb6cce7da0a3998dc2c54c668e7cb233b1a68cff8e000428",
+  "tools_hash": "0b55a08e7c1be1742c4549885ee844f0f523d7caafed141071d10ed7c0bbda5e",
+  "provider": "nvidia",
+  "model": "meta/llama-3.3-70b-instruct",
+  "system_prompt": "artifacts\\system_prompt_v3.md",
+  "tools": "artifacts\\tools_v3.yaml",
+  "history_window": 5,
+  "max_tool_rounds": 4,
+  "created_at": "2026-07-29T16:09:50",
+  "updated_at": "2026-07-29T16:11:25",
+  "turns": [
+    {
+      "turn_index": 1,
+      "started_at": "2026-07-29T16:09:50",
+      "user": "Tra c?u Wikipedia kh?i ni?m Artificial_intelligence gi?p t?i",
+      "status": "provider_error",
+      "assistant_text": null,
+      "rounds": [],
+      "tool_events": [],
+      "error": "APITimeoutError: Request timed out.",
+      "ended_at": "2026-07-29T16:11:25"
+    }
+  ]
+}

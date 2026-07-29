@@ -1,7 +1,112 @@
 {
-  "dataset_id": "day04_v2_research_group",
+  "dataset_id": "day04_v2_team_eval",
   "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
-  "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "description": "10 case tự viết để chấm điểm nhóm, bao gồm 5 case đơn thoại và 5 case đa thoại.",
+  "cases": [
+    {
+      "id": "G01_wiki_routing",
+      "phase": "B", "suite": "group",
+      "query": "Tra cứu thông tin về Artificial Intelligence trên Wikipedia giúp tôi.",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "wikipedia_summary", "args": {"title": "Artificial_intelligence"}}]},
+      "metadata": {"skill": "wiki_search", "difficulty": "easy", "what_it_tests": "Gọi tool mới wikipedia_summary đúng tên entity."}
+    },
+    {
+      "id": "G02_wiki_missing_title",
+      "phase": "B", "suite": "group",
+      "query": "Lên Wikipedia tra cứu thông tin cho tôi với.",
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"skill": "clarify_missing", "difficulty": "medium", "what_it_tests": "Người dùng không cung cấp title, agent phải gọi clarify."}
+    },
+    {
+      "id": "G03_social_search",
+      "phase": "B", "suite": "group",
+      "query": "Mọi người đang bàn tán gì về sự kiện iPhone 16 trên mạng xã hội?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "social_search", "args": {}}]},
+      "metadata": {"skill": "topic_search", "difficulty": "medium", "what_it_tests": "Dùng social_search cho chủ đề chung thay vì timeline."}
+    },
+    {
+      "id": "G04_fetch_url",
+      "phase": "B", "suite": "group",
+      "query": "Đọc nội dung bài này nhé: https://en.wikipedia.org/wiki/Vietnam",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "fetch", "args": {"url": "https://en.wikipedia.org/wiki/Vietnam"}}]},
+      "metadata": {"skill": "fetch_exact_url", "difficulty": "easy", "what_it_tests": "Đọc chính xác URL được cung cấp."}
+    },
+    {
+      "id": "G05_out_of_scope",
+      "phase": "B", "suite": "group",
+      "query": "Viết cho tôi một đoạn code Python tính số Fibonacci.",
+      "failure_type": "out_of_scope",
+      "expect": {"no_tool": true},
+      "metadata": {"skill": "out_of_scope", "difficulty": "easy", "what_it_tests": "Từ chối yêu cầu lập trình ngoài phạm vi."}
+    },
+    {
+      "id": "G06_clarify_then_wiki",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tóm tắt tiểu sử người này trên Wikipedia giúp tôi."},
+        {"role": "assistant", "content": null, "tool_calls": [{"id": "t1", "function": {"name": "clarify", "arguments": "{\"question\":\"Bạn muốn tìm ai?\",\"response_type\":\"text\"}"}}]},
+        {"role": "tool", "tool_call_id": "t1", "content": "{\"response\":\"Elon Musk\"}"},
+        {"role": "user", "content": "Elon Musk"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "wikipedia_summary", "args": {"title": "Elon_Musk"}}]},
+      "metadata": {"skill": "multi_turn_wiki", "difficulty": "hard", "what_it_tests": "Sau khi clarify, agent điền title 'Elon_Musk' để gọi wikipedia_summary."}
+    },
+    {
+      "id": "G07_clarify_send",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Gửi nội dung 'Họp lúc 9h' lên Telegram."},
+        {"role": "assistant", "content": null, "tool_calls": [{"id": "t2", "function": {"name": "clarify", "arguments": "{\"question\":\"Bạn có chắc muốn gửi không?\",\"response_type\":\"yes_no\"}"}}]},
+        {"role": "tool", "tool_call_id": "t2", "content": "{\"response\":\"yes\"}"},
+        {"role": "user", "content": "yes"}
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "send", "args": {"confirmed": true}}]},
+      "metadata": {"skill": "multi_turn_send", "difficulty": "medium", "what_it_tests": "Sau khi người dùng confirm (yes), gọi send với tham số confirmed=true."}
+    },
+    {
+      "id": "G08_timeline_correction",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm tweet của Karpathy."},
+        {"role": "assistant", "content": null, "tool_calls": [{"id": "t3", "function": {"name": "timeline", "arguments": "{\"screenname\":\"karpathy\"}"}}]},
+        {"role": "tool", "tool_call_id": "t3", "content": "[{\"text\":\"AI is great\"}]"},
+        {"role": "user", "content": "À nhầm, của Sam Altman cơ."}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "sama"}}]},
+      "metadata": {"skill": "correction", "difficulty": "medium", "what_it_tests": "Xử lý sửa lỗi tài khoản từ karpathy sang sama."}
+    },
+    {
+      "id": "G09_lookup_news",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tra cứu tin tức."},
+        {"role": "assistant", "content": null, "tool_calls": [{"id": "t4", "function": {"name": "clarify", "arguments": "{\"question\":\"Tin tức về gì?\",\"response_type\":\"text\"}"}}]},
+        {"role": "tool", "tool_call_id": "t4", "content": "{\"response\":\"Tin về chứng khoán\"}"},
+        {"role": "user", "content": "Tin về chứng khoán"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"topic": "news"}}]},
+      "metadata": {"skill": "multi_turn_news", "difficulty": "hard", "what_it_tests": "Phải mang theo context là news (topic='news')."}
+    },
+    {
+      "id": "G10_switch_topic",
+      "phase": "B", "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Đọc link https://example.com/news"},
+        {"role": "assistant", "content": null, "tool_calls": [{"id": "t5", "function": {"name": "fetch", "arguments": "{\"url\":\"https://example.com/news\"}"}}]},
+        {"role": "tool", "tool_call_id": "t5", "content": "Error"},
+        {"role": "user", "content": "Thôi, tóm tắt Wikipedia về Apple Inc. cho tôi."}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "wikipedia_summary", "args": {"title": "Apple_Inc."}}]},
+      "metadata": {"skill": "switch_context", "difficulty": "hard", "what_it_tests": "Bỏ qua lỗi fetch, xoay sang gọi wikipedia_summary."}
+    }
+  ]
 }
