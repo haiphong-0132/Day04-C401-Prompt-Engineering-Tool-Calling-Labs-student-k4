@@ -1,1 +1,5 @@
 version,author,changed_artifact,artifact_version,prompt_hash,tools_hash,reason,hypothesis,metric_name,metric_before,metric_after,run_file
+v0,baseline,-,-,-,-,Initial baseline run,-,case_accuracy,0.0,0.35,v0_B_base_nvidia_20260729T151720757388.json
+v1,student,system_prompt_v1.md,-,-,-,Fix forced guesses and action boundary,Removing bad instructions and adding explicit clarify rules will fix routing and boundary errors,case_accuracy,0.35,0.45,v1_B_base_nvidia_20260729T152546369718.json
+v2,student,tools_v2.yaml,-,-,-,Fix tool descriptions to force boundaries,Detailed English boundaries inside yaml will force the model to route correctly and use clarify,case_accuracy,0.45,0.45,v2_B_base_nvidia_20260729T153603653568.json
+v2_70b,student,nvidia_provider.py,-,-,-,Switch to Llama 3.1 70B,Larger models can follow complex English constraints better than 3B models,tool_routing_accuracy,0.60,0.83,v2_70b_B_base_nvidia_20260729T154913250278.json

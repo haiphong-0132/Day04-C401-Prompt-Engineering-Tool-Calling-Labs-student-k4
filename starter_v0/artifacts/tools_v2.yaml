@@ -1,0 +1,110 @@
+tools:
+  # ---------------- Core tools ----------------
+  - name: clarify
+    description: "CRITICAL TOOL for asking questions or getting permissions. MUST be used in two scenarios: 1) To ask for missing information (like a Twitter handle or a URL) using response_type='text'. 2) To ask for explicit permission BEFORE calling the 'send' tool (or taking any destructive action), using response_type='yes_no'. Do not guess missing parameters."
+    parameters:
+      type: object
+      properties:
+        question: {type: string, default: "", description: "The specific question to ask the user."}
+        response_type: {type: string, enum: [text, yes_no, choice], default: "text", description: "The expected format of the user's answer. Use 'yes_no' for confirmation before sending/posting."}
+        options: {type: array, default: [], items: {type: string}, description: "List of options if response_type is 'choice'."}
+      required: [question]
+
+  - name: timeline
+    description: "USER-SPECIFIC TWITTER SEARCH. Use this tool ONLY to fetch recent tweets or posts authored BY a specific user. You MUST provide the user's Twitter handle (screenname). For famous individuals, use known handles (e.g., Sam Altman -> 'sama'). DO NOT use this tool to search for general topics."
+    parameters:
+      type: object
+      properties:
+        screenname: {type: string, default: "", description: "The exact Twitter handle of the user (e.g., 'sama', 'elonmusk')."}
+        limit: {type: integer, default: 5, description: "Maximum number of tweets to retrieve."}
+      required: [screenname]
+
+  - name: social_search
+    description: "GENERAL TOPIC SOCIAL SEARCH. Use this tool to search social media for tweets or posts ABOUT a general topic, keyword, or trend (e.g., 'GPT-5', 'AI news'). DO NOT use this tool if you are trying to find tweets authored by a specific user."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "The keyword or topic to search for."}
+        search_type: {type: string, enum: [Latest, Top], default: "Latest", description: "Sort order of the search results."}
+        limit: {type: integer, default: 5, description: "Maximum number of results to retrieve."}
+      required: [query]
+
+  - name: lookup
+    description: "GENERAL INTERNET SEARCH. Use this tool to search the web for general knowledge, news, or articles. If the user explicitly asks for 'news' or 'tin tức', you MUST set the 'topic' parameter to 'news' and the query should just be the main keyword (e.g., 'AI')."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "The main keyword or query to search for (e.g., 'AI')."}
+        topic: {type: string, enum: [general, news], default: "general", description: "Category of search. Must be 'news' if the user asks for news."}
+        timeframe: {type: string, enum: [day, week, month, year], default: "week", description: "Timeframe for the search results."}
+        max_results: {type: integer, default: 5, description: "Maximum number of results to retrieve."}
+      required: [query]
+
+  - name: fetch
+    description: "EXACT URL READER. Use this tool ONLY when the user provides an exact, explicit URL (e.g., 'https://openai.com/blog/gpt-5') and you need to read its content. Do not add trailing slashes unless provided by the user."
+    parameters:
+      type: object
+      properties:
+        url: {type: string, default: "", description: "The exact URL to fetch and read."}
+      required: [url]
+
+  - name: format
+    description: "Use this tool to format collected data into a structured markdown document or report before presenting it to the user. Choose the appropriate template based on the user's request."
+    parameters:
+      type: object
+      properties:
+        items:
+          type: array
+          default: []
+          description: "List of items to format."
+          items:
+            type: object
+            properties:
+              title: {type: string}
+              url: {type: string}
+              source: {type: string}
+              summary: {type: string}
+              section: {type: string}
+        template: {type: string, enum: [brief, sections, bullets, thread, daily_ai_vn], default: "sections", description: "Formatting template to use."}
+        headline: {type: string, default: "", description: "Main headline for the formatted document."}
+      required: [items, template]
+
+  # ---------------- Bonus tools ----------------
+  - name: send
+    description: "DANGEROUS ACTION TOOL. Use this tool to send, post, or publish a message to an external platform. You MUST NEVER call this tool without first using the 'clarify' tool (with response_type='yes_no') to get explicit confirmation from the user. Only call 'send' AFTER the user confirms."
+    parameters:
+      type: object
+      properties:
+        text: {type: string, default: "", description: "The exact message content to send."}
+        confirmed: {type: boolean, default: false, description: "Must be set to true if the user explicitly confirmed via the clarify tool."}
+      required: [text]
+
+  - name: policy
+    description: "Internal document search. Use this tool to search within internal policy markdown documents."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Query to search the policies for."}
+        policy_area: {type: string, enum: [all, ai_research, source_citation, data_privacy, external_publishing, tool_usage], default: "all", description: "Policy category."}
+        top_k: {type: integer, default: 3, description: "Number of policy sections to return."}
+      required: [query]
+
+  - name: papers
+    description: "Scientific paper search. Use this tool to find academic papers on arXiv."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Keyword or topic to search for."}
+        max_results: {type: integer, default: 5, description: "Maximum number of papers to retrieve."}
+        sort_by: {type: string, enum: [relevance, lastUpdatedDate, submittedDate], default: "relevance", description: "Sort order."}
+      required: [query]
+
+  - name: paper_text
+    description: "Scientific paper reader. Use this tool to extract the full text content of a specific academic paper given its arXiv URL or ID."
+    parameters:
+      type: object
+      properties:
+        arxiv_url: {type: string, default: "", description: "The arXiv ID or URL."}
+        max_pages: {type: integer, default: 5, description: "Maximum number of pages to read."}
+        max_chars: {type: integer, default: 8000, description: "Maximum characters to return."}
+      required: [arxiv_url]
