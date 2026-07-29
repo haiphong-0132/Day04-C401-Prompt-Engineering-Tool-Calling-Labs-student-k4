@@ -116,3 +116,15 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+  # ---------------- Wikipedia tool ----------------
+  - name: wikipedia_search
+    description: "Search Wikipedia for an encyclopedic subject and return pages + short extracts. Use when the user asks for factual encyclopedia-style information available on Wikipedia. Do NOT use for publishing or actions with side effects. Arguments: query (required) — subject phrase; lang (optional, default 'en') — language code; limit (optional, default 3) — max results; summary (optional, default true) — include short extract."
+    parameters:
+      type: object
+      properties:
+        query: {type: string, default: "", description: "Subject to search for on Wikipedia"}
+        lang: {type: string, default: "en", description: "Language code, e.g. 'en' or 'vi'"}
+        limit: {type: integer, default: 3, description: "Max number of results"}
+        summary: {type: boolean, default: true, description: "Include short extract summary"}
+      required: [query]

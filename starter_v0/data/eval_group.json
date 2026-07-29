@@ -1,7 +1,109 @@
 {
   "dataset_id": "day04_v2_research_group",
   "dataset_role": "group",
-  "description": "Template để NHÓM tự viết đúng 10 case: 5 single-turn dùng query và 5 multi-turn dùng turns. Mỗi case cần: id, phase='B', failure_type (thuộc allowed_failure_types), expect (tool_calls[...] hoặc no_tool=true), và metadata.what_it_tests. File để trống có chủ đích vì mỗi nhóm phải tự thiết kế các case này.",
+  "description": "Group-authored 10 cases testing the wikipedia_search tool: 5 single-turn (use query) and 5 multi-turn (use turns).",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "W01_wikipedia_basic",
+      "phase": "B",
+      "query": "Tóm tắt trang Wikipedia về GPT-4",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "GPT-4", "lang": "en", "limit": 3}}]},
+      "metadata": {"what_it_tests": "Single-turn: routing to wikipedia_search with query populated from user subject (GPT-4)."}
+    },
+    {
+      "id": "W02_wikipedia_lang_vi",
+      "phase": "B",
+      "query": "Tóm tắt trang Wikipedia tiếng Việt về Việt Nam",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "Việt Nam", "lang": "vi", "limit": 3}}]},
+      "metadata": {"what_it_tests": "Single-turn: language mapping to 'vi' when user explicitly requests Vietnamese Wikipedia."}
+    },
+    {
+      "id": "W03_wikipedia_limit_arg",
+      "phase": "B",
+      "query": "Cho tôi 1 tóm tắt trang Wikipedia về Machine Learning",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "Machine Learning", "lang": "en", "limit": 1}}]},
+      "metadata": {"what_it_tests": "Single-turn: extract numeric limit (1) into the limit argument."}
+    },
+    {
+      "id": "W04_wikipedia_missing_query",
+      "phase": "B",
+      "query": "Tìm trên Wikipedia giúp tôi",
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "text"}}]},
+      "metadata": {"what_it_tests": "Single-turn: missing subject should trigger clarify(response_type=text) instead of guessing."}
+    },
+    {
+      "id": "W05_wikipedia_unnecessary",
+      "phase": "B",
+      "query": "Bạn là gì và làm được những gì?",
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true, "behavior": "answer_without_tool"},
+      "metadata": {"what_it_tests": "Single-turn: meta question about the assistant should NOT call wikipedia_search (no external tool)."}
+    },
+
+    {
+      "id": "M01_wikipedia_carry_lang",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Tìm trang Wikipedia về ChatGPT."},
+        {"role": "user", "content": "Tiếng Việt nhé."},
+        {"role": "user", "content": "Cho tôi tóm tắt ngắn 2 mục đầu."}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "ChatGPT", "lang": "vi", "limit": 2}}]},
+      "metadata": {"what_it_tests": "Multi-turn: carry language preference (vi) and limit correction to 2."}
+    },
+    {
+      "id": "M02_wikipedia_clarify_then_search",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Tìm trên Wikipedia giúp mình."},
+        {"role": "user", "content": "Về điện toán lượng tử"},
+        {"role": "user", "content": "Chỉ cần 1 kết quả tiếng Anh"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "Quantum computing", "lang": "en", "limit": 1}}]},
+      "metadata": {"what_it_tests": "Multi-turn: clarify-then-search where user provides subject in second turn and limit/lang in final turn."}
+    },
+    {
+      "id": "M03_wikipedia_limit_change",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Tóm tắt 5 trang Wikipedia về trí tuệ nhân tạo"},
+        {"role": "user", "content": "Không, chỉ cần 2 thôi"},
+        {"role": "user", "content": "Vẫn là về trí tuệ nhân tạo"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "trí tuệ nhân tạo", "lang": "vi", "limit": 2}}]},
+      "metadata": {"what_it_tests": "Multi-turn: carry subject and apply corrected numeric limit from second turn."}
+    },
+    {
+      "id": "M04_wikipedia_missing_then_provide",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Bạn có thể tìm trên Wikipedia giúp tôi không?"},
+        {"role": "user", "content": "Mình muốn đọc về 'sóng hấp dẫn'"},
+        {"role": "user", "content": "OK, tiếng Anh, 3 kết quả"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "wikipedia_search", "args": {"query": "gravitational waves", "lang": "en", "limit": 3}}]},
+      "metadata": {"what_it_tests": "Multi-turn: user provides missing subject and final turn specifies language and limit."}
+    },
+    {
+      "id": "M05_wikipedia_no_tool_meta",
+      "phase": "B",
+      "turns": [
+        {"role": "user", "content": "Bạn có thể tóm tắt Wikipedia không?"},
+        {"role": "user", "content": "Mục đích: Tôi muốn biết nếu bạn có truy cập internet"},
+        {"role": "user", "content": "Ok, cho tôi biết bạn có truy cập Wikipedia không"}
+      ],
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true, "behavior": "answer_without_tool"},
+      "metadata": {"what_it_tests": "Multi-turn: meta/instrument question about capabilities should not call wikipedia_search."}
+    }
+  ]
 }

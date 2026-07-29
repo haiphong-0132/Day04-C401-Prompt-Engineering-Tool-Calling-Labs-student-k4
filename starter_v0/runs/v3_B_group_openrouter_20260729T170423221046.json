@@ -1,0 +1,738 @@
+{
+  "run_id": "v3_B_group_openrouter_20260729T170423221046",
+  "version": "v3",
+  "artifact_version": "v3+p4f3baf6c2859+tde253624ab92",
+  "prompt_hash": "4f3baf6c2859db844a58a0ecdc7e9c7d4d2669c37329f307c151621101a6b1d7",
+  "tools_hash": "de253624ab92880c9f3ad0140a78ec395e4d5d5e37a66f5b09e924990f632e14",
+  "phase": "B",
+  "suite": "group",
+  "provider": "openrouter",
+  "model": "openai/gpt-4o-mini",
+  "system_prompt": "C:\\Users\\toant\\Desktop\\lab\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student-k4\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "C:\\Users\\toant\\Desktop\\lab\\Day04-C401-Prompt-Engineering-Tool-Calling-Labs-student-k4\\starter_v0\\artifacts\\tools.yaml",
+  "eval_cases": "data\\eval_group.json",
+  "dataset_id": "day04_v2_research_group",
+  "dataset_role": "group",
+  "description": "Group-authored 10 cases testing the wikipedia_search tool: 5 single-turn (use query) and 5 multi-turn (use turns).",
+  "generated_at": "2026-07-29T17:04:23",
+  "summary": {
+    "total_cases": 10,
+    "measured_cases": 10,
+    "provider_error_cases": 0,
+    "passed_cases": 10,
+    "case_accuracy": 1.0,
+    "tool_routing_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "multiturn_accuracy": 1.0,
+    "failure_counts": {},
+    "observed_mismatch_counts": {}
+  },
+  "results": [
+    {
+      "id": "W01_wikipedia_basic",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Single-turn: routing to wikipedia_search with query populated from user subject (GPT-4)."
+      },
+      "input": "Tóm tắt trang Wikipedia về GPT-4",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "GPT-4",
+              "lang": "en",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "GPT-4",
+              "lang": "en",
+              "limit": 3,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "GPT-4",
+            "lang": "en",
+            "limit": 3,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "GPT-4",
+            "lang": "en",
+            "limit": 3,
+            "items": [
+              {
+                "title": "GPT-4",
+                "url": "https://en.wikipedia.org/wiki/GPT-4",
+                "source": "en.wikipedia.org",
+                "summary": "Generative Pre-trained Transformer 4 (GPT-4) is a large language model developed by OpenAI and the fourth in its series of GPT foundation models.  \nGPT-4 is preceded by GPT-3.5 and followed by its successor GPT-5. GPT-4V is a version of GPT-4 that can process images in addition to text. OpenAI has not revealed technical details and statistics about GPT-4, such as the precise size of the model.\nAn early version of GPT-4 was integrated by Microsoft into Bing Chat, launched in February 2023. GPT-4 was released in ChatGPT in March 2023, and removed in 2025. GPT-4 is still available in OpenAI's API."
+              },
+              {
+                "title": "GPT-4.5",
+                "url": "https://en.wikipedia.org/wiki/GPT-4.5",
+                "source": "en.wikipedia.org",
+                "summary": "GPT-4.5 (codenamed \"Orion\") is a large language model developed by OpenAI as part of the GPT series. Officially released on February 27, 2025, GPT-4.5 is available to users subscribed to the ChatGPT Plus and Pro plans across web, mobile, and desktop platforms. Access was also provided through the OpenAI API and Developer Playground until July 14, 2025. On August 7, 2025, with the release of GPT-5, GPT-4.5 was removed from both the API and ChatGPT users with the Plus and Teams tier, while Pro users are still able to access to GPT-4.5 model under the \"Legacy Models\" tab. On May 28th, 2026, It was announced that GPT-4.5 would be sunset completely from ChatGPT on June 27th, 2026.\n\n"
+              },
+              {
+                "title": "GPT-5.4",
+                "url": "https://en.wikipedia.org/wiki/GPT-5.4",
+                "source": "en.wikipedia.org",
+                "summary": "GPT-5.4 (Generative Pre-trained Transformer 5.4) is a large language model (LLM) released by OpenAI on March 5, 2026.\nOpenAI initially released the model in two variants, GPT-5.4 Thinking and GPT-5.4 Pro. Neither is available to free-tier users. On March 17, OpenAI released GPT-5.4 mini and GPT-5.4 nano. GPT-5.4 mini is available to free-tier users, and GPT-5.4 nano is only available via the OpenAI API. Through the OpenAI API, GPT-5.4 mini and GPT-5.4 nano are four times more expensive than their GPT-5 equivalents.\nIn technical benchmarks, OpenAI reported a 33% reduction in factual errors compared to GPT-5.2. Performance improvements were focused on professional workflows. GPT-5.4 has built-in computer use capabilities, and improved deep research capabilities. In the benchmark OSWorld-Verified, which scores large language models' ability to use desktop environments, GPT-5.4 scored 75%, compared to GPT-5.2's 47.3% and the average person's 72.4%.\n\n"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "W02_wikipedia_lang_vi",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Single-turn: language mapping to 'vi' when user explicitly requests Vietnamese Wikipedia."
+      },
+      "input": "Tóm tắt trang Wikipedia tiếng Việt về Việt Nam",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "Việt Nam",
+              "lang": "vi",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "Việt Nam",
+              "lang": "vi",
+              "limit": 3,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "Việt Nam",
+            "lang": "vi",
+            "limit": 3,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "Việt Nam",
+            "lang": "vi",
+            "limit": 3,
+            "items": [
+              {
+                "title": "Việt Nam",
+                "url": "https://vi.wikipedia.org/wiki/Việt_Nam",
+                "source": "vi.wikipedia.org",
+                "summary": "Việt Nam, quốc hiệu đầy đủ là Cộng hòa xã hội chủ nghĩa Việt Nam, là một quốc gia nằm ở cực Đông của bán đảo Đông Dương thuộc khu vực Đông Nam Á, giáp với Lào, Campuchia, Trung Quốc, biển Đông và vịnh Thái Lan.\nLãnh thổ Việt Nam xuất hiện con người sinh sống từ thời đại đồ đá cũ, khởi đầu với các nhà nước Văn Lang, Âu Lạc. Âu Lạc bị nhà Triệu ở phương Bắc thôn tính vào đầu thế kỷ thứ 2 TCN sau đó là thời kỳ Bắc thuộc kéo dài hơn một thiên niên kỷ. Chế độ quân chủ độc lập được tái lập sau chiến thắng của Ngô Quyền trước nhà Nam Hán, mở đường cho các triều đại độc lập kế tục, nhiều lần chiến thắng trước các cuộc chiến tranh xâm lược từ phương Bắc đồng thời dần mở rộng về phía nam. Thời kỳ Bắc thuộc cuối cùng kết thúc sau chiến thắng trước nhà Minh của nghĩa quân Lam Sơn.\nĐến thời cận đại, Việt Nam lần lượt trải qua các giai đoạn Pháp thuộc và Nhật thuộc. Sau khi đánh bại và buộc Nhật Bản đầu hàng, khối Đồng Minh tạo điều kiện cho Pháp thu hồi Liên bang Đông Dương. Kết thúc Thế chiến II, Việt Nam chịu sự can thiệp của các nước Đồng Minh bao gồm Anh, Pháp (miền Nam), Trung Hoa Dân Quốc (miền Bắc). Nhà nước Việt Nam Dân chủ Cộng hòa do Việt Minh lãnh đạo ra đời khi Hồ Chí Minh tuyên bố độc lập vào ngày 2 tháng 9 năm 1945 sau thành công của Cách mạng Tháng Tám và chiến thắng Liên hiệp Pháp cùng Quốc gia Việt Nam do Pháp hậu thuẫn trong chiến tranh Đông Dương lần thứ nhất. Sự kiện này dẫn tới Hiệp định Genève (1954) được ký kết và Việt Nam bị chia cắt thành hai vùng tập kết quân sự, lấy ranh giới là vĩ tuyến 17. Việt Nam Dân chủ Cộng hòa kiểm soát phần phía bắc còn phía nam do Việt Nam Cộng hòa (nhà nước kế tục Quốc gia Việt Nam) kiểm soát và được Hoa Kỳ hậu thuẫn. Xung đột về thống nhất lãnh thổ đã dẫn tới chiến tranh Việt Nam với sự can thiệp của nhiều nước và kết thúc với chiến thắng của Việt Nam Dân chủ Cộng hòa, Mặt trận Dân tộc Giải phóng miền Nam Việt Nam cùng sự sụp đổ của Việt Nam Cộng hòa vào năm 1975. Chủ quyền phần phía Nam được chính quyền Cộng hòa miền Nam Việt Nam (do Mặt trận Dân tộc Giải phóng miền Nam Việt Nam thành lập) giành quyền kiểm soát. Năm 1976, Việt Nam Dân chủ Cộng hòa và Cộng hòa miền Nam Việt Nam thống nhất thành Cộng hòa xã hội chủ nghĩa Việt Nam.\nSau khi tái thống nhất, Việt Nam tiếp tục gặp khó khăn do sự sụp đổ và tan rã của đồng minh Liên Xô cùng Khối phía Đông, các lệnh cấm vận của Hoa Kỳ, chiến tranh Đông Dương lần ba và hậu quả của chính sách bao cấp sau nhiều năm áp dụng. Năm 1986, Đảng Cộng sản Việt Nam ban hành cải cách đổi mới, xây dựng kinh tế thị trường và hội nhập sâu rộng. Cải cách kinh tế cùng quy mô dân số lớn đưa Việt Nam trở thành một trong những nước đang phát triển có tốc độ tăng trưởng thuộc nhóm nhanh nhất thế giới, được coi là Hổ mới châu Á dù cho vẫn gặp phải những thách thức như tham nhũng và phúc lợi xã hội chưa đầy đủ. Ngoài ra, giới bất đồng chính kiến và các tổ chức theo dõi nhân quyền có quan điểm chỉ trích hồ sơ nhân quyền của Việt Nam liên quan đến các vấn đề tôn giáo, kiểm duyệt truyền thông và tự do dân sự.\n\n"
+              },
+              {
+                "title": "Lịch sử Việt Nam",
+                "url": "https://vi.wikipedia.org/wiki/Lịch_sử_Việt_Nam",
+                "source": "vi.wikipedia.org",
+                "summary": "Lịch sử Việt Nam nếu tính từ lúc có mặt con người sinh sống thì đã có hàng vạn năm trước Công Nguyên, còn tính từ khi cơ cấu nhà nước được hình thành thì vào khoảng từ năm 700 năm trước công nguyên.\nCác nhà khảo cổ đã tìm thấy các di tích chứng minh loài người đã từng sống tại Việt Nam từ thời đại đồ đá cũ thuộc nền văn hóa Tràng An, Ngườm, Sơn Vi và Soi Nhụ. Vào thời kỳ đồ đá mới, nền văn hóa Hòa Bình – Bắc Sơn tại vùng này đã phát triển về chăn nuôi và nông nghiệp, đặc biệt là kỹ thuật trồng lúa nước. Những người Việt tiền sử trên vùng châu thổ sông Hồng – Văn minh sông Hồng và sông Mã này đã khai hóa đất để trồng trọt, tạo ra một hệ thống đê điều để chế ngự nước lụt của các sông, đào kênh để phục vụ cho việc trồng lúa và đã tạo nên nền văn minh lúa nước và văn hóa làng xã.\nTruyền thuyết kể rằng từ năm 2879 TCN, nhà nước Xích Quỷ của người Việt đã hình thành, cùng thời với truyền thuyết về Tam Hoàng Ngũ Đế tại Trung Quốc. Tuy nhiên, đây chỉ là truyền thuyết dân gian, các nghiên cứu khảo cổ hiện chưa tìm được bằng chứng nào cho thấy nhà nước này từng tồn tại.\nĐến thời kỳ đồ sắt, vào khoảng thế kỷ 8 TCN đã xuất hiện nhà nước đầu tiên của người Việt được khảo cổ học xác nhận trên miền Bắc Việt Nam ngày nay. Theo sử sách, đó là Nhà nước Văn Lang của các vua Hùng. Thời kỳ Vua Hùng được nhiều người ghi nhận là quốc gia có tổ chức đầu tiên của người Việt, bắt đầu với truyền thuyết Con Rồng cháu Tiên mà người Việt Nam tự hào truyền miệng từ đời này qua đời khác."
+              },
+              {
+                "title": "Chiến tranh Việt Nam",
+                "url": "https://vi.wikipedia.org/wiki/Chiến_tranh_Việt_Nam",
+                "source": "vi.wikipedia.org",
+                "summary": "Chiến tranh Việt Nam, Chiến tranh Đông Dương lần thứ hai, hay Cuộc kháng chiến chống Mỹ cứu nước theo cách gọi ở Việt Nam, là cuộc xung đột diễn ra tại Việt Nam, Lào và Campuchia từ ngày 1 tháng 11 năm 1955 đến ngày 30 tháng 4 năm 1975 khi chính phủ Việt Nam Cộng hòa đầu hàng chính phủ cách mạng lâm thời Cộng hòa miền Nam Việt Nam.\nĐây là giai đoạn thứ hai của chiến tranh Đông Dương giữa Hoa Kỳ, Việt Nam Cộng hòa, Vương quốc Lào, Vương quốc Campuchia – Cộng hòa Khmer, các đồng minh chống cộng (Hàn Quốc, Úc, New Zealand, Thái Lan, Philippines) với Việt Nam Dân chủ Cộng hòa, Mặt trận Dân tộc Giải phóng miền Nam / Cộng hòa miền Nam Việt Nam do Đảng Cộng sản Việt Nam lãnh đạo cùng các đồng minh Pathet Lào, Khmer Đỏ với sự ủng hộ và viện trợ từ Khối các nước xã hội chủ nghĩa, đặc biệt là Liên Xô và Trung Quốc.\nCuộc chiến kéo dài gần 20 năm, diễn ra không chỉ tại Nam Việt Nam mà còn mở rộng lên Bắc Việt Nam đồng thời có ảnh hưởng trực tiếp tới Nội chiến Lào và Nội chiến Campuchia. Chiến tranh kết thúc vào ngày 30 tháng 4 năm 1975 khi Tổng thống Dương Văn Minh của Việt Nam Cộng hòa tuyên bố đầu hàng vô điều kiện Quân Giải phóng miền Nam Việt Nam cùng chính phủ Cách mạng lâm thời Cộng hòa miền Nam Việt Nam. Trước đó, phần lớn công dân, nhân viên ngoại giao, quân sự và dân sự của Hoa Kỳ cùng đồng minh còn duy trì hiện diện sau năm 1973 cũng di tản do sự kiện này.\nSau khi tái thống nhất, chính quyền mới tiến hành cải tạo kinh tế, văn hóa, thay đổi hệ thống giáo dục cũ, xây dựng bao cấp, quốc hữu hóa tư sản, xóa bỏ tư hữu cũng như kinh tế thị trường ở miền Nam, tổ chức học tập cải tạo, rà soát lý lịch đối với tất cả những người từng phục vụ trong chính quyền cũ cùng với gia đình của họ. Kết thúc chiến tranh, các đảng cộng sản lên nắm chính quyền tại Nam Việt Nam, Lào và Campuchia. Hàng triệu người ở ba nước Đông Dương sau đó đã di tản bằng nhiều hình thức khác nhau dẫn tới khủng hoảng tị nạn. Các di chứng do chiến tranh để lại như bom mìn chưa nổ, chất độc da cam, Hội chứng Việt Nam, chia rẽ tư tưởng, suy thoái kinh tế... vẫn tiếp tục ảnh hưởng tới các bên nhiều năm về sau.\nSau khi chiến tranh kết thúc, sự chia rẽ Trung-Xô xảy ra kết hợp mâu thuẫn giữa nhà nước Việt Nam thống nhất với chính quyền Campuchia lưu vong ở Bắc Kinh và chính quyền Campuchia Dân chủ của Khmer Đỏ dẫn tới chiến tranh Campuchia–Việt Nam cùng sự kiện Trung Quốc tấn công Việt Nam gây ra chiến tranh biên giới Việt–Trung đã cấu thành chiến tranh Đông Dương lần thứ ba.\nChiến tranh Việt Nam giữ kỷ lục là cuộc chiến có số lượng bom được thả nhiều nhất trong lịch sử với 7.662.000 tấn chất nổ đã được Không quân Hoa Kỳ sử dụng, nhiều gấp 3,7 lần so với con số 2.150.000 tấn mà tất cả các nước sử dụng trong Thế chiến 2. Một nguồn khác thống kê rằng tổng lượng chất nổ mà quân đội Hoa Kỳ sử dụng trong chiến tranh Việt Nam là vào khoảng 15,35 triệu tấn, trong đó 7,85 triệu tấn thả từ máy bay và 7,5 triệu tấn khác được sử dụng trên mặt đất."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "W03_wikipedia_limit_arg",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Single-turn: extract numeric limit (1) into the limit argument."
+      },
+      "input": "Cho tôi 1 tóm tắt trang Wikipedia về Machine Learning",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "Machine Learning",
+              "lang": "en",
+              "limit": 1
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "Machine Learning",
+              "lang": "en",
+              "limit": 1,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "Machine Learning",
+            "lang": "en",
+            "limit": 1,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "Machine Learning",
+            "lang": "en",
+            "limit": 1,
+            "items": [
+              {
+                "title": "Machine learning",
+                "url": "https://en.wikipedia.org/wiki/Machine_learning",
+                "source": "en.wikipedia.org",
+                "summary": "Machine learning (ML) is a field of study in artificial intelligence concerned with the development and study of statistical algorithms that can learn from  data and generalize to unseen data, and thus perform tasks without being explicitly programmed. Advances in the field of deep learning have allowed neural networks, a class of statistical algorithms, to surpass many previous machine learning approaches in performance.\nStatistics and mathematical optimisation methods compose the foundations of machine learning. Data mining is a related field of study, focusing on exploratory data analysis (EDA) through unsupervised learning.\nFrom a theoretical viewpoint, probably approximately correct learning provides a mathematical and statistical framework for describing machine learning. Most traditional machine learning and deep learning algorithms can be described as empirical risk minimisation under this framework.\n\n"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "W04_wikipedia_missing_query",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Single-turn: missing subject should trigger clarify(response_type=text) instead of guessing."
+      },
+      "input": "Tìm trên Wikipedia giúp tôi",
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "response_type": "text"
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "clarify",
+            "args": {
+              "question": "Bạn muốn tìm kiếm thông tin về chủ đề gì trên Wikipedia?",
+              "response_type": "text"
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "clarify",
+          "args": {
+            "question": "Bạn muốn tìm kiếm thông tin về chủ đề gì trên Wikipedia?",
+            "response_type": "text"
+          },
+          "result": {
+            "tool": "ask_user",
+            "question": "Bạn muốn tìm kiếm thông tin về chủ đề gì trên Wikipedia?",
+            "response_type": "text",
+            "options": [],
+            "awaiting_user": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "W05_wikipedia_unnecessary",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": false,
+      "metadata": {
+        "what_it_tests": "Single-turn: meta question about the assistant should NOT call wikipedia_search (no external tool)."
+      },
+      "input": "Bạn là gì và làm được những gì?",
+      "expect": {
+        "no_tool": true,
+        "behavior": "answer_without_tool"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Tôi là một trợ lý nghiên cứu ảo, được thiết kế để hỗ trợ bạn trong việc tìm kiếm thông tin, tóm tắt nội dung, tra cứu tài liệu, và cung cấp các thông tin liên quan đến nghiên cứu và công nghệ. Dưới đây là một số khả năng của tôi:\n\n1. **Tìm kiếm thông tin**: Tôi có thể tìm kiếm và cung cấp thông tin từ internet về nhiều chủ đề khác nhau, bao gồm tin tức, nghiên cứu khoa học, và các khái niệm trong lĩnh vực công nghệ.\n\n2. **Tóm tắt nội dung**: Tôi có thể tóm tắt các bài viết, tài liệu, hoặc trang Wikipedia để giúp bạn nắm bắt thông tin nhanh chóng.\n\n3. **Tra cứu tài liệu**: Tôi có thể tìm kiếm và cung cấp các bài báo khoa học, tài liệu nghiên cứu, và thông tin từ các nguồn đáng tin cậy.\n\n4. **Hỗ trợ trong việc sử dụng công cụ**: Tôi có thể hướng dẫn bạn cách sử dụng các công cụ và tài nguyên trực tuyến để phục vụ cho nhu cầu nghiên cứu của bạn.\n\nNếu bạn có bất kỳ câu hỏi nào hoặc cần hỗ trợ về một chủ đề cụ thể, hãy cho tôi biết!",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    },
+    {
+      "id": "M01_wikipedia_carry_lang",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Multi-turn: carry language preference (vi) and limit correction to 2."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm trang Wikipedia về ChatGPT."
+        },
+        {
+          "role": "user",
+          "content": "Tiếng Việt nhé."
+        },
+        {
+          "role": "user",
+          "content": "Cho tôi tóm tắt ngắn 2 mục đầu."
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "ChatGPT",
+              "lang": "vi",
+              "limit": 2
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "ChatGPT",
+              "lang": "vi",
+              "limit": 2,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "ChatGPT",
+            "lang": "vi",
+            "limit": 2,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "ChatGPT",
+            "lang": "vi",
+            "limit": 2,
+            "items": [
+              {
+                "title": "ChatGPT",
+                "url": "https://vi.wikipedia.org/wiki/ChatGPT",
+                "source": "vi.wikipedia.org",
+                "summary": "ChatGPT là một chatbot trí tuệ nhân tạo tạo sinh do OpenAI phát triển và được phát hành vào tháng 11 năm 2022. Ứng dụng này sử dụng các transformer tiền huấn luyện tạo sinh (GPT), chẳng hạn như GPT-5.2, để tạo văn bản, giọng nói và hình ảnh dựa trên các câu lệnh của người dùng. Nó được ghi nhận là nhân tố thúc đẩy sự bùng nổ AI, một giai đoạn đang tiếp diễn với sự đầu tư mạnh mẽ và sự quan tâm lớn từ công chúng đối với lĩnh vực trí tuệ nhân tạo (AI). OpenAI vận hành dịch vụ này theo mô hình miễn phí kết hợp trả phí (freemium). Người dùng có thể tương tác với ChatGPT thông qua các câu lệnh bằng văn bản, âm thanh và hình ảnh.\nDịch vụ này đã đạt 100 triệu người dùng chỉ trong hai tháng, trở thành ứng dụng phần mềm tiêu dùng phát triển nhanh nhất trong lịch sử. Trang web của ChatGPT luôn nằm trong số năm trang web được truy cập nhiều nhất thế giới. ChatGPT được ca ngợi vì tiềm năng thay đổi nhiều lĩnh vực chuyên môn, đồng thời khơi dậy các cuộc thảo luận công khai về bản chất của sự sáng tạo và tương lai của công việc tri thức. Tuy nhiên, dịch vụ này cũng vấp phải những chỉ trích về các hạn chế và khả năng bị sử dụng vào mục đích phi đạo đức.\n\n"
+              },
+              {
+                "title": "OpenAI",
+                "url": "https://vi.wikipedia.org/wiki/OpenAI",
+                "source": "vi.wikipedia.org",
+                "summary": "OpenAI là một phòng thí nghiệm nghiên cứu trí tuệ nhân tạo (AI) của Mỹ bao gồm tổ chức phi lợi nhuận OpenAI Incorporated (OpenAI Inc.) và công ty con hoạt động vì lợi nhuận OpenAI Limited Partnership (OpenAI LP). OpenAI tiến hành nghiên cứu AI với mục đích đã tuyên bố là thúc đẩy và phát triển một AI thân thiện. Các hệ thống OpenAI chạy trên siêu máy tính mạnh thứ năm trên thế giới. Tổ chức được thành lập tại San Francisco vào năm 2015 bởi Sam Altman, Reid Hoffman, Jessica Livingston, Elon Musk, Ilya Sutskever, Peter Thiel và những người khác. Musk đã từ chức khỏi hội đồng quản trị vào năm 2018 nhưng vẫn là một nhà tài trợ. Microsoft đã cung cấp cho OpenAI LP khoản đầu tư 1 tỷ USD vào năm 2019 và khoản đầu tư thứ hai trong nhiều năm vào tháng 1 năm 2023, được báo cáo là 10 tỷ USD."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M02_wikipedia_clarify_then_search",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Multi-turn: clarify-then-search where user provides subject in second turn and limit/lang in final turn."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tìm trên Wikipedia giúp mình."
+        },
+        {
+          "role": "user",
+          "content": "Về điện toán lượng tử"
+        },
+        {
+          "role": "user",
+          "content": "Chỉ cần 1 kết quả tiếng Anh"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "Quantum computing",
+              "lang": "en",
+              "limit": 1
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "quantum computing",
+              "lang": "en",
+              "limit": 1,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "quantum computing",
+            "lang": "en",
+            "limit": 1,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "quantum computing",
+            "lang": "en",
+            "limit": 1,
+            "items": [
+              {
+                "title": "Quantum computing",
+                "url": "https://en.wikipedia.org/wiki/Quantum_computing",
+                "source": "en.wikipedia.org",
+                "summary": "A quantum computer is a computer that represents and processes information using quantum states. Quantum computations exploit phenomena such as superposition, interference, and entanglement. Quantum computers have the potential to complete some calculations exponentially faster than classical computers. For example, a large-scale quantum computer could break widely used encryption schemes and aid physicists in performing physical simulations. However, current hardware implementations of quantum computation are largely experimental and suitable for only certain specialized tasks.\nThe basic unit of information in quantum computing, the qubit (quantum bit), serves a similar function as the bit in ordinary or \"classical\" computing. Unlike a classical bit, which can be in one of two states (a binary), a qubit can exist in a linear combination of states known as a quantum superposition. The result of measuring a qubit is one of the two states, given by a probabilistic rule. If a quantum computer manipulates the qubit in a particular way, wave interference effects amplify the probability of the desired measurement result. Quantum algorithm design involves creating procedures that allow a quantum computer to perform this amplification.\nQuantum computers are not yet practical for real-world applications. If a physical qubit is not sufficiently isolated from its environment, it suffers from quantum decoherence, introducing noise (error) into calculations. Governments have invested in research aimed at developing qubits with longer coherence times and lower error rates. Example implementations include superconductors (which isolate an electrical current by eliminating electrical resistance) and ion traps (which confine a single atomic particle using electromagnetic fields). Researchers have claimed that quantum devices can outperform classical computers on specific tasks, a metric referred to as quantum advantage or quantum supremacy. Such tasks are not necessarily useful for real-world applications. As a result, as of 2026 demonstrations are best understood as scientific milestones rather than evidence for near-term deployment. Global government investment in quantum computing reached $10 billion by April 2025."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M03_wikipedia_limit_change",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Multi-turn: carry subject and apply corrected numeric limit from second turn."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Tóm tắt 5 trang Wikipedia về trí tuệ nhân tạo"
+        },
+        {
+          "role": "user",
+          "content": "Không, chỉ cần 2 thôi"
+        },
+        {
+          "role": "user",
+          "content": "Vẫn là về trí tuệ nhân tạo"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "trí tuệ nhân tạo",
+              "lang": "vi",
+              "limit": 2
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "trí tuệ nhân tạo",
+              "lang": "vi",
+              "limit": 2,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "wrong_arg_value",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "trí tuệ nhân tạo",
+            "lang": "vi",
+            "limit": 2,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "trí tuệ nhân tạo",
+            "lang": "vi",
+            "limit": 2,
+            "items": [
+              {
+                "title": "Trí tuệ nhân tạo",
+                "url": "https://vi.wikipedia.org/wiki/Trí_tuệ_nhân_tạo",
+                "source": "vi.wikipedia.org",
+                "summary": "Trí tuệ nhân tạo (tiếng Anh: Artificial intelligence, viết tắt là AI) là khả năng của các hệ thống máy tính thực hiện các nhiệm vụ liên quan đến trí thông minh của con người, như học tập, suy luận, giải quyết vấn đề, nhận thức và đưa ra quyết định. Đây là một lĩnh vực nghiên cứu thuộc khoa học máy tính tập trung phát triển và nghiên cứu các phương pháp và phần mềm giúp máy móc có thể nhận thức môi trường xung quanh, cũng như sử dụng học tập và trí tuệ để thực hiện hành động nhằm tối đa hóa khả năng đạt được các mục tiêu đã định.\nCác ứng dụng nổi bật của AI bao gồm công cụ tìm kiếm web tiên tiến (ví dụ: Google Tìm kiếm); hệ thống đề xuất (được sử dụng bởi YouTube, Amazon và Netflix); trợ lý ảo (ví dụ: Trợ lý Google, Siri và Alexa); xe tự lái (ví dụ: Waymo); công cụ sáng tạo và nội dung tạo sinh (ví dụ: mô hình ngôn ngữ và nghệ thuật AI); cùng khả năng chơi và phân tích vượt trội hơn con người trong các trò chơi chiến lược (ví dụ: cờ vua và cờ vây). Tuy nhiên, nhiều ứng dụng AI không được nhận diện là AI: \"Rất nhiều công nghệ AI đỉnh cao đã được tích hợp vào các ứng dụng thông thường, thường không còn được gọi là AI vì một khi thứ gì đó trở nên đủ hữu ích và phổ biến, nó không còn được dán nhãn AI nữa.\"\nNhiều phân ngành trong nghiên cứu trí tuệ nhân tạo tập trung vào các mục tiêu cụ thể và sử dụng những công cụ đặc thù. Các mục tiêu truyền thống của nghiên cứu AI bao gồm học tập, lập luận, biểu diễn tri thức, lập kế hoạch, xử lý ngôn ngữ tự nhiên, nhận thức và hỗ trợ robot. Để đạt được những mục tiêu đó, các nhà nghiên cứu AI đã ứng dụng và tích hợp đa dạng kỹ thuật, như tìm kiếm và tối ưu hóa toán học, logic hình thức, mạng nơ-ron nhân tạo, cùng các phương pháp dựa trên thống kê, nghiên cứu hoạt động và kinh tế học. Ngoài ra, AI còn kế thừa kiến thức từ tâm lý học, ngôn ngữ học, triết học, khoa học thần kinh và nhiều lĩnh vực khác. Một số công ty như OpenAI, Google DeepMind và Meta, đang đặt mục tiêu phát triển trí tuệ nhân tạo tổng quát (AGI)—một dạng AI có khả năng thực hiện hầu hết mọi nhiệm vụ nhận thức ở mức độ ngang bằng hoặc vượt trội so với con người.\nTrí tuệ nhân tạo ban đầu được thành lập như một ngành học thuật vào năm 1956, và lĩnh vực này đã trải qua nhiều chu kỳ lạc quan trong suốt lịch sử, xen kẽ với nó là những giai đoạn thất vọng và mất nguồn tài trợ, được gọi là mùa đông AI. Nguồn tài trợ và sự quan tâm dần tăng mạnh sau năm 2012 khi các bộ xử lý đồ họa (GPU) bắt đầu được sử dụng để tăng tốc mạng nơ-ron và kỹ năng học sâu dần vượt trội hơn so với các kỹ thuật AI trước đó. Sự tăng trưởng này tiếp tục tăng tốc sau năm 2017 nhờ kiến trúc transformer. Trong những năm 2020, sự xuất hiện của trí tuệ nhân tạo tạo sinh tiên tiến đã trở nên nổi tiếng, đánh dấu giai đoạn tiến bộ nhanh chóng của lĩnh vực này với tên gọi là cơn sốt AI. Trí tuệ nhân tạo tạo sinh với khả năng tạo ra cũng như chỉnh sửa nội dung đã dẫn đến nhiều hậu quả ngoài ý muốn ở hiện tại. Những lo ngại về đạo đức cũng được nhắc đến về ảnh hưởng lâu dài của AI và những rủi ro tồn vong tiềm tàng, từ đó thúc đẩy các cuộc thảo luận về chính sách quản lý nhằm đảm bảo tính an toàn và lợi ích của công nghệ này.\n\n"
+              },
+              {
+                "title": "Lịch sử ngành trí tuệ nhân tạo",
+                "url": "https://vi.wikipedia.org/wiki/Lịch_sử_ngành_trí_tuệ_nhân_tạo",
+                "source": "vi.wikipedia.org",
+                "summary": "Đây là bài con của Trí tuệ nhân tạo, nội dung chú trọng vào sự phát triển và lịch sử ngành trí tuệ nhân tạo."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M04_wikipedia_missing_then_provide",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Multi-turn: user provides missing subject and final turn specifies language and limit."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Bạn có thể tìm trên Wikipedia giúp tôi không?"
+        },
+        {
+          "role": "user",
+          "content": "Mình muốn đọc về 'sóng hấp dẫn'"
+        },
+        {
+          "role": "user",
+          "content": "OK, tiếng Anh, 3 kết quả"
+        }
+      ],
+      "expect": {
+        "tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "gravitational waves",
+              "lang": "en",
+              "limit": 3
+            }
+          }
+        ]
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [
+          {
+            "name": "wikipedia_search",
+            "args": {
+              "query": "gravitational waves",
+              "lang": "en",
+              "limit": 3,
+              "summary": true
+            }
+          }
+        ],
+        "actual_text": null,
+        "case_failure_type": "missing_info",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": [
+        {
+          "tool": "wikipedia_search",
+          "args": {
+            "query": "gravitational waves",
+            "lang": "en",
+            "limit": 3,
+            "summary": true
+          },
+          "result": {
+            "tool": "wikipedia_search",
+            "query": "gravitational waves",
+            "lang": "en",
+            "limit": 3,
+            "items": [
+              {
+                "title": "Gravitational wave",
+                "url": "https://en.wikipedia.org/wiki/Gravitational_wave",
+                "source": "en.wikipedia.org",
+                "summary": "Gravitational waves are waves of spacetime curvature produced by the relative motion of gravitating masses and which propagate away at the speed of light. They were first predicted by Albert Einstein as a consequence of his general theory of relativity, appearing as \"ripples in spacetime curvature\".\nHundreds of these gravitational waves have since then been observed, first indirectly using binary-pulsar observations and, since 2015, directly through dedicated observatories.\nGravitational waves transport energy as gravitational radiation, a form of radiant energy similar to electromagnetic radiation. Newton's law of universal gravitation, part of classical mechanics, does not provide for their existence, instead asserting that gravity has instantaneous effect everywhere. Gravitational waves therefore stand as an important relativistic phenomenon that is absent from Newtonian physics.\nGravitational-wave astronomy has the advantage that, unlike electromagnetic radiation, gravitational waves are not affected by intervening matter. Sources that can be studied this way include binary star systems composed of white dwarfs, neutron stars, and black holes; events such as supernovae; and the formation of the early universe shortly after the Big Bang.\nThe first indirect evidence for the existence of gravitational waves came in 1974 from the observed orbital decay of the Hulse–Taylor binary pulsar, which matched the decay predicted by general relativity for energy lost to gravitational radiation. In 1993, Russell Alan Hulse and Joseph Hooton Taylor Jr. received the Nobel Prize in Physics for this discovery.\nThe first direct observation of gravitational waves was made in September 2015, when a signal generated by the merger of two black holes was received by the LIGO gravitational wave detectors in Livingston, Louisiana, and in Hanford, Washington. The 2017 Nobel Prize in Physics was subsequently awarded to Rainer Weiss, Kip Thorne and Barry Barish for their role in the direct detection of gravitational waves."
+              },
+              {
+                "title": "First observation of gravitational waves",
+                "url": "https://en.wikipedia.org/wiki/First_observation_of_gravitational_waves",
+                "source": "en.wikipedia.org",
+                "summary": "The first direct observation of gravitational waves was made on 14 September 2015 and was announced by the LIGO and Virgo collaborations on 11 February 2016. Previously, gravitational waves had been inferred only indirectly, via their effect on the timing of pulsars in binary star systems. The waveform, detected by both LIGO observatories, matched the predictions of general relativity for a gravitational wave emanating from the inward spiral and merger of two black holes (of 36 M☉ and 29 M☉) and the subsequent ringdown of a single, 62 M☉ black hole remnant. The signal was named GW150914 (from gravitational wave and the date of observation 2015-09-14). It was also the first observation of a binary black hole merger, demonstrating both the existence of binary stellar-mass black hole systems and the fact that such mergers could occur within the current age of the universe.\nThis first direct observation was reported around the world as a remarkable accomplishment for many reasons. Efforts to directly prove the existence of such waves had been ongoing for over fifty years, and the waves are so minuscule that Albert Einstein himself doubted that they could ever be detected. The waves given off by the cataclysmic merger of GW150914 reached Earth as a ripple in spacetime that changed the length of a 1,120 km LIGO effective span by a thousandth of the width of a proton, proportionally equivalent to changing the distance to the nearest star outside the Solar System by one hair's width. The energy released by the binary as it spiralled together and merged was immense, with the energy of 3.0+0.5−0.5 c2 M☉ (5.3+0.9−0.8×1047 joules or 5300+900−800 foes) in total radiated as gravitational waves, reaching a peak emission rate in its final few milliseconds of about 3.6+0.5−0.4×1049 watts – a level greater than the combined power of all light radiated by all the stars in the observable universe.\nThe observation confirmed the last remaining directly undetected prediction of general relativity and corroborated its predictions of space-time distortion in the context of large scale cosmic events (known as strong field tests). It was heralded as inaugurating a new era of gravitational-wave astronomy, which enables observations of violent astrophysical events that were not previously accessible and allows for the direct observation of the earliest history of the universe. On 15 June 2016, two more detections of gravitational waves, made in late 2015, were announced. Eight more observations were made in 2017, including GW170817, the first observed merger of binary neutron stars, which was also observed in electromagnetic radiation.\n\n"
+              },
+              {
+                "title": "Gravitational-wave astronomy",
+                "url": "https://en.wikipedia.org/wiki/Gravitational-wave_astronomy",
+                "source": "en.wikipedia.org",
+                "summary": "Gravitational-wave astronomy is a subfield of astronomy concerned with the detection and study of gravitational waves emitted by astrophysical sources.\nGravitational waves are minute distortions or ripples in spacetime caused by the acceleration of massive objects. They are produced by cataclysmic events such as the merger of binary black holes, the coalescence of binary neutron stars, supernova explosions and processes including those of the early universe shortly after the Big Bang. Studying them offers a new way to observe the universe, providing valuable insights into the behavior of matter under extreme conditions. Similar to electromagnetic radiation (such as light wave, radio wave, infrared radiation and X-rays) which involves transport of energy via propagation of electromagnetic field fluctuations, gravitational radiation involves fluctuations of the relatively weaker gravitational field. The existence of gravitational waves was first suggested by Oliver Heaviside in 1893 and then later conjectured by Henri Poincaré in 1905 as the gravitational equivalent of electromagnetic waves before they were predicted by Albert Einstein in 1916 as a corollary to his theory of general relativity.\n\nIn 1978, Russell Alan Hulse and Joseph Hooton Taylor Jr. provided the first experimental evidence for the existence of gravitational waves by observing two neutron stars orbiting each other and won the 1993 Nobel Prize in physics for their work. In 2015, nearly a century after Einstein's forecast, the first direct observation of gravitational waves as a signal from the merger of two black holes confirmed the existence of these elusive phenomena and opened a new era in astronomy. Subsequent detections have included binary black hole mergers, neutron star collisions, and other violent cosmic events. Gravitational waves are now detected using laser interferometry, which measures tiny changes in the length of two perpendicular arms caused by passing waves. Observatories like LIGO (Laser Interferometer Gravitational-wave Observatory), Virgo and KAGRA (Kamioka Gravitational Wave Detector) use this technology to capture the faint signals from distant cosmic events. LIGO co-founders Barry C. Barish, Kip S. Thorne, and Rainer Weiss were awarded the 2017 Nobel Prize in Physics for their ground-breaking contributions in gravitational wave astronomy."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "M05_wikipedia_no_tool_meta",
+      "phase": "B",
+      "suite": "group",
+      "case_suite": "group",
+      "is_multiturn": true,
+      "metadata": {
+        "what_it_tests": "Multi-turn: meta/instrument question about capabilities should not call wikipedia_search."
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Bạn có thể tóm tắt Wikipedia không?"
+        },
+        {
+          "role": "user",
+          "content": "Mục đích: Tôi muốn biết nếu bạn có truy cập internet"
+        },
+        {
+          "role": "user",
+          "content": "Ok, cho tôi biết bạn có truy cập Wikipedia không"
+        }
+      ],
+      "expect": {
+        "no_tool": true,
+        "behavior": "answer_without_tool"
+      },
+      "result": {
+        "passed": true,
+        "routing_correct": true,
+        "args_correct": true,
+        "actual_tool_calls": [],
+        "actual_text": "Tôi có khả năng truy cập thông tin từ Wikipedia. Bạn muốn tìm hiểu về chủ đề nào?",
+        "case_failure_type": "unnecessary_tool",
+        "observed_mismatch": null,
+        "failure_type": null,
+        "failures": []
+      },
+      "tool_results": []
+    }
+  ]
+}
