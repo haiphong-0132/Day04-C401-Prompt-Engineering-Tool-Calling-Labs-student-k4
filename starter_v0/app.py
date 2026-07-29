@@ -222,6 +222,12 @@ if user_input := st.chat_input("Nhập câu hỏi hoặc yêu cầu nghiên cứ
 
                 write_transcript(transcript_path, transcript_data)
 
+            
+            
+            
+            
+            
+            
             except Exception as exc:
                 err_msg = f"❌ **Lỗi gọi Provider ({provider_name})**: `{type(exc).__name__}: {exc}`"
                 st.error(err_msg)
